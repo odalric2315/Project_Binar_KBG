@@ -62,7 +62,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="25dp"
             android:layout_marginRight="25dp"
-            android:backgroundTint="@color/blue_light"
+            android:backgroundTint="#0085FF"
             android:text="Login" />
     </LinearLayout>
 
@@ -76,5 +76,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_baseline_arrow_left"
         tools:ignore="VectorDrawableCompat"
-        app:tint="@color/blue_light" />
+        app:tint="#0085FF" />
 </androidx.constraintlayout.widget.ConstraintLayout>
