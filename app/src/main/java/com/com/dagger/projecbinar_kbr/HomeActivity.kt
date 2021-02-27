@@ -35,22 +35,22 @@ class HomeActivity : AppCompatActivity() {
 
         //tombol multiplayer
         binding.buttonMultiplayerHomepage.setOnClickListener {
-            toMultiplayerGame()
+//            toMultiplayerGame()
         }
 
         //tombol leaderboard
         binding.buttonLeaderboardHomepage.setOnClickListener {
-            toLeaderboard()
+//            toLeaderboard()
         }
 
         //tombol tutorial
         binding.buttonTutorialHomepage.setOnClickListener {
-            toTutorial()
+//            toTutorial()
         }
 
         //tombol setting
         binding.buttonSettingHomepage.setOnClickListener {
-            toSettings()
+//            toSettings()
         }
 
     }
@@ -76,34 +76,34 @@ class HomeActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun toMultiplayerGame(){
-        val intent = Intent(this,MultiplayerGameActivity::class.java)
-        startActivity(intent)
-    }
+//    private fun toMultiplayerGame(){
+//        val intent = Intent(this,MultiplayerGameActivity::class.java)
+//        startActivity(intent)
+//    }
 
-    private fun toLeaderboard(){
-        val intent = Intent(this,LeaderboardActivity::class.java)
-        startActivity(intent)
-    }
+//    private fun toLeaderboard(){
+//        val intent = Intent(this,LeaderboardActivity::class.java)
+//        startActivity(intent)
+//    }
 
-    private fun toTutorial(){
-        val intent = Intent(this,TutorialActivity::class.java)
-        startActivity(intent)
-    }
+//    private fun toTutorial(){
+//        val intent = Intent(this,TutorialActivity::class.java)
+//        startActivity(intent)
+//    }
 
-    private fun toSettings(){
-        val intent = Intent(this,SettingsActivity::class.java)
-        startActivity(intent)
-    }
+//    private fun toSettings(){
+//        val intent = Intent(this,SettingsActivity::class.java)
+//        startActivity(intent)
+//    }
 
     private fun toLogin(){
         val intent = Intent(this,LoginActivity::class.java)
         startActivity(intent)
     }
 
-    private fun toProfile(){
-        val intent = Intent(this,ProfileActivity::class.java)
-        startActivity(intent)
-    }
+//    private fun toProfile(){
+//        val intent = Intent(this,ProfileActivity::class.java)
+//        startActivity(intent)
+//    }
 
 }
