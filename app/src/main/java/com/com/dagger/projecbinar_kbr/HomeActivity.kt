@@ -7,13 +7,30 @@ import android.view.Gravity
 import androidx.appcompat.app.AlertDialog
 import com.com.dagger.projecbinar_kbr.databinding.ActivityHomeBinding
 import com.com.dagger.projecbinar_kbr.databinding.EditDialogBinding
+import com.com.dagger.projecbinar_kbr.db.SuitDb
+import com.com.dagger.projecbinar_kbr.model.Player
+import com.com.dagger.projecbinar_kbr.util.SuitPrefs
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding:ActivityHomeBinding
+    private lateinit var databaseSuitDb: SuitDb
+    private lateinit var suitPrefs: SuitPrefs
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        databaseSuitDb= SuitDb.getInstance(this)
+        suitPrefs= SuitPrefs(this)
+
+        binding.buttonLogoutHomepage.setOnClickListener {
+            suitPrefs.clearSharePref()
+            toLogin()
+            finish()
+        }
+
+
+
+
 
         var nama=binding.textNamaHomepage.text.toString().trim()
 

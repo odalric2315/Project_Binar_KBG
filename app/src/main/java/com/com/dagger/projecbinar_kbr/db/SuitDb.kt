@@ -23,7 +23,7 @@ abstract class SuitDb: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     SuitDb::class.java,
-                    "player_ch6"
+                    "db_player_ch6"
                 ).build()
                 INSTANCE = instance
                 return instance
