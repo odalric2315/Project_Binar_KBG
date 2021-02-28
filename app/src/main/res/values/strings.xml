@@ -1,4 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Projec Binar - KBR</string>
     <string name="suit_prefs">SUIT_PREFS</string>
+    <string name="app_name">RockScissorsPaper2</string>
+    <string name="title_activity_splash_screen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="landing1_text">Bermain dengan player lain.</string>
+    <string name="landing2_text">Berlatih dengan CPU.</string>
+    <string name="home_text">PILIH LAWANMU</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

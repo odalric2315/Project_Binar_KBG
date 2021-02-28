@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
-
+    
     <LinearLayout
         android:id="@+id/vlinear_layout_registerpage"
         android:layout_width="match_parent"
@@ -108,5 +108,4 @@
             android:text="Login"
             android:textColor="#0085FF" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
