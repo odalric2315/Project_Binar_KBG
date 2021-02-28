@@ -6,31 +6,14 @@ import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AlertDialog
 import com.com.dagger.projecbinar_kbr.databinding.ActivityHomeBinding
-import com.com.dagger.projecbinar_kbr.databinding.DialogEtNamaBinding
-import com.com.dagger.projecbinar_kbr.db.SuitDb
-import com.com.dagger.projecbinar_kbr.model.Player
-import com.com.dagger.projecbinar_kbr.util.SuitPrefs
+import com.com.dagger.projecbinar_kbr.databinding.EditDialogBinding
 
 class HomeActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityHomeBinding
-    private lateinit var databaseSuitDb: SuitDb
-    private lateinit var suitPrefs: SuitPrefs
+    private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        databaseSuitDb= SuitDb.getInstance(this)
-        suitPrefs= SuitPrefs(this)
-
-        binding.buttonLogoutHomepage.setOnClickListener {
-            suitPrefs.clearSharePref()
-            toLogin()
-            finish()
-        }
-
-
-
-
 
         var nama=binding.textNamaHomepage.text.toString().trim()
 
@@ -47,34 +30,34 @@ class HomeActivity : AppCompatActivity() {
 
         //tombol logout
         binding.buttonLogoutHomepage.setOnClickListener {
-            toLogin()
+            //toLogin()
         }
 
         //tombol multiplayer
         binding.buttonMultiplayerHomepage.setOnClickListener {
-//            toMultiplayerGame()
+            //toMultiplayerGame()
         }
 
         //tombol leaderboard
         binding.buttonLeaderboardHomepage.setOnClickListener {
-//            toLeaderboard()
+            //toLeaderboard()
         }
 
         //tombol tutorial
         binding.buttonTutorialHomepage.setOnClickListener {
-            toTutorial()
+            //toTutorial()
         }
 
         //tombol setting
         binding.buttonSettingHomepage.setOnClickListener {
-//            toSettings()
+            //toSettings()
         }
 
     }
 
     private fun showEditDialog(nama:String){
         val builder =AlertDialog.Builder(this)
-        val view = DialogEtNamaBinding.inflate(layoutInflater)
+        val view = EditDialogBinding.inflate(layoutInflater)
         builder.setView(view.root)
         val dialog=builder.create()
 
@@ -93,34 +76,34 @@ class HomeActivity : AppCompatActivity() {
         dialog.show()
     }
 
-//    private fun toMultiplayerGame(){
-//        val intent = Intent(this,MultiplayerGameActivity::class.java)
-//        startActivity(intent)
-//    }
+    /*private fun toMultiplayerGame(){
+        val intent = Intent(this,MultiplayerGameActivity::class.java)
+        startActivity(intent)
+    }
 
-//    private fun toLeaderboard(){
-//        val intent = Intent(this,LeaderboardActivity::class.java)
-//        startActivity(intent)
-//    }
+    private fun toLeaderboard(){
+        val intent = Intent(this,LeaderboardActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun toTutorial(){
         val intent = Intent(this,TutorialActivity::class.java)
         startActivity(intent)
     }
 
-//    private fun toSettings(){
-//        val intent = Intent(this,SettingsActivity::class.java)
-//        startActivity(intent)
-//    }
+    private fun toSettings(){
+        val intent = Intent(this,SettingsActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun toLogin(){
         val intent = Intent(this,LoginActivity::class.java)
         startActivity(intent)
     }
 
-//    private fun toProfile(){
-//        val intent = Intent(this,ProfileActivity::class.java)
-//        startActivity(intent)
-//    }
+    private fun toProfile(){
+        val intent = Intent(this,ProfileActivity::class.java)
+        startActivity(intent)
+    }*/
 
 }
