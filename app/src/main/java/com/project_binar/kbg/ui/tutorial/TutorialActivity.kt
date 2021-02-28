@@ -11,7 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.project_binar.kbg.R
 import com.project_binar.kbg.databinding.ActivityTutorialBinding
 import com.project_binar.kbg.databinding.DialogGameresultBinding
+import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.ui.home.HomeActivity
+import com.project_binar.kbg.ui.login.LoginActivity
 
 class TutorialActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTutorialBinding
@@ -19,13 +21,13 @@ class TutorialActivity : AppCompatActivity() {
     private lateinit var cpu: String
     private lateinit var playerName: String
     private lateinit var hasil: String
+    private var dataPlayer: Player? = null
 
-    private val choice =
-        arrayOf(
-            getString(R.string.title_stone),
-            getString(R.string.title_scissor),
-            getString(R.string.title_paper)
-        )
+    private val choice = arrayOf("Batu","Gunting","Kertas"
+//        getString(R.string.title_stone),
+//        getString(R.string.title_scissor),
+//        getString(R.string.title_paper)
+    )
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -33,10 +35,10 @@ class TutorialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTutorialBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         //Nama Player/User db
-
-        playerName = getString(R.string.title_name)
+        dataPlayer = intent.getParcelableExtra<Player>(LoginActivity.DATA_PLAYER)
+        binding.textPlayerNameTutorialpage.text = dataPlayer?.nama
+        playerName = binding.textPlayerNameTutorialpage.text.toString()
 
 
         binding.buttonCloseTutorialpage.setOnClickListener {
@@ -76,7 +78,8 @@ class TutorialActivity : AppCompatActivity() {
             if ((player == getString(R.string.title_stone)
                         && cpu == getString(R.string.title_scissor))
                 || (player == getString(
-                    R.string.title_paper)
+                    R.string.title_paper
+                )
                         && cpu == getString(R.string.title_stone))
                 || (player == getString(R.string.title_scissor)
                         && cpu == getString(R.string.title_paper))

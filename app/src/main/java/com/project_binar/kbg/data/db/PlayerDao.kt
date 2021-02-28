@@ -24,4 +24,11 @@ interface PlayerDao {
 
     @Query("DELETE FROM player WHERE id = :id")
     fun deleteNote(id: Int) : Int
+
+    @Query("SELECT * FROM player WHERE id = :id")
+    fun getSinglePlayer(id: Int): Player?
+
+    @Query("UPDATE player SET nama = :nama WHERE id = :id")
+    fun updateNamePlayer(id: Int, nama: String):Int
+
 }
