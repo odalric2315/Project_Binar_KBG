@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
                     toHome()
                 }else {
                     launch(Dispatchers.Main) {
-                        Toast.makeText(this@LoginActivity,"LOGIN SUCCESS", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity,"LOGIN FAILED", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

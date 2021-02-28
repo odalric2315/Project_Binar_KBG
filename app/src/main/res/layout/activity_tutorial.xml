@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TutorialActivity">
+
+    <ImageView
+        android:id="@+id/button_close_tutorialpage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_close"
+        tools:ignore="VectorDrawableCompat" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="303dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            app:srcCompat="@drawable/img_gametitle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/border_gamesuit_background"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_player_name_tutorialpage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:text="Nama"
+                    android:gravity="center"
+                    android:textSize="26dp"/>
+
+                <ImageView
+                    android:id="@+id/img_batu_player_tutorialpage"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/img_batu"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <ImageView
+                    android:id="@+id/img_kertas_player_tutorialpage"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/img_kertas"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <ImageView
+                    android:id="@+id/img_gunting_player_tutorialpage"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/img_gunting"
+                    tools:ignore="VectorDrawableCompat" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="175dp"
+                    android:gravity="center_horizontal"
+                    android:rotation="-30"
+                    android:text="VS"
+                    android:textColor="#D10000"
+                    android:textSize="80dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:gravity="center"
+                    android:textSize="26dp"
+                    android:text="CPU" />
+
+                <ImageView
+                    android:id="@+id/img_batu_cpu_tutorialpage"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/img_batu"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <ImageView
+                    android:id="@+id/img_kertas_cpu_tutorialpage"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/img_kertas"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <ImageView
+                    android:id="@+id/img_gunting_cpu_tutorialpage"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/img_gunting"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <ImageView
+                    android:id="@+id/button_refresh_tutorialpage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_gravity="end"
+                    app:srcCompat="@drawable/ic_refresh"
+                    tools:ignore="VectorDrawableCompat"
+                    android:visibility="gone"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Hasil Permainan"
+            android:textSize="28sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/text_hasilgame_tutorialpage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Hasil\nPemenang"
+            android:gravity="center"
+            android:textSize="30sp"/>
+
+        <Button
+            android:id="@+id/button_mainlagi"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="25dp"
+            android:text="main lagi"
+            android:textSize="18sp"
+            android:backgroundTint="#27DA2E"/>
+
+        <Button
+            android:id="@+id/button_kemenu"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="25dp"
+            android:text="kembali ke menu"
+            android:textSize="18sp"
+            android:backgroundTint="#FF9800"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

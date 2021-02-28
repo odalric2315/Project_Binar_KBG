@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AlertDialog
 import com.com.dagger.projecbinar_kbr.databinding.ActivityHomeBinding
-import com.com.dagger.projecbinar_kbr.databinding.EditDialogBinding
+import com.com.dagger.projecbinar_kbr.databinding.DialogEtNamaBinding
 import com.com.dagger.projecbinar_kbr.db.SuitDb
 import com.com.dagger.projecbinar_kbr.model.Player
 import com.com.dagger.projecbinar_kbr.util.SuitPrefs
@@ -62,7 +62,7 @@ class HomeActivity : AppCompatActivity() {
 
         //tombol tutorial
         binding.buttonTutorialHomepage.setOnClickListener {
-//            toTutorial()
+            toTutorial()
         }
 
         //tombol setting
@@ -74,7 +74,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun showEditDialog(nama:String){
         val builder =AlertDialog.Builder(this)
-        val view = EditDialogBinding.inflate(layoutInflater)
+        val view = DialogEtNamaBinding.inflate(layoutInflater)
         builder.setView(view.root)
         val dialog=builder.create()
 
@@ -103,10 +103,10 @@ class HomeActivity : AppCompatActivity() {
 //        startActivity(intent)
 //    }
 
-//    private fun toTutorial(){
-//        val intent = Intent(this,TutorialActivity::class.java)
-//        startActivity(intent)
-//    }
+    private fun toTutorial(){
+        val intent = Intent(this,TutorialActivity::class.java)
+        startActivity(intent)
+    }
 
 //    private fun toSettings(){
 //        val intent = Intent(this,SettingsActivity::class.java)
