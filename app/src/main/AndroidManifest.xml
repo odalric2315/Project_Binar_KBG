@@ -19,9 +19,12 @@
         </activity>
         <activity android:name="com.project_binar.kbg.ui.lending_page.MainLendingPage"
             android:theme="@style/Theme.FullScreen"/>
-        <activity android:name="com.project_binar.kbg.ui.register.RegisterActivity" />
-        <activity android:name="com.project_binar.kbg.ui.login.LoginActivity" />
-        <activity android:name="com.project_binar.kbg.ui.home.HomeActivity" />
+        <activity android:name="com.project_binar.kbg.ui.register.RegisterActivity"
+            android:theme="@style/Theme.RockScissorsPaper2.Fullscreen"/>
+        <activity android:name="com.project_binar.kbg.ui.login.LoginActivity"
+            android:theme="@style/Theme.RockScissorsPaper2.Fullscreen"/>
+        <activity android:name="com.project_binar.kbg.ui.home.HomeActivity"
+            android:theme="@style/Theme.ProjecBinarKBR"/>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.project_binar.kbg.ui.register.RegisterActivity">
     
     <LinearLayout
@@ -83,6 +84,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/button_login_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -92,7 +94,6 @@
         app:layout_constraintTop_toBottomOf="@+id/vlinear_layout_registerpage">
 
         <TextView
-            android:id="@+id/text_login_registerpage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
@@ -101,7 +102,6 @@
             android:textAlignment="textEnd" />
 
         <TextView
-            android:id="@+id/button_login_registerpage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"

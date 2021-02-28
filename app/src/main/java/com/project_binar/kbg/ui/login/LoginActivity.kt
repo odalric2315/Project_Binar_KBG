@@ -62,19 +62,15 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-        binding.buttonBacktoregisterLoginpage.setOnClickListener {
-            toRegister()
+        binding.buttonRegisterPage.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
     fun toHome() {
         val intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-    }
-
-    fun toRegister() {
-        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
 }

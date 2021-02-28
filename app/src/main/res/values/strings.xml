@@ -36,4 +36,5 @@
     <string name="btn_title_back_home">kembali ke menu</string>
     <string name="title_lending3">Kumpulkan poin dan \n jadilah juara!</string>
     <string name="title_profile">Profile</string>
+    <string name="title_question_register">Belum punya akun?</string>
 </resources>
