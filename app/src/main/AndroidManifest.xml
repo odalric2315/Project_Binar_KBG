@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.com.dagger.projecbinar_kbr">
+    package="com.project_binar.kbg">
 
     <application
         android:allowBackup="true"
@@ -9,14 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjecBinarKBR">
-        <activity android:name=".HomeActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.project_binar.kbg.ui.splash.SplashScreenActivity"
+            android:theme="@style/Theme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.project_binar.kbg.ui.lending_page.MainLendingPage"
+            android:theme="@style/Theme.FullScreen"/>
+        <activity android:name="com.project_binar.kbg.ui.register.RegisterActivity" />
+        <activity android:name="com.project_binar.kbg.ui.login.LoginActivity" />
+        <activity android:name="com.project_binar.kbg.ui.home.HomeActivity" />
     </application>
 
 </manifest>

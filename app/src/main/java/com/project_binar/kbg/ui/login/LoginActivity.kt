@@ -1,12 +1,15 @@
-package com.com.dagger.projecbinar_kbr
+package com.project_binar.kbg.ui.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.com.dagger.projecbinar_kbr.databinding.ActivityLoginBinding
-import com.com.dagger.projecbinar_kbr.db.SuitDb
-import com.com.dagger.projecbinar_kbr.util.SuitPrefs
+import androidx.appcompat.app.AppCompatActivity
+import com.project_binar.kbg.R
+import com.project_binar.kbg.data.db.SuitDb
+import com.project_binar.kbg.databinding.ActivityLoginBinding
+import com.project_binar.kbg.ui.home.HomeActivity
+import com.project_binar.kbg.ui.register.RegisterActivity
+import com.project_binar.kbg.util.SuitPrefs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -15,13 +18,14 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var databaseSuitDb: SuitDb
     private lateinit var suitPrefs: SuitPrefs
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        databaseSuitDb= SuitDb.getInstance(this)
-        suitPrefs=SuitPrefs(this)
+        databaseSuitDb = SuitDb.getInstance(this)
+        suitPrefs = SuitPrefs(this)
 
 
         binding.buttonLoginLoginpage.setOnClickListener {
@@ -31,17 +35,25 @@ class LoginActivity : AppCompatActivity() {
 
             //Implementasi database
             GlobalScope.launch {
-                val player = databaseSuitDb.playerDao().getListPlayer(username,password)
-                if(player!=null) {
+                val player = databaseSuitDb.playerDao().getListPlayer(username, password)
+                if (player != null) {
                     launch(Dispatchers.Main) {
-                        Toast.makeText(this@LoginActivity,"LOGIN SUCCESS", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.status_login_success),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                    suitPrefs.name=player.nama
-                    suitPrefs.login=true
+                    suitPrefs.name = player.nama
+                    suitPrefs.login = true
                     toHome()
-                }else {
+                } else {
                     launch(Dispatchers.Main) {
-                        Toast.makeText(this@LoginActivity,"LOGIN FAILED", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.status_login_failed),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
@@ -57,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun toHome() {
         val intent = Intent(this, HomeActivity::class.java)
-        intent.flags=Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
 

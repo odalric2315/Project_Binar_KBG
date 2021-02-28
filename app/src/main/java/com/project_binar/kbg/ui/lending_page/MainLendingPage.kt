@@ -1,12 +1,12 @@
-package com.com.dagger.projecbinar_kbr
+package com.project_binar.kbg.ui.lending_page
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.com.dagger.projecbinar_kbr.databinding.ActivityMainBinding
+import com.project_binar.kbg.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainLendingPage : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val position = 0
     override fun onCreate(savedInstanceState: Bundle?) {

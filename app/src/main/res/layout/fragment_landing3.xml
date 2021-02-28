@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:theme="@style/ThemeOverlay.ProjecBinarKBR.FullscreenContainer"
-    tools:context=".LandingFragment3">
+    tools:context="com.project_binar.kbg.ui.lending_page.LandingFragment3">
 
     <ImageView
         android:id="@+id/landing3_bg"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:importantForAccessibility="no"
         android:scaleType="fitStart"
-        android:src="@drawable/confetti"
+        android:src="@drawable/img_confetti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/leaderboard"
+        android:src="@drawable/img_leaderboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:layout_marginTop="30dp"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text="Kumpulkan poin dan \n jadilah juara!"
+        android:text="@string/title_lending3"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"

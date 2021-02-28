@@ -1,13 +1,14 @@
-package com.com.dagger.projecbinar_kbr
+package com.project_binar.kbg.ui.register
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import com.com.dagger.projecbinar_kbr.databinding.ActivityRegisterBinding
-import com.com.dagger.projecbinar_kbr.db.SuitDb
-import com.com.dagger.projecbinar_kbr.model.Player
+import androidx.appcompat.app.AppCompatActivity
+import com.project_binar.kbg.R
+import com.project_binar.kbg.data.db.SuitDb
+import com.project_binar.kbg.databinding.ActivityRegisterBinding
+import com.project_binar.kbg.model.Player
+import com.project_binar.kbg.ui.login.LoginActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -38,7 +39,7 @@ class RegisterActivity : AppCompatActivity() {
                         runOnUiThread {
                             Toast.makeText(
                                 this@RegisterActivity,
-                                "REGISTER SUCCESS",
+                                getString(R.string.status_register_success),
                                 Toast.LENGTH_SHORT
                             ).show()
                             binding.etNameRegisterpage.setText("")
@@ -50,14 +51,14 @@ class RegisterActivity : AppCompatActivity() {
                         launch(Dispatchers.Main) {
                             Toast.makeText(
                                 this@RegisterActivity,
-                                "REGISTER FAILED",
+                                getString(R.string.status_register_failed),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     }
                 }
             } else {
-                Toast.makeText(this, "Data tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.status_data_not_null), Toast.LENGTH_SHORT).show()
             }
 
         }

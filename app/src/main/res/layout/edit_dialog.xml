@@ -19,7 +19,7 @@
         android:background="@drawable/et_background"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Nama"
+        android:hint="@string/hint_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
         android:layout_marginTop="35dp"
         android:layout_marginBottom="25dp"
         android:backgroundTint="#03A9F4"
-        android:text="cancel"
+        android:text="@string/btn_title_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_nama_dialog" />
@@ -47,7 +47,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginBottom="25dp"
         android:backgroundTint="#F44336"
-        android:text="save"
+        android:text="@string/btn_title_save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_nama_dialog" />

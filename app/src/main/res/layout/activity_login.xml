@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context="com.project_binar.kbg.ui.login.LoginActivity">
 
     <LinearLayout
         android:id="@+id/vlinear_layout_loginpage"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:gravity="center"
-            android:text="Selamat datang kembali"
+            android:text="@string/title_welcome_back"
             android:textColor="@color/black"
             android:textSize="26dp" />
 
@@ -40,7 +40,7 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/et_background"
             android:ems="10"
-            android:hint="Username"
+            android:hint="@string/hint_username"
             android:inputType="textPersonName" />
 
         <EditText
@@ -52,7 +52,7 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/et_background"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/hint_password"
             android:inputType="textPassword" />
 
         <Button
@@ -63,7 +63,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginRight="25dp"
             android:backgroundTint="#0085FF"
-            android:text="Login" />
+            android:text="@string/title_btn_login" />
     </LinearLayout>
 
     <ImageView

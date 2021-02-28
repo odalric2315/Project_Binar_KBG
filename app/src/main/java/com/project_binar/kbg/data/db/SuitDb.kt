@@ -1,10 +1,11 @@
-package com.com.dagger.projecbinar_kbr.db
+package com.project_binar.kbg.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.com.dagger.projecbinar_kbr.model.Player
+import com.project_binar.kbg.R
+import com.project_binar.kbg.model.Player
 
 @Database(entities = [Player::class], version = 1, exportSchema = false)
 abstract class SuitDb: RoomDatabase() {
@@ -23,7 +24,7 @@ abstract class SuitDb: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     SuitDb::class.java,
-                    "db_player_ch6"
+                    context.getString(R.string.db_name)
                 ).build()
                 INSTANCE = instance
                 return instance

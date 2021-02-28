@@ -1,16 +1,18 @@
-package com.com.dagger.projecbinar_kbr.util
+package com.project_binar.kbg.util
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.com.dagger.projecbinar_kbr.R
+import com.project_binar.kbg.R
 
 class SuitPrefs(context:Context) {
     private val prefs: SharedPreferences =
         context.getSharedPreferences(context.getString(R.string.suit_prefs), Context.MODE_PRIVATE)
+
     companion object {
         const val NAME="name"
         const val LOGIN="login"
     }
+
     var name : String?
         get() {
             return prefs.getString(NAME,"No Data")

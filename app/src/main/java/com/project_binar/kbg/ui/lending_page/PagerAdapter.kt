@@ -1,4 +1,4 @@
-package com.com.dagger.projecbinar_kbr
+package com.project_binar.kbg.ui.lending_page
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

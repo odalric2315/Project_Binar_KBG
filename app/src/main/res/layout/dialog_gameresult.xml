@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Hasil Permainan"
+            android:text="@string/title_result_player"
             android:textSize="28sp"
             android:gravity="center"/>
 
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Hasil\nPemenang"
+            android:text="@string/result_player"
             android:gravity="center"
             android:textSize="30sp"/>
 
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="25dp"
-            android:text="main lagi"
+            android:text="@string/btn_title_play_again"
             android:textSize="18sp"
             android:backgroundTint="#27DA2E"/>
 
@@ -48,7 +48,7 @@
             android:layout_height="55dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="25dp"
-            android:text="kembali ke menu"
+            android:text="@string/btn_title_back_home"
             android:textSize="18sp"
             android:backgroundTint="#FF9800"/>
     </LinearLayout>

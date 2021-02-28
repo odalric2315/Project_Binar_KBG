@@ -1,31 +1,30 @@
-package com.com.dagger.projecbinar_kbr
+package com.project_binar.kbg.ui.home
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AlertDialog
-import com.com.dagger.projecbinar_kbr.databinding.ActivityHomeBinding
-import com.com.dagger.projecbinar_kbr.databinding.EditDialogBinding
+import androidx.appcompat.app.AppCompatActivity
+import com.project_binar.kbg.databinding.ActivityHomeBinding
+import com.project_binar.kbg.databinding.EditDialogBinding
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var nama=binding.textNamaHomepage.text.toString().trim()
+        val name = binding.textNamaHomepage.text.toString().trim()
 
         //tombol profile pic
         binding.imgProfileHomepage.setOnClickListener {
-            val drawer=binding.drawerLayoutHomepage
-            drawer.openDrawer(Gravity.LEFT)
+            val drawer = binding.drawerLayoutHomepage
+            drawer.openDrawer(Gravity.START)
         }
 
         //tombol edit nama
         binding.imgEditnamaHomepage.setOnClickListener {
-            showEditDialog(nama)
+            showEditDialog(name)
         }
 
         //tombol logout
@@ -55,11 +54,11 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    private fun showEditDialog(nama:String){
-        val builder =AlertDialog.Builder(this)
+    private fun showEditDialog(nama: String) {
+        val builder = AlertDialog.Builder(this)
         val view = EditDialogBinding.inflate(layoutInflater)
         builder.setView(view.root)
-        val dialog=builder.create()
+        val dialog = builder.create()
 
         view.etNamaDialog.setText(nama)
 

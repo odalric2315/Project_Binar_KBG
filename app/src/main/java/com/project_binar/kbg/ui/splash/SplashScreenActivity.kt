@@ -1,14 +1,17 @@
-package com.com.dagger.projecbinar_kbr
+package com.project_binar.kbg.ui.splash
 
 import android.content.Intent
-import android.opengl.Visibility
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.com.dagger.projecbinar_kbr.databinding.ActivitySplashScreenBinding
+import com.project_binar.kbg.R
+import com.project_binar.kbg.databinding.ActivitySplashScreenBinding
+import com.project_binar.kbg.ui.lending_page.MainLendingPage
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -21,14 +24,14 @@ class SplashScreenActivity : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, MainLendingPage::class.java))
             binding.progressBar.visibility = View.GONE
             finish()
         }, 2000)
-        uploadImage("https://i.ibb.co/HC5ZPgD/splash-screen1.png")
+        ContextCompat.getDrawable(this, R.drawable.img_gametitle)?.let { uploadImage(it) }
     }
 
-    private fun uploadImage(url: String) {
+    private fun uploadImage(url: Drawable) {
         Glide.with(this)
             .load(url)
             .into(binding.splashScreenTitle)

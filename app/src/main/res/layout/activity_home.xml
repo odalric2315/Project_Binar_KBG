@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout_homepage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"
+    tools:context="com.project_binar.kbg.ui.home.HomeActivity"
     tools:openDrawer="start">
 
     <LinearLayout
@@ -43,7 +43,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:gravity="center_horizontal"
-                    android:text="Nama"
+                    android:text="@string/title_name"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 

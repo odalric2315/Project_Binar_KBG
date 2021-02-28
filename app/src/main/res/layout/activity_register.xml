@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context="com.project_binar.kbg.ui.register.RegisterActivity">
     
     <LinearLayout
         android:id="@+id/vlinear_layout_registerpage"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:gravity="center"
-            android:text="Registrasi akunmu"
+            android:text="@string/title_register_view"
             android:textColor="@color/black"
             android:textSize="26dp"
             android:textStyle="bold" />
@@ -43,7 +43,7 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/et_background"
             android:ems="10"
-            android:hint="Nama"
+            android:hint="@string/hint_name"
             android:inputType="textPersonName" />
 
         <EditText
@@ -55,7 +55,7 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/et_background"
             android:ems="10"
-            android:hint="Username"
+            android:hint="@string/hint_username"
             android:inputType="textPersonName" />
 
         <EditText
@@ -67,7 +67,7 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/et_background"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/hint_password"
             android:inputType="textPassword" />
 
         <Button
@@ -78,7 +78,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="25dp"
             android:backgroundTint="#0085FF"
-            android:text="Register" />
+            android:text="@string/title_btn_register" />
 
     </LinearLayout>
 
@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:text="Sudah punya akun?"
+            android:text="@string/title_question_account"
             android:textColor="@color/black"
             android:textAlignment="textEnd" />
 
@@ -105,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="Login"
+            android:text="@string/title_btn_login"
             android:textColor="#0085FF" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

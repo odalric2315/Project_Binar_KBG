@@ -1,10 +1,9 @@
-package com.com.dagger.projecbinar_kbr.db
+package com.project_binar.kbg.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Update
-import com.com.dagger.projecbinar_kbr.model.Player
+import com.project_binar.kbg.model.Player
 
 @Dao
 interface PlayerDao {

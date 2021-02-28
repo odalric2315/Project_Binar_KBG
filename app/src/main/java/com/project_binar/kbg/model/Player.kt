@@ -1,4 +1,4 @@
-package com.com.dagger.projecbinar_kbr.model
+package com.project_binar.kbg.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

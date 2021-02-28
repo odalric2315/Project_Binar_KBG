@@ -3,12 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/et_background.xml" value="0.12552083333333333" />
+        <entry key="app/src/main/res/drawable/border_gamesuit_background.xml" value="0.28425925925925927" />
+        <entry key="app/src/main/res/drawable/et_background.xml" value="0.28425925925925927" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/drawable/img_profile_picture.xml" value="0.28425925925925927" />
+        <entry key="app/src/main/res/drawable/landing_page1.xml" value="0.28425925925925927" />
+        <entry key="app/src/main/res/drawable/landing_page2.xml" value="0.28425925925925927" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2864583333333333" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1515625" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23796296296296296" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1515625" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.24351851851851852" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24351851851851852" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.24351851851851852" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/activity_tutorial.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/dialog_et_nama.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/dialog_gameresult.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/edit_dialog.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_landing1.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_landing2.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_landing3.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/nav_header_homepage.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/drawer_menu_homepage.xml" value="0.2864583333333333" />
       </map>
     </option>
   </component>
