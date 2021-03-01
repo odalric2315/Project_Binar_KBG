@@ -37,4 +37,10 @@
     <string name="title_lending3">Kumpulkan poin dan \n jadilah juara!</string>
     <string name="title_profile">Profile</string>
     <string name="title_question_register">Belum punya akun?</string>
+
+    <string-array name="choice">
+        <item>@string/title_stone</item>
+        <item>@string/title_scissor</item>
+        <item>@string/title_paper</item>
+    </string-array>
 </resources>

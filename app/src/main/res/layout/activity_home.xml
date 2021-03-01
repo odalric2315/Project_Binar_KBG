@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="16dp"
         android:paddingStart="24dp"
+        android:paddingTop="16dp"
         android:paddingEnd="24dp"
         android:paddingBottom="16dp">
 
@@ -172,8 +172,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_weight="1"
                 android:layout_marginTop="20dp"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -232,11 +232,11 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- <com.google.android.material.navigation.NavigationView
+     <com.google.android.material.navigation.NavigationView
          android:id="@+id/nav_drawer_homepage"
          android:layout_width="wrap_content"
          android:layout_height="match_parent"
          android:layout_gravity="start"
          app:headerLayout="@layout/nav_header_homepage"
-         app:menu="@menu/drawer_menu_homepage" />-->
+         app:menu="@menu/drawer_menu_homepage" />
 </androidx.drawerlayout.widget.DrawerLayout>
