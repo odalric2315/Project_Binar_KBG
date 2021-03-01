@@ -19,7 +19,6 @@
     <string name="title_scissor">Gunting</string>
     <string name="title_paper">Kertas</string>
     <string name="title_name">Nama</string>
-    <string name="title_name2">Nama2</string>
     <string name="status_result_draw">Draw!</string>
     <string name="title_welcome_back">Selamat datang kembali</string>
     <string name="hint_username">Username</string>
@@ -37,6 +36,13 @@
     <string name="btn_title_back_home">kembali ke menu</string>
     <string name="title_lending3">Kumpulkan poin dan \n jadilah juara!</string>
     <string name="title_profile">Profile</string>
+    <string name="title_question_register">Belum punya akun?</string>
+
+    <string-array name="choice">
+        <item>@string/title_stone</item>
+        <item>@string/title_scissor</item>
+        <item>@string/title_paper</item>
+    </string-array>
     <string name="close">close</string>
     <string name="logo">logo</string>
     <string name="player_1">Player 1</string>

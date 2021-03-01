@@ -1,10 +1,12 @@
 package com.project_binar.kbg.ui.lending_page
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.project_binar.kbg.databinding.ActivityMainBinding
+import com.project_binar.kbg.ui.register.RegisterActivity
 
 class MainLendingPage : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -25,10 +27,7 @@ class MainLendingPage : AppCompatActivity() {
 
                 when (currentPosition) {
                     0 -> {
-                        binding.btnLeft.visibility = View.GONE
-                    }
-                    (adapter.itemCount - 1) -> {
-                        binding.btnRight.visibility = View.GONE
+                        binding.btnLeft.visibility = View.INVISIBLE
                     }
                     else -> {
                         binding.btnLeft.visibility = View.VISIBLE
@@ -43,9 +42,19 @@ class MainLendingPage : AppCompatActivity() {
 
                 binding.btnRight.setOnClickListener {
                     currentPosition++
-                    binding.viewPager.currentItem = currentPosition
+
+                    if (currentPosition == 3) {
+                        goToRegister()
+                    } else {
+                        binding.viewPager.currentItem = currentPosition
+                    }
                 }
             }
         })
+    }
+
+    private fun goToRegister() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
     }
 }
