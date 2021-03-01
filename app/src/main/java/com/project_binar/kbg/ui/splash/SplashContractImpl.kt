@@ -30,7 +30,7 @@ class SplashContractImpl(
 
         splashView.showLoading(true)
 
-        ContextCompat.getDrawable(context, R.drawable.img_gametitle)?.let {
+        ContextCompat.getDrawable(context, R.drawable.for_splash_screen)?.let {
            splashView.setImageDrawable(it)
         }
     }

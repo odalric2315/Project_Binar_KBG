@@ -30,7 +30,7 @@
             android:id="@+id/img_welcome_loginpage"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            app:srcCompat="@drawable/img_login_page" />
+            app:srcCompat="@drawable/login" />
 
         <EditText
             android:id="@+id/et_username_loginpage"

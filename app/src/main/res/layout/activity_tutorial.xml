@@ -15,7 +15,7 @@
         android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_close"
+        app:srcCompat="@drawable/btn_close"
         tools:ignore="VectorDrawableCompat" />
 
     <LinearLayout
@@ -29,7 +29,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="175dp"
-            app:srcCompat="@drawable/img_gametitle" />
+            app:srcCompat="@drawable/for_splash_screen" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_batu"
+                    app:srcCompat="@drawable/batu"
                     tools:ignore="VectorDrawableCompat" />
 
                 <ImageView
@@ -73,7 +73,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_kertas"
+                    app:srcCompat="@drawable/kertas"
                     tools:ignore="VectorDrawableCompat" />
 
                 <ImageView
@@ -83,7 +83,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_gunting"
+                    app:srcCompat="@drawable/gunting"
                     tools:ignore="VectorDrawableCompat" />
 
             </LinearLayout>
@@ -129,7 +129,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_batu"
+                    app:srcCompat="@drawable/batu"
                     tools:ignore="VectorDrawableCompat" />
 
                 <ImageView
@@ -139,7 +139,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_kertas"
+                    app:srcCompat="@drawable/kertas"
                     tools:ignore="VectorDrawableCompat" />
 
                 <ImageView
@@ -149,7 +149,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_gunting"
+                    app:srcCompat="@drawable/gunting"
                     tools:ignore="VectorDrawableCompat" />
 
                 <ImageView
@@ -159,7 +159,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="28dp"
                     android:layout_gravity="end"
-                    app:srcCompat="@drawable/ic_refresh"
+                    app:srcCompat="@drawable/refresh"
                     tools:ignore="VectorDrawableCompat"
                     android:visibility="gone"/>
             </LinearLayout>

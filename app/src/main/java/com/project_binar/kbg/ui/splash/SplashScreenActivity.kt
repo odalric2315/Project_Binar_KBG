@@ -34,7 +34,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 binding.progressBar.visibility = View.GONE
                 finish()
             }, 2000)
-            ContextCompat.getDrawable(this, R.drawable.img_gametitle)?.let { uploadImage(it) }
+            ContextCompat.getDrawable(this, R.drawable.for_splash_screen)?.let { uploadImage(it) }
         } else {
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, HomeActivity::class.java))
