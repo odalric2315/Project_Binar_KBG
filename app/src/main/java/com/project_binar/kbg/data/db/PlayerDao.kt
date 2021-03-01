@@ -10,6 +10,7 @@ interface PlayerDao {
     @Insert
     fun addPlayer(player: Player): Long
 
+    /*refactor name from getListPlayer to loginPlayer*/
     @Query("SELECT * FROM player WHERE username = :username AND password= :password LIMIT 1")
     fun loginPlayer(username: String, password: String): Player?
 
