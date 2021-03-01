@@ -14,18 +14,21 @@ import androidx.core.content.res.ResourcesCompat
 import com.project_binar.kbg.R
 import com.project_binar.kbg.databinding.ActivityMultiplayerBinding
 import com.project_binar.kbg.databinding.DialogGameresultBinding
+import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.ui.home.HomeActivity
+import com.project_binar.kbg.ui.login.LoginActivity
 
-class MultiplayerActivity: AppCompatActivity() {
+class MultiplayerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMultiplayerBinding
-    private lateinit var player1Name : String
-    private lateinit var player2Name : String
-    private var option1: String = ""
-    private var option2: String = ""
-    private var state1: Boolean = false
-    private var state2: Boolean = false
-    private lateinit var selected1: View
-    private lateinit var selected2: View
+    private lateinit var player1: String
+    private lateinit var player2: String
+    private lateinit var playerName: String
+    private lateinit var hasil: String
+    private var playerWin: Int=0
+    private var playerLose: Int=0
+    private var lifePlayer1: Int = 3
+    private var lifePlayer2: Int = 3
+    private var dataPlayer: Player? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("SetTextI18n")
@@ -33,177 +36,205 @@ class MultiplayerActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMultiplayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.player1Name.text = "Nama"
-        binding.player2Name.text = "Nama2"
+        dataPlayer = intent.getParcelableExtra<Player>(LoginActivity.DATA_PLAYER)
+        binding.player1Name.text = dataPlayer?.nama
+        playerName=binding.player1Name.text.toString().trim()
 
-        binding.buttonRefresh.setOnClickListener {
-            refresh()
-        }
+        //ambil Win and Lose stats dari database
+        playerWin= dataPlayer?.win!!
+        playerLose= dataPlayer?.lose!!
+
+
+
         binding.buttonClose.setOnClickListener {
             toHome()
         }
+        binding.buttonRefresh.setOnClickListener {
+            refresh()
+        }
 
-    }
+        binding.imgBatuPlayer2.isClickable = false
+        binding.imgKertasPlayer2.isClickable = false
+        binding.imgGuntingPlayer2.isClickable = false
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun playerOneGame() {
         binding.imgBatuPlayer1.setOnClickListener {
-            playerOneSelect(it)
-            if (option2 != "") {
-                checkResult()
-            }
+            player1ButtonClick()
+            player2ButtonClick()
+            player1 = getString(R.string.title_stone)
+            binding.imgBatuPlayer1.background =
+                getDrawable(R.drawable.btn_hand_background)
+            playerTwoPick(player1)
         }
+
         binding.imgKertasPlayer1.setOnClickListener {
-            playerOneSelect(it)
-            if (option2 != "") {
-                checkResult()
-            }
+            player1ButtonClick()
+            player2ButtonClick()
+            player1 = getString(R.string.title_paper)
+            binding.imgKertasPlayer1.background =
+                getDrawable(R.drawable.btn_hand_background)
+            playerTwoPick(player1)
         }
+
         binding.imgGuntingPlayer1.setOnClickListener {
-            playerOneSelect(it)
-            if (option2 != "") {
-                checkResult()
-            }
+            player1ButtonClick()
+            player2ButtonClick()
+            player1 = getString(R.string.title_scissor)
+            binding.imgGuntingPlayer1.background =
+                getDrawable(R.drawable.btn_hand_background)
+            playerTwoPick(player1)
         }
+
     }
 
+    //////////////////////////////////////////////////
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun playerTwoGame() {
+    private fun playerTwoPick(player1: String) {
         binding.imgBatuPlayer2.setOnClickListener {
-            playerTwoSelect(it)
-            if (option1 != "") {
-                checkResult()
-            }
+            player2 = getString(R.string.title_stone)
+            binding.imgBatuPlayer2.background = getDrawable(R.drawable.btn_hand_background)
+            checkResult(player1, player2)
         }
         binding.imgKertasPlayer2.setOnClickListener {
-            playerTwoSelect(it)
-            if (option1 != "") {
-                checkResult()
-            }
+            player2 = getString(R.string.title_paper)
+            binding.imgKertasPlayer2.background = getDrawable(R.drawable.btn_hand_background)
+            checkResult(player1, player2)
         }
         binding.imgGuntingPlayer2.setOnClickListener {
-            playerTwoSelect(it)
-            if (option1 != "") {
-                checkResult()
-            }
+            player2 = getString(R.string.title_scissor)
+            binding.imgGuntingPlayer2.background = getDrawable(R.drawable.btn_hand_background)
+            checkResult(player1, player2)
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun playerOneSelect(view: View) {
-        if (!state1) {
-            selected1 = view
-            refreshPlayerOne()
-            state1 = true
-            option1 = selected1.contentDescription.toString()
-            view.background = getDrawable(R.drawable.btn_hand_background)
-        } else {
-            refreshPlayerOne()
-        }
+    ///////////////////////////////////////////////
+    private fun player1ButtonClick() {
+        binding.imgBatuPlayer1.isClickable = false
+        binding.imgKertasPlayer1.isClickable = false
+        binding.imgGuntingPlayer1.isClickable = false
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun playerTwoSelect(view: View) {
-        if (!state2) {
-            selected2 = view
-            refreshPlayerTwo()
-            state2 = true
-            option2 = selected2.contentDescription.toString()
-            view.background = getDrawable(R.drawable.btn_hand_background)
-            Toast.makeText(this, "Player 2 memilih ${view.contentDescription}",
-                Toast.LENGTH_LONG
-            ).show()
-        } else {
-            refreshPlayerTwo()
-        }
+    private fun player2ButtonClick() {
+        binding.imgBatuPlayer2.isClickable = true
+        binding.imgKertasPlayer2.isClickable = true
+        binding.imgGuntingPlayer2.isClickable = true
     }
 
+    ///////////////////////////////////////////////////////////
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun refresh() {
-        option1 = ""
-        option2 = ""
-        state1 = false
-        state2 = false
-        selected1.background = getDrawable(R.drawable.btn_hand_background)
-        selected2.background = getDrawable(R.drawable.btn_hand_background)
+        binding.imgBatuPlayer1.setBackgroundResource(0)
+        binding.imgGuntingPlayer1.setBackgroundResource(0)
+        binding.imgKertasPlayer1.setBackgroundResource(0)
+        binding.imgBatuPlayer2.setBackgroundResource(0)
+        binding.imgGuntingPlayer2.setBackgroundResource(0)
+        binding.imgKertasPlayer2.setBackgroundResource(0)
+        binding.imgBatuPlayer1.isClickable = true
+        binding.imgKertasPlayer1.isClickable = true
+        binding.imgGuntingPlayer1.isClickable = true
+        binding.imgBatuPlayer2.isClickable = false
+        binding.imgKertasPlayer2.isClickable = false
+        binding.imgGuntingPlayer2.isClickable = false
     }
 
+    ///////////////////////////////////////////////////////////
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun checkResult() {
-        if (option1 == option2) {
-            showResultDialog("Hasil SERI")
+    private fun checkResult(player1: String, player2: String) {
+        Toast.makeText(this, "Player 2 memilih $player2", Toast.LENGTH_SHORT).show()
+        if (player1 == player2) {
+            hasil = getString(R.string.status_result_draw)
+            refresh()
+        } else {
+            if ((player1 == getString(R.string.title_stone) && player2 == getString(R.string.title_scissor))
+                || (player1 == getString(R.string.title_paper) && player2 == getString(R.string.title_stone))
+                || (player1 == getString(R.string.title_scissor) && player2 == getString(R.string.title_paper))
+            ) {
+                lifePlayer2--
+                lifeIndicator()
+                refresh()
+                if (lifePlayer1 == 0 || lifePlayer2 == 0) {
+                    hasil = "$playerName \nWON!"
+                    playerWin++
+
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //Save Win/Lose ke database disini
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    showResultDialog()
+                }
+            } else {
+                lifePlayer1--
+                lifeIndicator()
+                refresh()
+                if (lifePlayer1 == 0 || lifePlayer2 == 0) {
+                    hasil = "Player 2 \nWON!"
+                    playerLose++
+
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //Save Win/Lose ke database disini
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    showResultDialog()
+                }
+            }
+
         }
-        when (option1) {
-            "batu" -> {
-                when (option2) {
-                    "kertas" -> {
-                        showResultDialog("$player2Name MENANG")
-                    }
-                    "gunting" -> {
-                        showResultDialog("$player1Name MENANG")
-                    }
-                }
-            }
-            "kertas" -> {
-                when (option2) {
-                    "gunting" -> {
-                        showResultDialog("$player2Name MENANG")
-                    }
-                    "batu" -> {
-                        showResultDialog("$player1Name MENANG")
-                    }
-                }
-            }
-            "gunting" -> {
-                when (option2) {
-                    "batu" -> {
-                        showResultDialog("$player2Name MENANG")
-                    }
-                    "kertas" -> {
-                        showResultDialog("$player1Name MENANG")
-                    }
-                }
-            }
+    }
+
+    ////////////////////////////////////////////////////
+    private fun lifeIndicator() {
+        if (lifePlayer1 == 2) {
+            binding.ivHati3player1.visibility = View.INVISIBLE
+        }
+        if (lifePlayer2 == 2) {
+            binding.ivHati1player2.visibility = View.INVISIBLE
+        }
+        if (lifePlayer1 == 1) {
+            binding.ivHati2player1.visibility = View.INVISIBLE
+        }
+        if (lifePlayer2 == 1) {
+            binding.ivHati2player2.visibility = View.INVISIBLE
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    /////////////////////////////////////////////////////////
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun refreshPlayerOne() {
-        option1 = ""
-        state1 = false
-        selected1.background = getDrawable(R.drawable.btn_hand_background)
-    }
-
-    @SuppressLint("UseCompatLoadingForDrawables")
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun refreshPlayerTwo() {
-        option2 = ""
-        state2 = false
-        selected2.background = getDrawable(R.drawable.btn_hand_background)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun showResultDialog(message: String) {
+    private fun showResultDialog() {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
         val view = DialogGameresultBinding.inflate(layoutInflater)
-        val dialogBuilder = AlertDialog.Builder(this)
-        dialogBuilder.setView(view.root)
-        val dialog = dialogBuilder.create()
-        view.textHasilgameTutorialpage.text = message
+        builder.setView(view.root)
+        val dialog = builder.create()
+        view.textHasilgameTutorialpage.text = hasil
         view.buttonMainlagi.setOnClickListener {
+            //Save Win/Lose ke database disini
+
+
+
+            lifePlayer1=3
+            lifePlayer2=3
+            binding.ivHati3player1.visibility = View.VISIBLE
+            binding.ivHati2player1.visibility = View.VISIBLE
+            binding.ivHati1player2.visibility = View.VISIBLE
+            binding.ivHati2player2.visibility = View.VISIBLE
             refresh()
             dialog.dismiss()
         }
+
         view.buttonKemenu.setOnClickListener {
+            //Save Win/Lose ke database disini
+
+
+
+
+
             toHome()
             dialog.dismiss()
         }
         dialog.show()
     }
 
+    ////////////////////////////////////////////////
     private fun toHome() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)

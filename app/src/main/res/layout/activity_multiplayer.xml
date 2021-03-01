@@ -59,47 +59,41 @@
                     android:textSize="26sp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     tools:ignore="NestedWeights">
 
                     <ImageView
-                        android:id="@+id/iv_hati1"
+                        android:id="@+id/iv_hati1player1"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         app:layout_constraintTop_toBottomOf="@+id/player1_name"
                         app:srcCompat="@drawable/simbol_nyawa"
-                        android:contentDescription="@string/hati1"
-                        android:layout_marginLeft="16dp" />
+                        android:contentDescription="@string/hati1" />
 
                     <ImageView
-                        android:id="@+id/iv_hati2"
+                        android:id="@+id/iv_hati2player1"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         app:layout_constraintStart_toEndOf="@+id/iv_hati3"
                         app:layout_constraintTop_toBottomOf="@+id/player1_name"
                         app:srcCompat="@drawable/simbol_nyawa"
-                        android:contentDescription="@string/hati2"
-                        android:layout_marginLeft="15dp" />
+                        android:contentDescription="@string/hati2" />
 
                     <ImageView
-                        android:id="@+id/iv_hati3"
+                        android:id="@+id/iv_hati3player1"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         app:layout_constraintStart_toEndOf="@+id/iv_hati1"
                         app:layout_constraintTop_toBottomOf="@+id/player1_name"
                         app:srcCompat="@drawable/simbol_nyawa"
-                        android:contentDescription="@string/hati3"
-                        android:layout_marginLeft="15dp" />
+                        android:contentDescription="@string/hati3" />
                 </LinearLayout>
 
                 <ImageView
@@ -174,46 +168,41 @@
                     android:text="@string/player_2"
                     android:textSize="26sp" />
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     tools:ignore="NestedWeights">
-                    <ImageView
-                        android:id="@+id/iv_hati4"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_hati5"
-                        app:layout_constraintTop_toBottomOf="@+id/player2_name"
-                        app:srcCompat="@drawable/simbol_nyawa"
-                        android:contentDescription="@string/hati4"
-                        android:layout_marginRight="15dp" />
 
                     <ImageView
-                        android:id="@+id/iv_hati5"
+                        android:id="@+id/iv_hati1player2"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_hati6"
-                        app:layout_constraintTop_toBottomOf="@+id/player2_name"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:layout_constraintTop_toBottomOf="@+id/player1_name"
                         app:srcCompat="@drawable/simbol_nyawa"
-                        android:contentDescription="@string/hati5"
-                        android:layout_marginRight="15dp" />
+                        android:contentDescription="@string/hati1" />
 
                     <ImageView
-                        android:id="@+id/iv_hati6"
+                        android:id="@+id/iv_hati2player2"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/player2_name"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/iv_hati3"
+                        app:layout_constraintTop_toBottomOf="@+id/player1_name"
                         app:srcCompat="@drawable/simbol_nyawa"
-                        android:contentDescription="@string/hati6"
-                        android:layout_marginRight="15dp" />
+                        android:contentDescription="@string/hati2" />
+
+                    <ImageView
+                        android:id="@+id/iv_hati3player2"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/iv_hati1"
+                        app:layout_constraintTop_toBottomOf="@+id/player1_name"
+                        app:srcCompat="@drawable/simbol_nyawa"
+                        android:contentDescription="@string/hati3" />
                 </LinearLayout>
 
                 <ImageView
