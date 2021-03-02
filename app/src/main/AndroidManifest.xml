@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.lending_page.MainLendingPage"
+        <activity android:name=".ui.lending_page.LendingPageActivity"
             android:theme="@style/Theme.FullScreen"/>
         <activity android:name=".ui.register.RegisterActivity"
             android:theme="@style/Theme.RockScissorsPaper2.Fullscreen"/>

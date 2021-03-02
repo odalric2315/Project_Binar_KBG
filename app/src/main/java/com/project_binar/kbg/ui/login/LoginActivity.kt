@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
 
             //Implementasi database
             GlobalScope.launch {
-                player = databaseSuitDb.playerDao().getListPlayer(username, password)
+                player = databaseSuitDb.playerDao().loginPlayer(username, password)
                 if (player != null) {
                     launch(Dispatchers.Main) {
                         Toast.makeText(

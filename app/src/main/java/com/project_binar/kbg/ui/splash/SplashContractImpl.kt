@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.core.content.ContextCompat
 import com.project_binar.kbg.R
 import com.project_binar.kbg.ui.home.HomeActivity
-import com.project_binar.kbg.ui.lending_page.MainLendingPage
+import com.project_binar.kbg.ui.lending_page.LendingPageActivity
 import com.project_binar.kbg.util.SuitPrefs
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -23,7 +23,7 @@ class SplashContractImpl(
             delay(2000)
             if (prefSuitPrefs.login) {
                 context.startActivity(Intent(context, HomeActivity::class.java))
-            } else context.startActivity(Intent(context, MainLendingPage::class.java))
+            } else context.startActivity(Intent(context, LendingPageActivity::class.java))
 
             context.finish()
         }
