@@ -1,34 +1,38 @@
 package com.project_binar.kbg.ui.Multiplayer
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.content.res.ResourcesCompat
 import com.project_binar.kbg.R
+import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityMultiplayerBinding
 import com.project_binar.kbg.databinding.DialogGameresultBinding
 import com.project_binar.kbg.model.Player
+import com.project_binar.kbg.presenter.multiplayer.MultiplayerPresenterImp
 import com.project_binar.kbg.ui.home.HomeActivity
 import com.project_binar.kbg.ui.login.LoginActivity
 
-class MultiplayerActivity : AppCompatActivity() {
+class MultiplayerActivity : AppCompatActivity(), MultiplayerView {
     private lateinit var binding: ActivityMultiplayerBinding
+    private lateinit var presenter: MultiplayerPresenterImp
     private lateinit var player1: String
     private lateinit var player2: String
     private lateinit var playerName: String
     private lateinit var hasil: String
+    private var playerWinrate: Int = 0
     private var playerWin: Int = 0
     private var playerLose: Int = 0
     private var lifePlayer1: Int = 3
     private var lifePlayer2: Int = 3
     private var dataPlayer: Player? = null
+
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("SetTextI18n")
@@ -39,20 +43,22 @@ class MultiplayerActivity : AppCompatActivity() {
         dataPlayer = intent.getParcelableExtra<Player>(LoginActivity.DATA_PLAYER)
         binding.player1Name.text = dataPlayer?.nama
         playerName = binding.player1Name.text.toString().trim()
-
+        val playerDb = SuitDb.getInstance(this)
+        presenter = MultiplayerPresenterImp(this, playerDb.playerDao())
         //ambil Win and Lose stats dari database
 
         dataPlayer?.apply {
             win?.let { playerWin = it }
             lose?.let { playerLose = it }
+            winrate?.let { playerWinrate = it }
         }
 
         binding.buttonClose.setOnClickListener {
             toHome()
         }
         binding.buttonRefresh.setOnClickListener {
-            refresh()
             resetHeart()
+            refresh()
         }
 
         binding.imgBatuPlayer2.isClickable = false
@@ -138,16 +144,10 @@ class MultiplayerActivity : AppCompatActivity() {
         binding.imgBatuPlayer2.isClickable = false
         binding.imgKertasPlayer2.isClickable = false
         binding.imgGuntingPlayer2.isClickable = false
+
+
     }
 
-    private fun resetHeart(){
-        binding.ivHati1player1.visibility = View.VISIBLE
-        binding.ivHati2player1.visibility = View.VISIBLE
-        binding.ivHati3player1.visibility = View.VISIBLE
-        binding.ivHati1player2.visibility = View.VISIBLE
-        binding.ivHati2player2.visibility = View.VISIBLE
-        binding.ivHati3player2.visibility = View.VISIBLE
-    }
 
     ///////////////////////////////////////////////////////////
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -168,10 +168,6 @@ class MultiplayerActivity : AppCompatActivity() {
                     hasil = "$playerName \nWON!"
                     playerWin++
 
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //Save Win/Lose ke database disini
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
                     showResultDialog()
                 }
             } else {
@@ -181,10 +177,6 @@ class MultiplayerActivity : AppCompatActivity() {
                 if (lifePlayer1 == 0 || lifePlayer2 == 0) {
                     hasil = "Player 2 \nWON!"
                     playerLose++
-
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //Save Win/Lose ke database disini
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                     showResultDialog()
                 }
@@ -209,6 +201,17 @@ class MultiplayerActivity : AppCompatActivity() {
         }
     }
 
+    private fun resetHeart() {
+        binding.ivHati1player1.visibility = View.VISIBLE
+        binding.ivHati2player1.visibility = View.VISIBLE
+        binding.ivHati3player1.visibility = View.VISIBLE
+        binding.ivHati1player2.visibility = View.VISIBLE
+        binding.ivHati2player2.visibility = View.VISIBLE
+        binding.ivHati3player2.visibility = View.VISIBLE
+        lifePlayer1 = 3
+        lifePlayer2 = 3
+    }
+
     /////////////////////////////////////////////////////////
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun showResultDialog() {
@@ -219,20 +222,27 @@ class MultiplayerActivity : AppCompatActivity() {
         view.textHasilgameTutorialpage.text = hasil
         view.buttonMainlagi.setOnClickListener {
             //Save Win/Lose ke database disini
+            playerWinrate = playerWin / (playerWin + playerLose) * 100
 
-
-            lifePlayer1 = 3
-            lifePlayer2 = 3
-            binding.ivHati3player1.visibility = View.VISIBLE
-            binding.ivHati2player1.visibility = View.VISIBLE
-            binding.ivHati1player2.visibility = View.VISIBLE
-            binding.ivHati2player2.visibility = View.VISIBLE
+            dataPlayer?.id?.let {
+                presenter.updateWin(playerWin, it)
+                presenter.updateLose(playerLose, it)
+                presenter.updateWinrate(playerWinrate, it)
+            }
+            resetHeart()
             refresh()
             dialog.dismiss()
         }
 
         view.buttonKemenu.setOnClickListener {
             //Save Win/Lose ke database disini
+            playerWinrate = playerWin / (playerWin + playerLose) * 100
+
+            dataPlayer?.id?.let {
+                presenter.updateWin(playerWin, it)
+                presenter.updateLose(playerLose, it)
+                presenter.updateWinrate(playerWinrate, it)
+            }
             toHome()
             dialog.dismiss()
         }
@@ -243,6 +253,15 @@ class MultiplayerActivity : AppCompatActivity() {
     private fun toHome() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun showUpdatePlayer() {
+        runOnUiThread {
+            Toast.makeText(this, "Stats Berhasil di Update", Toast.LENGTH_SHORT).show()
+            Handler(Looper.getMainLooper()).postDelayed({
+                finish()
+            }, 1000)
+        }
     }
 }
 

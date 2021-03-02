@@ -30,7 +30,7 @@ class RegisterActivity : AppCompatActivity() {
             val name = binding.etNameRegisterpage.text.toString().trim()
             val username = binding.etUsernameRegisterpage.text.toString().trim()
             val password = binding.etPasswordRegisterpage.text.toString().trim()
-            val player = Player(null, name, username, password, null, null, null)
+            val player = Player(null, name, username, password, 0, 0, 0)
             if (!username.equals("") && !name.equals("") && !password.equals("")) {
 
                 //Implementasi Database
