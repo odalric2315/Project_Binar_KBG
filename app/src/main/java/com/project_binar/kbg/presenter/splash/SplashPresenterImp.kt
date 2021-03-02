@@ -1,4 +1,4 @@
-package com.project_binar.kbg.ui.splash
+package com.project_binar.kbg.presenter.splash
 
 import android.app.Activity
 import android.content.Intent
@@ -6,16 +6,17 @@ import androidx.core.content.ContextCompat
 import com.project_binar.kbg.R
 import com.project_binar.kbg.ui.home.HomeActivity
 import com.project_binar.kbg.ui.lending_page.LendingPageActivity
+import com.project_binar.kbg.ui.splash.SplashView
 import com.project_binar.kbg.util.SuitPrefs
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashContractImpl(
+class SplashPresenterImp(
     private val context: Activity,
-    private val splashView: SplashContract.SplashView
+    private val splashView: SplashView
 ) :
-    SplashContract.Presenter {
+    SplashPresenter {
     private val prefSuitPrefs = SuitPrefs(context)
 
     override fun checkStatus() {
@@ -31,7 +32,7 @@ class SplashContractImpl(
         splashView.showLoading(true)
 
         ContextCompat.getDrawable(context, R.drawable.img_gametitle)?.let {
-           splashView.setImageDrawable(it)
+            splashView.setImageDrawable(it)
         }
     }
 }

@@ -34,8 +34,6 @@ class HomeActivity : AppCompatActivity(), HomeView {
         presenterImp = HomePresenterImp(this, playerDb.playerDao())
         dataPlayer?.id?.let { presenterImp.getSinglePlayer(it) }
 
-//        val name = binding.textNamaHomepage.text.toString().trim()
-
         //tombol profile pic
         binding.imgProfileHomepage.setOnClickListener {
 //            val drawer = binding.drawerLayoutHomepage
@@ -73,27 +71,6 @@ class HomeActivity : AppCompatActivity(), HomeView {
             //toSettings()
         }
 
-    }
-
-    private fun showEditDialog(nama: String) {
-        val builder = AlertDialog.Builder(this)
-        val view = EditDialogBinding.inflate(layoutInflater)
-        builder.setView(view.root)
-        val dialog = builder.create()
-
-        view.etNamaDialog.setText(nama)
-
-        view.buttonCancelDialog.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        view.buttonSaveDialog.setOnClickListener {
-            view.etNamaDialog.text.toString().trim()
-            //implementasi db
-
-            dialog.dismiss()
-        }
-        dialog.show()
     }
 
     override fun viewPlayer(player: Player?) {

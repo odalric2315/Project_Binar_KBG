@@ -30,8 +30,8 @@ class RegisterActivity : AppCompatActivity() {
             val name = binding.etNameRegisterpage.text.toString().trim()
             val username = binding.etUsernameRegisterpage.text.toString().trim()
             val password = binding.etPasswordRegisterpage.text.toString().trim()
-            val player = Player(null, name, username, password, 0, 0, 0)
-            if (!username.equals("") && !name.equals("") && !password.equals("")) {
+            val player = Player(nama = name, username = username, password = password)
+            if (username.isNotEmpty() && name.isNotEmpty() && password.isNotEmpty()) {
 
                 //Implementasi Database
                 GlobalScope.launch {
