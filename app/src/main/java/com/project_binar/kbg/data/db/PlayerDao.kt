@@ -13,6 +13,9 @@ interface PlayerDao {
     @Query("SELECT * FROM player WHERE username = :username AND password= :password LIMIT 1")
     fun getListPlayer(username: String, password: String): Player?
 
+    @Query("SELECT * FROM player")
+    fun getAllPlayer(): List<Player>?
+
     @Query("UPDATE player SET win = :win WHERE id = :id")
     fun updateWin(win: Int, id: Int) : Int
 
