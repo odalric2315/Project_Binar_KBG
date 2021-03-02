@@ -24,8 +24,8 @@ class MultiplayerActivity : AppCompatActivity() {
     private lateinit var player2: String
     private lateinit var playerName: String
     private lateinit var hasil: String
-    private var playerWin: Int=0
-    private var playerLose: Int=0
+    private var playerWin: Int = 0
+    private var playerLose: Int = 0
     private var lifePlayer1: Int = 3
     private var lifePlayer2: Int = 3
     private var dataPlayer: Player? = null
@@ -38,13 +38,14 @@ class MultiplayerActivity : AppCompatActivity() {
         setContentView(binding.root)
         dataPlayer = intent.getParcelableExtra<Player>(LoginActivity.DATA_PLAYER)
         binding.player1Name.text = dataPlayer?.nama
-        playerName=binding.player1Name.text.toString().trim()
+        playerName = binding.player1Name.text.toString().trim()
 
         //ambil Win and Lose stats dari database
-        playerWin= dataPlayer?.win!!
-        playerLose= dataPlayer?.lose!!
 
-
+        dataPlayer?.apply {
+            win?.let { playerWin = it }
+            lose?.let { playerLose = it }
+        }
 
         binding.buttonClose.setOnClickListener {
             toHome()
@@ -210,9 +211,8 @@ class MultiplayerActivity : AppCompatActivity() {
             //Save Win/Lose ke database disini
 
 
-
-            lifePlayer1=3
-            lifePlayer2=3
+            lifePlayer1 = 3
+            lifePlayer2 = 3
             binding.ivHati3player1.visibility = View.VISIBLE
             binding.ivHati2player1.visibility = View.VISIBLE
             binding.ivHati1player2.visibility = View.VISIBLE
@@ -223,11 +223,6 @@ class MultiplayerActivity : AppCompatActivity() {
 
         view.buttonKemenu.setOnClickListener {
             //Save Win/Lose ke database disini
-
-
-
-
-
             toHome()
             dialog.dismiss()
         }

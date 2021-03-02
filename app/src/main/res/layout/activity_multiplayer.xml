@@ -13,7 +13,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_close"
+        app:srcCompat="@drawable/btn_close"
         tools:ignore="VectorDrawableCompat"
         android:contentDescription="@string/close"
         android:layout_marginRight="16dp" />
@@ -103,7 +103,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_batu"
+                    app:srcCompat="@drawable/ic_stone"
                     tools:ignore="VectorDrawableCompat"
                     android:contentDescription="@string/batu" />
 
@@ -114,7 +114,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_kertas"
+                    app:srcCompat="@drawable/ic_paper"
                     tools:ignore="VectorDrawableCompat"
                     android:contentDescription="@string/kertas" />
 
@@ -125,7 +125,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_gunting"
+                    app:srcCompat="@drawable/ic_scissor"
                     tools:ignore="VectorDrawableCompat"
                     android:contentDescription="@string/gunting" />
 
@@ -212,7 +212,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_batu"
+                    app:srcCompat="@drawable/ic_stone"
                     tools:ignore="VectorDrawableCompat"
                     android:contentDescription="@string/batu"/>
 
@@ -223,7 +223,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_kertas"
+                    app:srcCompat="@drawable/ic_paper"
                     tools:ignore="VectorDrawableCompat"
                     android:contentDescription="@string/kertas"/>
 
@@ -234,7 +234,7 @@
                     android:padding="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_gunting"
+                    app:srcCompat="@drawable/ic_scissor"
                     tools:ignore="VectorDrawableCompat"
                     android:contentDescription="@string/gunting"/>
 
