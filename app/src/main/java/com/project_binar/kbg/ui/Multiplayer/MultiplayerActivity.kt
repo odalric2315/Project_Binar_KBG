@@ -52,6 +52,7 @@ class MultiplayerActivity : AppCompatActivity() {
         }
         binding.buttonRefresh.setOnClickListener {
             refresh()
+            resetHeart()
         }
 
         binding.imgBatuPlayer2.isClickable = false
@@ -137,6 +138,15 @@ class MultiplayerActivity : AppCompatActivity() {
         binding.imgBatuPlayer2.isClickable = false
         binding.imgKertasPlayer2.isClickable = false
         binding.imgGuntingPlayer2.isClickable = false
+    }
+
+    private fun resetHeart(){
+        binding.ivHati1player1.visibility = View.VISIBLE
+        binding.ivHati2player1.visibility = View.VISIBLE
+        binding.ivHati3player1.visibility = View.VISIBLE
+        binding.ivHati1player2.visibility = View.VISIBLE
+        binding.ivHati2player2.visibility = View.VISIBLE
+        binding.ivHati3player2.visibility = View.VISIBLE
     }
 
     ///////////////////////////////////////////////////////////
