@@ -21,7 +21,7 @@ interface PlayerDao {
     fun updateLose(lose: Int, id: Int): Int
 
     @Query("UPDATE player SET rate = :rate WHERE id = :id")
-    fun updateRate(rate: Int, id: Int): Int
+    fun updateRate(rate: Double, id: Int): Int
 
     @Query("DELETE FROM player WHERE id = :id")
     fun deleteNote(id: Int): Int

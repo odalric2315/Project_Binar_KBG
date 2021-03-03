@@ -35,7 +35,9 @@ class MultiPlayerPresenterImp(
             val playerWin = playerDao.getSinglePlayer(id)?.win.toString().toInt()
             val playerLose = playerDao.getSinglePlayer(id)?.lose.toString().toInt()
 
-            val playerWinRate = playerWin  / (playerWin + playerLose) * 100
+            val playerWinRate: Double = playerWin.div(
+                (playerWin.plus(playerLose).times(0.100))
+            ).times(10)
             playerDao.updateRate(playerWinRate, id)
             //view.showUpdatePlayer()
         }

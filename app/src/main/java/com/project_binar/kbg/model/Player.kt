@@ -28,7 +28,7 @@ data class Player(
     val lose: Int? = 0,
 
     @ColumnInfo(name = "rate")
-    val rate: Int? = 0
+    val rate: Double? = 0.0
 ):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -37,7 +37,7 @@ data class Player(
         parcel.readString(),
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readValue(Int::class.java.classLoader) as? Int,
-        parcel.readValue(Int::class.java.classLoader) as? Int
+        parcel.readValue(Double::class.java.classLoader) as? Double
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
