@@ -34,6 +34,9 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
         adapter = PlayerAdapter(playerData)
 
         binding.rvLeaderboard.adapter = adapter
+        binding.btnBackLeaderboard.setOnClickListener {
+            finish()
+        }
     }
 
     override fun showData(data: List<Player>) {
