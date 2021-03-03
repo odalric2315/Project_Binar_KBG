@@ -13,6 +13,7 @@ import com.project_binar.kbg.presenter.splash.SplashPresenterImp
  */
 class SplashScreenActivity : AppCompatActivity(), SplashView {
     private lateinit var binding: ActivitySplashScreenBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)

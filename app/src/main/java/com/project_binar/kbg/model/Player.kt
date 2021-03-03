@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 data class Player(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int=0,
+    val id: Int = 0,
 
     @ColumnInfo(name = "nama")
     val nama: String?,
@@ -27,27 +27,27 @@ data class Player(
     @ColumnInfo(name = "lose")
     val lose: Int? = 0,
 
-    @ColumnInfo(name = "winrate")
-    val winrate: Int? = 0
-) : Parcelable {
+    @ColumnInfo(name = "rate")
+    val rate: Int? = 0
+):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readInt(),
-        parcel.readInt(),
-        parcel.readInt()
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as? Int
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeValue(id)
+        parcel.writeInt(id)
         parcel.writeString(nama)
         parcel.writeString(username)
         parcel.writeString(password)
         parcel.writeValue(win)
         parcel.writeValue(lose)
-        parcel.writeValue(winrate)
+        parcel.writeValue(rate)
     }
 
     override fun describeContents(): Int {
