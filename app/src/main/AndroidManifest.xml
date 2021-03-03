@@ -33,18 +33,7 @@
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.tutorial.TutorialActivity" />
         <activity android:name=".ui.Multiplayer.MultiPlayerActivity"/>
-        <activity android:name="com.project_binar.kbg.ui.lending_page.MainLendingPage"
-            android:theme="@style/Theme.FullScreen"/>
-        <activity android:name="com.project_binar.kbg.ui.register.RegisterActivity" />
-        <activity android:name="com.project_binar.kbg.ui.login.LoginActivity" />
-        <activity android:name="com.project_binar.kbg.ui.home.HomeActivity" />
         <activity android:name="com.project_binar.kbg.ui.setting.SettingActivity"/>
-<!--        <intent-filter>-->
-<!--            <action android:name="android.intent.action.MAIN" />-->
-
-<!--            <category android:name="android.intent.category.LAUNCHER" />-->
-<!--        </intent-filter>-->
-<!--        </activity>-->
     </application>
 
 </manifest>
