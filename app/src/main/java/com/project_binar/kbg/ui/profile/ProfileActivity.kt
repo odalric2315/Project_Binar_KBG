@@ -25,6 +25,7 @@ class ProfileActivity : AppCompatActivity(), ProfilView {
         dataPlayer?.apply {
             win?.let { binding.win.text = it.toString() }
             lose?.let { binding.lose.text = it.toString() }
+            rate?.let { binding.winrate.text = "${it.toInt()}%" }
         }
         val playerDb = SuitDb.getInstance(this)
 
