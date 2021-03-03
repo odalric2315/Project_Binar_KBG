@@ -32,6 +32,7 @@
             android:theme="@style/Theme.RockScissorsPaper2.Fullscreen" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.tutorial.TutorialActivity" />
+        <activity android:name=".ui.Multiplayer.MultiPlayerActivity"/>
     </application>
 
 </manifest>
