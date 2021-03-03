@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:importantForAccessibility="no"
         android:scaleType="fitStart"
-        android:src="@drawable/img_confetti"
+        android:src="@drawable/landing_page3_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/img_leaderboard"
+        android:src="@drawable/landing_page3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/landing3_logo" />
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/btn_to_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,5 +58,5 @@
         android:src="@drawable/ic_baseline_arrow_right_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

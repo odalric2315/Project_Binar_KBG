@@ -1,17 +1,19 @@
 package com.project_binar.kbg.ui.lending_page
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.project_binar.kbg.databinding.ActivityMainBinding
+import com.project_binar.kbg.databinding.ActivityLendingPageBinding
+import com.project_binar.kbg.ui.register.RegisterActivity
 
-class MainLendingPage : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class LendingPageActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityLendingPageBinding
     private val position = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityLendingPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val adapter = PagerAdapter(this)
@@ -23,18 +25,9 @@ class MainLendingPage : AppCompatActivity() {
                 super.onPageSelected(position)
                 var currentPosition = position
 
-                when (currentPosition) {
-                    0 -> {
-                        binding.btnLeft.visibility = View.GONE
-                    }
-                    (adapter.itemCount - 1) -> {
-                        binding.btnRight.visibility = View.GONE
-                    }
-                    else -> {
-                        binding.btnLeft.visibility = View.VISIBLE
-                        binding.btnRight.visibility = View.VISIBLE
-                    }
-                }
+                binding.btnLeft.visibility = if(currentPosition == 0 || currentPosition == 2){
+                    View.INVISIBLE
+                } else View.VISIBLE
 
                 binding.btnLeft.setOnClickListener {
                     currentPosition--
@@ -43,9 +36,19 @@ class MainLendingPage : AppCompatActivity() {
 
                 binding.btnRight.setOnClickListener {
                     currentPosition++
-                    binding.viewPager.currentItem = currentPosition
+
+                    if (currentPosition == 3) {
+                        goToRegister()
+                    } else {
+                        binding.viewPager.currentItem = currentPosition
+                    }
                 }
             }
         })
+    }
+
+    private fun goToRegister() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
     }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.project_binar.kbg.ui.login.LoginActivity">
 
     <LinearLayout
@@ -29,7 +30,7 @@
             android:id="@+id/img_welcome_loginpage"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            app:srcCompat="@drawable/img_login_page" />
+            app:srcCompat="@drawable/login" />
 
         <EditText
             android:id="@+id/et_username_loginpage"
@@ -66,15 +67,29 @@
             android:text="@string/title_btn_login" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/button_backtoregister_loginpage"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/button_register_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_arrow_left"
-        tools:ignore="VectorDrawableCompat"
-        app:tint="#0085FF" />
+        app:layout_constraintTop_toBottomOf="@+id/vlinear_layout_loginpage">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@string/title_question_register"
+            android:textAlignment="textEnd"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/title_btn_register"
+            android:textColor="#0085FF" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

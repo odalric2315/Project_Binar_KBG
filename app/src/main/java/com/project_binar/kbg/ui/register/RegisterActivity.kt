@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var databaseSuit: SuitDb
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -29,8 +30,8 @@ class RegisterActivity : AppCompatActivity() {
             val name = binding.etNameRegisterpage.text.toString().trim()
             val username = binding.etUsernameRegisterpage.text.toString().trim()
             val password = binding.etPasswordRegisterpage.text.toString().trim()
-            val player = Player(null, name, username, password,null,null,null)
-            if (!username.equals("") && !name.equals("") && !password.equals("")) {
+            val player = Player(nama = name, username = username, password = password)
+            if (username.isNotEmpty() && name.isNotEmpty() && password.isNotEmpty()) {
 
                 //Implementasi Database
                 GlobalScope.launch {
@@ -58,11 +59,12 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, getString(R.string.status_data_not_null), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.status_data_not_null), Toast.LENGTH_SHORT)
+                    .show()
             }
 
         }
-        binding.buttonLoginRegisterpage.setOnClickListener {
+        binding.buttonLoginPage.setOnClickListener {
             toLogin()
         }
     }

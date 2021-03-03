@@ -36,4 +36,26 @@
     <string name="btn_title_back_home">kembali ke menu</string>
     <string name="title_lending3">Kumpulkan poin dan \n jadilah juara!</string>
     <string name="title_profile">Profile</string>
+    <string name="title_question_register">Belum punya akun?</string>
+
+    <string-array name="choice">
+        <item>@string/title_stone</item>
+        <item>@string/title_scissor</item>
+        <item>@string/title_paper</item>
+    </string-array>
+    <string name="close">close</string>
+    <string name="logo">logo</string>
+    <string name="player_1">Player 1</string>
+    <string name="hati1">hati1</string>
+    <string name="hati2">hati2</string>
+    <string name="hati3">hati3</string>
+    <string name="batu">batu</string>
+    <string name="kertas">kertas</string>
+    <string name="gunting">gunting</string>
+    <string name="vs">VS</string>
+    <string name="player_2">Player 2</string>
+    <string name="hati4">hati4</string>
+    <string name="hati5">hati5</string>
+    <string name="hati6">hati6</string>
+    <string name="refresh">refresh</string>
 </resources>

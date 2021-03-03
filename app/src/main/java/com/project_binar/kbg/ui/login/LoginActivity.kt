@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.project_binar.kbg.R
 import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityLoginBinding
+import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.ui.home.HomeActivity
 import com.project_binar.kbg.ui.register.RegisterActivity
 import com.project_binar.kbg.util.SuitPrefs
@@ -18,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var databaseSuitDb: SuitDb
     private lateinit var suitPrefs: SuitPrefs
-
+    private var player: Player? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -35,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
 
             //Implementasi database
             GlobalScope.launch {
-                val player = databaseSuitDb.playerDao().getListPlayer(username, password)
+                player = databaseSuitDb.playerDao().loginPlayer(username, password)
                 if (player != null) {
                     launch(Dispatchers.Main) {
                         Toast.makeText(
@@ -44,8 +45,8 @@ class LoginActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                    suitPrefs.name = player.nama
                     suitPrefs.login = true
+                    suitPrefs.savePlayer(player)
                     toHome()
                 } else {
                     launch(Dispatchers.Main) {
@@ -62,19 +63,24 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-        binding.buttonBacktoregisterLoginpage.setOnClickListener {
-            toRegister()
+        binding.buttonRegisterPage.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
     fun toHome() {
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java).apply {
+            this.putExtra(DATA_PLAYER, player)
+        }
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
-
     fun toRegister() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
+    }
+    companion object{
+        const val DATA_PLAYER = "PLAYER"
     }
 }
