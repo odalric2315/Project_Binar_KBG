@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".ui.lending_page.MainLendingPage">
+    tools:context=".ui.lending_page.LendingPageActivity">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"

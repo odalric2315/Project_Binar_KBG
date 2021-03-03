@@ -2,15 +2,13 @@ package com.project_binar.kbg.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.project_binar.kbg.presenter.home.HomePresenterImp
 import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityHomeBinding
-import com.project_binar.kbg.databinding.EditDialogBinding
 import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.ui.leaderboard.LeaderboardActivity
+import com.project_binar.kbg.presenter.home.HomePresenterImp
+import com.project_binar.kbg.ui.Multiplayer.MultiPlayerActivity
 import com.project_binar.kbg.ui.login.LoginActivity
 import com.project_binar.kbg.ui.profile.ProfileActivity
 import com.project_binar.kbg.ui.tutorial.TutorialActivity
@@ -28,29 +26,22 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
         suitPrefs = SuitPrefs(this)
 
-        dataPlayer =suitPrefs.getPlayer()
+        dataPlayer = suitPrefs.getPlayer()
 
         val playerDb = SuitDb.getInstance(this)
         presenterImp = HomePresenterImp(this, playerDb.playerDao())
         dataPlayer?.id?.let { presenterImp.getSinglePlayer(it) }
 
-//        val name = binding.textNamaHomepage.text.toString().trim()
-
         //tombol profile pic
         binding.imgProfileHomepage.setOnClickListener {
-            val drawer = binding.drawerLayoutHomepage
-            drawer.openDrawer(Gravity.START)
+//            val drawer = binding.drawerLayoutHomepage
+//            drawer.openDrawer(Gravity.START)
         }
 
         //tombol edit nama
         binding.imgEditnamaHomepage.setOnClickListener {
 //            showEditDialog(name)
-
-            /*Rizki*/
-            val intent = Intent(this, ProfileActivity::class.java).apply {
-                this.putExtra(LoginActivity.DATA_PLAYER, dataPlayer)
-            }
-            startActivity(intent)
+            toProfile()
         }
 
         //tombol logout
@@ -60,7 +51,7 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
         //tombol multiplayer
         binding.buttonMultiplayerHomepage.setOnClickListener {
-            //toMultiplayerGame()
+            toMultiplayerGame()
         }
 
         //tombol leaderboard
@@ -80,41 +71,22 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
     }
 
-    private fun showEditDialog(nama: String) {
-        val builder = AlertDialog.Builder(this)
-        val view = EditDialogBinding.inflate(layoutInflater)
-        builder.setView(view.root)
-        val dialog = builder.create()
-
-        view.etNamaDialog.setText(nama)
-
-        view.buttonCancelDialog.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        view.buttonSaveDialog.setOnClickListener {
-            view.etNamaDialog.text.toString().trim()
-            //implementasi db
-
-            dialog.dismiss()
-        }
-        dialog.show()
-    }
-
     override fun viewPlayer(player: Player?) {
         runOnUiThread {
             binding.textNamaHomepage.text = player?.nama
         }
         dataPlayer = player
     }
-    private fun toLogin(){
+
+    private fun toLogin() {
         suitPrefs.clearSharePref()
-        val intent = Intent(this,LoginActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
         finish()
     }
-    private fun toTutorial(){
+
+    private fun toTutorial() {
         val intent = Intent(this, TutorialActivity::class.java).apply {
             this.putExtra(LoginActivity.DATA_PLAYER, dataPlayer)
         }
@@ -128,12 +100,13 @@ class HomeActivity : AppCompatActivity(), HomeView {
         super.onResume()
         dataPlayer?.id?.let { presenterImp.getSinglePlayer(it) }
     }
-    /*private fun toMultiplayerGame(){
-        val intent = Intent(this,MultiplayerGameActivity::class.java)
+
+    private fun toMultiplayerGame() {
+        val intent = Intent(this, MultiPlayerActivity::class.java).apply {
+            this.putExtra(LoginActivity.DATA_PLAYER, dataPlayer)
+        }
         startActivity(intent)
     }
-
-
 
 
 
@@ -144,8 +117,10 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
 
 
-    private fun toProfile(){
-        val intent = Intent(this,ProfileActivity::class.java)
+    private fun toProfile() {
+        val intent = Intent(this, ProfileActivity::class.java).apply {
+            this.putExtra(LoginActivity.DATA_PLAYER, dataPlayer)
+        }
         startActivity(intent)
-    }*/
+    }
 }

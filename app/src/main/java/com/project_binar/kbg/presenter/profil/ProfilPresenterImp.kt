@@ -13,6 +13,4 @@ class ProfilPresenterImp(private val view: ProfilView, private val playerDao: Pl
             view.showUpdatePlayer()
         }
     }
-
-
 }

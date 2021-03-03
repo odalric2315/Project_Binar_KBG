@@ -22,6 +22,11 @@ class ProfileActivity : AppCompatActivity(), ProfilView {
         val dataPlayer = intent.getParcelableExtra<Player>(LoginActivity.DATA_PLAYER)
         binding.etEditNameProfile.setText(dataPlayer?.nama)
 
+        dataPlayer?.apply {
+            win?.let { binding.win.text = it.toString() }
+            lose?.let { binding.lose.text = it.toString() }
+            rate?.let { binding.winrate.text = "${it.toInt()}%" }
+        }
         val playerDb = SuitDb.getInstance(this)
 
         binding.btnBackProfile.setOnClickListener {

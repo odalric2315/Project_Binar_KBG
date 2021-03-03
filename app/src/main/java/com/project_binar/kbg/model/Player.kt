@@ -1,16 +1,16 @@
 package com.project_binar.kbg.model
+
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "player")
-data class Player (
+data class Player(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int?,
+    val id: Int = 0,
 
     @ColumnInfo(name = "nama")
     val nama: String?,
@@ -22,32 +22,32 @@ data class Player (
     val password: String?,
 
     @ColumnInfo(name = "win")
-    val win: Int?,
+    val win: Int? = 0,
 
     @ColumnInfo(name = "lose")
-    val lose: Int?,
+    val lose: Int? = 0,
 
-    @ColumnInfo(name = "winrate")
-    val winrate: Int?
-) : Parcelable {
+    @ColumnInfo(name = "rate")
+    val rate: Double? = 0.0
+):Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readValue(Int::class.java.classLoader) as? Int,
-        parcel.readValue(Int::class.java.classLoader) as? Int
+        parcel.readValue(Double::class.java.classLoader) as? Double
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeValue(id)
+        parcel.writeInt(id)
         parcel.writeString(nama)
         parcel.writeString(username)
         parcel.writeString(password)
         parcel.writeValue(win)
         parcel.writeValue(lose)
-        parcel.writeValue(winrate)
+        parcel.writeValue(rate)
     }
 
     override fun describeContents(): Int {

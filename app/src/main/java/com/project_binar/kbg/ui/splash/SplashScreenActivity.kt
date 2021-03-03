@@ -5,19 +5,21 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.project_binar.kbg.databinding.ActivitySplashScreenBinding
+import com.project_binar.kbg.presenter.splash.SplashPresenterImp
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-class SplashScreenActivity : AppCompatActivity(), SplashContract.SplashView {
+class SplashScreenActivity : AppCompatActivity(), SplashView {
     private lateinit var binding: ActivitySplashScreenBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val splashContractImpl = SplashContractImpl(this@SplashScreenActivity, this)
+        val splashContractImpl = SplashPresenterImp(this@SplashScreenActivity, this)
 
         splashContractImpl.checkStatus()
     }

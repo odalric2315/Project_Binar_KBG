@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Eidupay/Desktop/project-binar-kbg/app/src/main/res/layout/activity_lending_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Eidupay/Desktop/project-binar-kbg/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Eidupay/Desktop/project-binar-kbg/app/src/main/res/layout/activity_multiplayer.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Eidupay/Desktop/project-binar-kbg/app/src/main/res/layout/dialog_gameresult.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Eidupay/Desktop/project-binar-kbg/app/src/main/res/layout/fragment_landing1.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/drawable/border_gamesuit_background.xml" value="0.28425925925925927" />
         <entry key="app/src/main/res/drawable/btn_leaderboard_background.xml" value="0.28888888888888886" />
         <entry key="app/src/main/res/drawable/btn_multiplayer_background.xml" value="0.28888888888888886" />
