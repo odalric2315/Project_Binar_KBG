@@ -28,7 +28,7 @@ data class Player(
     val lose: Int? = 0,
 
     @ColumnInfo(name = "winrate")
-    val winrate: Float? = null
+    val rate: Float? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -48,7 +48,7 @@ data class Player(
         parcel.writeString(password)
         parcel.writeValue(win)
         parcel.writeValue(lose)
-        parcel.writeValue(winrate)
+        parcel.writeValue(rate)
     }
 
     override fun describeContents(): Int {
