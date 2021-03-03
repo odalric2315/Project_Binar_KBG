@@ -28,20 +28,21 @@ data class Player(
     val lose: Int? = 0,
 
     @ColumnInfo(name = "winrate")
-    val winrate: Int? = 0
+    val winrate: Float? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readInt(),
-        parcel.readInt(),
-        parcel.readInt()
-    )
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Float::class.java.classLoader) as? Float
+    ) {
+    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeValue(id)
+        parcel.writeInt(id)
         parcel.writeString(nama)
         parcel.writeString(username)
         parcel.writeString(password)

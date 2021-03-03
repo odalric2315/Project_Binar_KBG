@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -26,7 +27,7 @@ class MultiplayerActivity : AppCompatActivity(), MultiplayerView {
     private lateinit var player2: String
     private lateinit var playerName: String
     private lateinit var hasil: String
-    private var playerWinrate: Int = 0
+    private var playerWinrate: Float? = null
     private var playerWin: Int = 0
     private var playerLose: Int = 0
     private var lifePlayer1: Int = 3
@@ -41,17 +42,14 @@ class MultiplayerActivity : AppCompatActivity(), MultiplayerView {
         binding = ActivityMultiplayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dataPlayer = intent.getParcelableExtra<Player>(LoginActivity.DATA_PLAYER)
-        binding.player1Name.text = dataPlayer?.nama
         playerName = binding.player1Name.text.toString().trim()
         val playerDb = SuitDb.getInstance(this)
         presenter = MultiplayerPresenterImp(this, playerDb.playerDao())
-        //ambil Win and Lose stats dari database
+        /*get Data Player*/
+        dataPlayer?.id?.let { presenter.getSinglePlayer(it) }
 
-        dataPlayer?.apply {
-            win?.let { playerWin = it }
-            lose?.let { playerLose = it }
-            winrate?.let { playerWinrate = it }
-        }
+
+
 
         binding.buttonClose.setOnClickListener {
             toHome()
@@ -222,28 +220,53 @@ class MultiplayerActivity : AppCompatActivity(), MultiplayerView {
         view.textHasilgameTutorialpage.text = hasil
         view.buttonMainlagi.setOnClickListener {
             //Save Win/Lose ke database disini
-            playerWinrate = playerWin / (playerWin + playerLose) * 100
+            playerWinrate = (playerWin / (playerWin + playerLose) * 100).toFloat()
 
             dataPlayer?.id?.let {
-                presenter.updateWin(playerWin, it)
-                presenter.updateLose(playerLose, it)
-                presenter.updateWinrate(playerWinrate, it)
+//                presenter.updateWin(playerWin, it)
+//                presenter.updateLose(playerLose, it)
+//                presenter.updateWinrate(playerWinrate, it)
             }
+
+            /*set Update All Player*/
+            val tempPlayer = dataPlayer?.id?.let { it1 ->
+                Player(
+                    it1, dataPlayer?.nama, dataPlayer?.username,
+                    dataPlayer?.password, playerWin, playerLose, playerWinrate
+                )
+            }
+            tempPlayer?.let { it1 -> presenter.updatePlayerAll(it1) }
             resetHeart()
             refresh()
             dialog.dismiss()
         }
 
         view.buttonKemenu.setOnClickListener {
+            Log.e("playerWin", "$playerWin")
+            Log.e("playerLose", "$playerLose")
             //Save Win/Lose ke database disini
-            playerWinrate = playerWin / (playerWin + playerLose) * 100
+            val playsum = playerWin + playerLose
+            val playSum1 = 30 / 35
+            Log.e("playSum1", "$playSum1")
+            playerWinrate = playSum1* 100.toFloat()
+
+            Log.e("playerWinRate1", "$playerWinrate")
 
             dataPlayer?.id?.let {
-                presenter.updateWin(playerWin, it)
-                presenter.updateLose(playerLose, it)
-                presenter.updateWinrate(playerWinrate, it)
+//                presenter.updateWin(playerWin, it)
+//                presenter.updateLose(playerLose, it)
+//                presenter.updateWinrate(playerWinrate, it)
             }
-            toHome()
+
+            /*set Update All Player*/
+            val tempPlayer = dataPlayer?.let {
+                Player(
+                    it.id, it.nama, it.username,
+                    it.password, playerWin, playerLose, playerWinrate
+                )
+            }
+            tempPlayer?.let { it1 -> presenter.updatePlayerAll(it1) }
+            toHome() 
             dialog.dismiss()
         }
         dialog.show()
@@ -261,6 +284,18 @@ class MultiplayerActivity : AppCompatActivity(), MultiplayerView {
             Handler(Looper.getMainLooper()).postDelayed({
                 finish()
             }, 1000)
+        }
+    }
+
+    override fun showDataPlayer(player: Player) {
+        dataPlayer = player
+        Log.e("dataPlayer", "$dataPlayer")
+        //ambil Win and Lose stats dari database
+        dataPlayer?.apply {
+            nama?.let { binding.player1Name.text = it }
+            win?.let { playerWin = it }
+            lose?.let { playerLose = it }
+            winrate?.let { playerWinrate = it }
         }
     }
 }

@@ -10,7 +10,14 @@ class ProfilPresenterImp(private val view: ProfilView, private val playerDao: Pl
     override fun updateNamePlayer(nama: String, id: Int) {
         GlobalScope.launch {
             playerDao.updateNamePlayer(id, nama)
-            view.showUpdatePlayer()
+            view.showUpdNamePlayer()
+        }
+    }
+
+    override fun getSinglePlayer(id: Int) {
+        GlobalScope.launch {
+            val updatePlayer = playerDao.getSinglePlayer(id)
+            updatePlayer?.let { view.showDataPlayer(it) }
         }
     }
 

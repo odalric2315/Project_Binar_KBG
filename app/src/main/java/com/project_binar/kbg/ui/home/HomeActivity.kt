@@ -2,6 +2,7 @@ package com.project_binar.kbg.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -78,6 +79,7 @@ class HomeActivity : AppCompatActivity(), HomeView {
             binding.textNamaHomepage.text = player?.nama
         }
         dataPlayer = player
+        Log.e("playerView", "$dataPlayer")
     }
 
     private fun toLogin() {

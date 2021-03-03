@@ -1,8 +1,6 @@
 package com.project_binar.kbg.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.project_binar.kbg.model.Player
 
 @Dao
@@ -21,7 +19,7 @@ interface PlayerDao {
     fun updateLose(lose: Int, id: Int): Int
 
     @Query("UPDATE player SET winrate = :winrate WHERE id = :id")
-    fun updateWinrate(winrate: Int, id: Int): Int
+    fun updateWinrate(winrate: Float, id: Int): Int
 
     @Query("DELETE FROM player WHERE id = :id")
     fun deleteNote(id: Int): Int
@@ -34,5 +32,8 @@ interface PlayerDao {
 
     @Query("SELECT * FROM player")
     fun getAllPlayer():MutableList<Player>
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    fun updatePlayerAll(player: Player):Int
 
 }
