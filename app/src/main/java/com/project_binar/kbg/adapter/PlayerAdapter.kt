@@ -24,7 +24,7 @@ class PlayerAdapter(val data: List<Player>) : RecyclerView.Adapter<PlayerAdapter
     inner class ViewHolder(var binding: ListLeaderboardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindViewHolder(player: Player, position: Int){
             binding.tvNamaLeaderboard.text = player.nama
-            binding.tvWinrateLeaderboard.text = player.winrate.toString().trim()
+            binding.tvWinrateLeaderboard.text = player.rate.toString().trim()
             when (position) {
                 0 -> {
                     binding.starLeaderboard.setImageResource(R.drawable.star_1)

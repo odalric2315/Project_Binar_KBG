@@ -108,14 +108,10 @@ class HomeActivity : AppCompatActivity(), HomeView {
         startActivity(intent)
     }
 
-
-
-    private fun toSettings(){
+    /*private fun toSettings(){
         val intent = Intent(this,SettingsActivity::class.java)
         startActivity(intent)
-    }
-
-
+    }*/
 
     private fun toProfile() {
         val intent = Intent(this, ProfileActivity::class.java).apply {

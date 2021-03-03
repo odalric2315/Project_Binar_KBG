@@ -34,8 +34,4 @@ interface PlayerDao {
 
     @Query("UPDATE player SET nama = :nama WHERE id = :id")
     fun updateNamePlayer(id: Int, nama: String): Int
-
-    @Query("SELECT * FROM player")
-    fun getAllPlayer():MutableList<Player>
-
 }

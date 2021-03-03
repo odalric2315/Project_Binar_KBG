@@ -19,7 +19,7 @@ class LeaderboardPresenterImp(private val view: LeaderboarView, private val play
     override fun sortData(players: List<Player>?): List<Player>? {
         //gimana cara sort players: List<Player> berdasarkan win rate nya?
         //abis players di sort di return lagi
-        return players?.sortedByDescending { player -> player.winrate }
+        return players?.sortedByDescending { player -> player.rate }
     }
 
 

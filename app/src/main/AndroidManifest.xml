@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.lending_page.MainLendingPage"
+            android:name=".ui.lending_page.LendingPageActivity"
             android:theme="@style/Theme.FullScreen" />
         <activity
             android:name=".ui.register.RegisterActivity"
