@@ -36,7 +36,7 @@ class ProfileActivity : AppCompatActivity(), ProfilView {
                 presenter.updateNamePlayer(binding.etEditNameProfile.text.toString(), it)
             }
         }
-
+        /*getDataFromDb*/
         dataPlayer?.id?.let { presenter.getSinglePlayer(it) }
     }
 
