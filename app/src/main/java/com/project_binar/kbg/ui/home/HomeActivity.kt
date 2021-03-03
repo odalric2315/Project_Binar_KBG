@@ -1,11 +1,13 @@
 package com.project_binar.kbg.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.project_binar.kbg.databinding.ActivityHomeBinding
 import com.project_binar.kbg.databinding.EditDialogBinding
+import com.project_binar.kbg.ui.setting.SettingActivity
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -50,6 +52,8 @@ class HomeActivity : AppCompatActivity() {
         //tombol setting
         binding.buttonSettingHomepage.setOnClickListener {
             //toSettings()
+            val intent = Intent(this, SettingActivity::class.java)
+            startActivity(intent)
         }
 
     }
