@@ -10,6 +10,7 @@ import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityHomeBinding
 import com.project_binar.kbg.databinding.EditDialogBinding
 import com.project_binar.kbg.model.Player
+import com.project_binar.kbg.ui.leaderboard.LeaderboardActivity
 import com.project_binar.kbg.ui.login.LoginActivity
 import com.project_binar.kbg.ui.profile.ProfileActivity
 import com.project_binar.kbg.ui.tutorial.TutorialActivity
@@ -64,7 +65,7 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
         //tombol leaderboard
         binding.buttonLeaderboardHomepage.setOnClickListener {
-            //toLeaderboard()
+            toLeaderboard()
         }
 
         //tombol tutorial
@@ -119,7 +120,10 @@ class HomeActivity : AppCompatActivity(), HomeView {
         }
         startActivity(intent)
     }
-
+    private fun toLeaderboard(){
+        val intent = Intent(this, LeaderboardActivity::class.java)
+        startActivity(intent)
+    }
     override fun onResume() {
         super.onResume()
         dataPlayer?.id?.let { presenterImp.getSinglePlayer(it) }
@@ -129,10 +133,7 @@ class HomeActivity : AppCompatActivity(), HomeView {
         startActivity(intent)
     }
 
-    private fun toLeaderboard(){
-        val intent = Intent(this,LeaderboardActivity::class.java)
-        startActivity(intent)
-    }
+
 
 
 

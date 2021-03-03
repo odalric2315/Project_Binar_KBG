@@ -1,7 +1,9 @@
 package com.project_binar.kbg.ui.leaderboard
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.project_binar.kbg.adapter.PlayerAdapter
 import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityLeaderboardBinding
@@ -27,6 +29,8 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
         presenter = LeaderboardPresenterImp(this, database.playerDao())
         presenter.getData()
 
+        /*set adapter*/
+        binding.rvLeaderboard.layoutManager = LinearLayoutManager(this)
         adapter = PlayerAdapter(playerData)
 
         binding.rvLeaderboard.adapter = adapter
@@ -39,6 +43,8 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
                 playerData.addAll(it)
                 adapter.notifyDataSetChanged()
             }
+
+            Log.e("playerData", "$playerData")
         }
     }
 
