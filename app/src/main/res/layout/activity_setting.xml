@@ -15,7 +15,8 @@
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tombol_back_untuk_setting" />
+        app:srcCompat="@drawable/back_to_settings"
+        android:contentDescription="@string/backsetting" />
 
     <TextView
         android:id="@+id/tv_settings"
@@ -29,7 +30,8 @@
         android:textStyle="bold"
         android:typeface="monospace"
         app:layout_constraintStart_toEndOf="@+id/btn_backsetting"
-        app:layout_constraintTop_toTopOf="@+id/btn_backsetting" />
+        app:layout_constraintTop_toTopOf="@+id/btn_backsetting"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_darktheme"
@@ -47,7 +49,8 @@
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_settings" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_settings"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/btn_aboutus"
@@ -68,7 +71,8 @@
         app:backgroundTint="#E5E5E5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_darktheme" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_darktheme"
+        tools:ignore="HardcodedText" />
 
     <Switch
         android:id="@+id/swt_darktheme"
