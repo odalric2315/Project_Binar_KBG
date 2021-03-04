@@ -1,5 +1,6 @@
 package com.project_binar.kbg.ui.leaderboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityLeaderboardBinding
 import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.presenter.leaderboard.LeaderboardPresenterImp
+import com.project_binar.kbg.ui.profile.ProfileActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -34,6 +36,10 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
         adapter = PlayerAdapter(playerData)
 
         binding.rvLeaderboard.adapter = adapter
+
+        adapter.setOnClickItemListener {
+            toProfile()
+        }
     }
 
     override fun showData(data: List<Player>) {
@@ -48,5 +54,10 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
         }
     }
 
+    private fun toProfile() {
+        val intent = Intent(this, ProfileActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+    }
 
 }
