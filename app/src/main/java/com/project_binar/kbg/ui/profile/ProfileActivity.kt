@@ -1,8 +1,10 @@
 package com.project_binar.kbg.ui.profile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.project_binar.kbg.data.db.SuitDb

@@ -5,7 +5,7 @@ import com.project_binar.kbg.ui.profile.ProfilView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class ProfilPresenterImp(private val view: ProfilView, private val playerDao: PlayerDao):
+class ProfilPresenterImp(private val view: ProfilView, private val playerDao: PlayerDao) :
     ProfilPresenter {
     override fun updateNamePlayer(nama: String, id: Int) {
         GlobalScope.launch {

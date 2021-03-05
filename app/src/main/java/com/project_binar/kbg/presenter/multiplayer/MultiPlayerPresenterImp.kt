@@ -9,7 +9,6 @@ class MultiPlayerPresenterImp(
     private val view: MultiplayerView,
     private val playerDao: PlayerDao
 ) : MultiPlayerPresenter {
-
     override fun updateWin(win: Int, id: Int) {
         GlobalScope.launch {
             val calculate = playerDao.getSinglePlayer(id)?.win?.plus(win)
@@ -42,5 +41,4 @@ class MultiPlayerPresenterImp(
             //view.showUpdatePlayer()
         }
     }
-
 }

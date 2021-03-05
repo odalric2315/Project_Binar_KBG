@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 import com.google.android.material.snackbar.Snackbar
 import com.project_binar.kbg.R
@@ -33,7 +34,6 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
     private var lifePlayer1: Int = 3
     private var lifePlayer2: Int = 3
     private var dataPlayer: Player? = null
-
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("SetTextI18n")
@@ -67,7 +67,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
             player1ButtonClick()
             player2ButtonClick()
             player1 = getString(R.string.title_stone)
-            it.background = getDrawable(R.drawable.btn_hand_background)
+            it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
             playerTwoPick(player1)
         }
 
@@ -75,7 +75,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
             player1ButtonClick()
             player2ButtonClick()
             player1 = getString(R.string.title_paper)
-            it.background = getDrawable(R.drawable.btn_hand_background)
+            it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
             playerTwoPick(player1)
         }
 
@@ -83,7 +83,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
             player1ButtonClick()
             player2ButtonClick()
             player1 = getString(R.string.title_scissor)
-            it.background = getDrawable(R.drawable.btn_hand_background)
+            it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
             playerTwoPick(player1)
         }
 
@@ -96,17 +96,17 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
     private fun playerTwoPick(player1: String) {
         binding.imgBatuPlayer2.setOnClickListener {
             player2 = getString(R.string.title_stone)
-            it.background = getDrawable(R.drawable.btn_hand_background)
+            it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
             checkResult(player1, player2)
         }
         binding.imgKertasPlayer2.setOnClickListener {
             player2 = getString(R.string.title_paper)
-            it.background = getDrawable(R.drawable.btn_hand_background)
+            it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
             checkResult(player1, player2)
         }
         binding.imgGuntingPlayer2.setOnClickListener {
             player2 = getString(R.string.title_scissor)
-            it.background = getDrawable(R.drawable.btn_hand_background)
+            it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
             checkResult(player1, player2)
         }
     }
@@ -258,4 +258,3 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
             .show()
     }
 }
-
