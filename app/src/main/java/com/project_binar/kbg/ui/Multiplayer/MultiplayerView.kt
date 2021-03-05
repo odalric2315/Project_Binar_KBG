@@ -4,5 +4,5 @@ import com.project_binar.kbg.model.Player
 
 interface MultiplayerView {
     fun showUpdatePlayer()
-    fun showDataPlayer(player: Player)
+    fun result(data: String)
 }

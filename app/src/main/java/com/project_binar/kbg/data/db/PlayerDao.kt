@@ -12,14 +12,17 @@ interface PlayerDao {
     @Query("SELECT * FROM player WHERE username = :username AND password= :password LIMIT 1")
     fun loginPlayer(username: String, password: String): Player?
 
+    @Query("SELECT * FROM player")
+    fun getAllPlayer(): List<Player>?
+
     @Query("UPDATE player SET win = :win WHERE id = :id")
     fun updateWin(win: Int, id: Int): Int
 
     @Query("UPDATE player SET lose = :lose WHERE id = :id")
     fun updateLose(lose: Int, id: Int): Int
 
-    @Query("UPDATE player SET winrate = :winrate WHERE id = :id")
-    fun updateWinrate(winrate: Float, id: Int): Int
+    @Query("UPDATE player SET rate = :rate WHERE id = :id")
+    fun updateRate(rate: Double, id: Int): Int
 
     @Query("DELETE FROM player WHERE id = :id")
     fun deleteNote(id: Int): Int
@@ -30,10 +33,6 @@ interface PlayerDao {
     @Query("UPDATE player SET nama = :nama WHERE id = :id")
     fun updateNamePlayer(id: Int, nama: String): Int
 
-    @Query("SELECT * FROM player")
-    fun getAllPlayer():MutableList<Player>
-
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updatePlayerAll(player: Player):Int
-
 }

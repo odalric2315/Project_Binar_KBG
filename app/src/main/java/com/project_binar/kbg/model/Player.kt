@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 data class Player(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int=0,
+    val id: Int = 0,
 
     @ColumnInfo(name = "nama")
     val nama: String?,
@@ -27,9 +27,9 @@ data class Player(
     @ColumnInfo(name = "lose")
     val lose: Int? = 0,
 
-    @ColumnInfo(name = "winrate")
-    val rate: Float? = null
-) : Parcelable {
+    @ColumnInfo(name = "rate")
+    val rate: Double? = 0.0
+):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
@@ -37,9 +37,8 @@ data class Player(
         parcel.readString(),
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readValue(Int::class.java.classLoader) as? Int,
-        parcel.readValue(Float::class.java.classLoader) as? Float
-    ) {
-    }
+        parcel.readValue(Double::class.java.classLoader) as? Double
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
