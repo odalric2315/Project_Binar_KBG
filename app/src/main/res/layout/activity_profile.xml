@@ -34,35 +34,40 @@
             android:ems="10"
             android:hint="@string/hint_name"
             android:inputType="textPersonName"
-            android:paddingStart="10dp"
-            android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
         <Button
-
             android:id="@+id/btn_back_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:background="@color/red"
+            android:minHeight="40dp"
             android:text="Back"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_save_name_profil"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/et_edit_name_profile"
             app:layout_constraintTop_toBottomOf="@+id/et_edit_name_profile" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btn_save_name_profil"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/outline_blue"
+            android:minHeight="40dp"
             android:text="@string/btn_title_save"
             android:textColor="@color/light_blue_900"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back_profile"
             app:layout_constraintEnd_toEndOf="@+id/et_edit_name_profile"
-            app:layout_constraintTop_toTopOf="@+id/btn_back_profile"
-            app:strokeColor="@color/light_blue_600"
-            app:strokeWidth="2dp" />
+            app:layout_constraintStart_toEndOf="@+id/btn_back_profile"
+            app:layout_constraintTop_toTopOf="@+id/btn_back_profile" />
 
 
         <LinearLayout
@@ -81,12 +86,11 @@
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                app:strokeColor="@color/gold"
-                app:strokeWidth="2dp">
+                android:background="@drawable/outline_gold">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -113,14 +117,13 @@
                         android:textColor="@color/black"
                         android:textSize="28sp" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:strokeColor="@color/light_blue_600"
-                app:strokeWidth="2dp">
+                android:background="@drawable/outline_blue">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -147,14 +150,13 @@
                         android:textColor="@color/black"
                         android:textSize="28sp" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:strokeColor="@color/pink"
-                app:strokeWidth="2dp">
+                android:background="@drawable/outline_green">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -181,8 +183,7 @@
                         android:textColor="@color/black"
                         android:textSize="28sp" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project_binar.kbg.adapter.PlayerAdapter
 import com.project_binar.kbg.data.db.SuitDb
@@ -32,7 +33,16 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
         presenter.getData()
 
         /*set adapter*/
-        binding.rvLeaderboard.layoutManager = LinearLayoutManager(this)
+        binding.rvLeaderboard.apply {
+            layoutManager = LinearLayoutManager(this@LeaderboardActivity)
+            addItemDecoration(
+                DividerItemDecoration(
+                    this@LeaderboardActivity,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+        }
+
         adapter = PlayerAdapter(playerData)
 
         binding.rvLeaderboard.adapter = adapter

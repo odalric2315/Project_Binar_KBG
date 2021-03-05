@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="10dp">
+    app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/star_leaderboard"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:importantForAccessibility="no"
@@ -27,7 +27,8 @@
             android:id="@+id/tv_peringkat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/star_leaderboard"
             app:layout_constraintEnd_toEndOf="@+id/star_leaderboard"

@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.project_binar.kbg.ui.tutorial.TutorialActivity">
 
     <ImageView
         android:id="@+id/button_close_tutorialpage"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
         app:srcCompat="@drawable/btn_close"
         tools:ignore="VectorDrawableCompat" />
 
