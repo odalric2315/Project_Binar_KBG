@@ -17,9 +17,9 @@ import kotlinx.coroutines.launch
 
 class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
     private lateinit var binding: ActivityLeaderboardBinding
-    private val playerData : MutableList<Player> = mutableListOf()
-    private lateinit var adapter : PlayerAdapter
-    private lateinit var presenter : LeaderboardPresenterImp
+    private val playerData: MutableList<Player> = mutableListOf()
+    private lateinit var adapter: PlayerAdapter
+    private lateinit var presenter: LeaderboardPresenterImp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +40,10 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
         adapter.setOnClickItemListener {
             toProfile()
         }
+
+        binding.btnBackLeaderboard.setOnClickListener {
+            finish()
+        }
     }
 
     override fun showData(data: List<Player>) {
@@ -59,5 +63,4 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
-
 }

@@ -92,10 +92,12 @@ class HomeActivity : AppCompatActivity(), HomeView {
         }
         startActivity(intent)
     }
-    private fun toLeaderboard(){
+
+    private fun toLeaderboard() {
         val intent = Intent(this, LeaderboardActivity::class.java)
         startActivity(intent)
     }
+
     override fun onResume() {
         super.onResume()
         dataPlayer?.id?.let { presenterImp.getSinglePlayer(it) }

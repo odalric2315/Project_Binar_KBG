@@ -63,7 +63,8 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="25dp"
             android:layout_marginRight="25dp"
-            android:backgroundTint="#0085FF"
+            android:background="#0085FF"
+            android:textColor="@color/white"
             android:text="@string/title_btn_login" />
     </LinearLayout>
 
