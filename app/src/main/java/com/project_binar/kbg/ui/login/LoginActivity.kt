@@ -71,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun toHome() {
         val intent = Intent(this, HomeActivity::class.java).apply {
-            this.putExtra(DATA_PLAYER, player)
+            this.putExtra(HomeActivity.DATA_PLAYER, player)
         }
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
@@ -79,8 +79,5 @@ class LoginActivity : AppCompatActivity() {
     fun toRegister() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
-    }
-    companion object{
-        const val DATA_PLAYER = "PLAYER"
     }
 }

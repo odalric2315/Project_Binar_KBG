@@ -42,7 +42,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
         binding = ActivityMultiplayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dataPlayer = intent.getParcelableExtra(LoginActivity.DATA_PLAYER)
+        dataPlayer = intent.getParcelableExtra(HomeActivity.DATA_PLAYER)
 
         binding.player1Name.text = dataPlayer?.nama
         playerName = binding.player1Name.text.toString().trim()

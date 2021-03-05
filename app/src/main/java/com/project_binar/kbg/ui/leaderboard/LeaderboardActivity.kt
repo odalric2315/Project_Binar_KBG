@@ -48,7 +48,7 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
         binding.rvLeaderboard.adapter = adapter
 
         adapter.setOnClickItemListener {
-            toProfile()
+            toProfile(it)
         }
 
         binding.btnBackLeaderboard.setOnClickListener {
@@ -68,8 +68,9 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
         }
     }
 
-    private fun toProfile() {
+    private fun toProfile(dataPlayer: Player) {
         val intent = Intent(this, ProfileActivity::class.java)
+        intent.putExtra(ProfileActivity.DATA_PLAYER, dataPlayer)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }

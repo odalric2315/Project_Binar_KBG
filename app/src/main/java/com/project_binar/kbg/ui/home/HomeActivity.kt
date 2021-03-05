@@ -19,6 +19,11 @@ class HomeActivity : AppCompatActivity(), HomeView {
     private lateinit var presenterImp: HomePresenterImp
     private lateinit var suitPrefs: SuitPrefs
     private var dataPlayer: Player? = null
+
+    companion object{
+        const val DATA_PLAYER = "data_player"
+    }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -88,7 +93,7 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
     private fun toTutorial() {
         val intent = Intent(this, TutorialActivity::class.java).apply {
-            this.putExtra(LoginActivity.DATA_PLAYER, dataPlayer)
+            this.putExtra(DATA_PLAYER, dataPlayer)
         }
         startActivity(intent)
     }
@@ -105,7 +110,7 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
     private fun toMultiplayerGame() {
         val intent = Intent(this, MultiPlayerActivity::class.java).apply {
-            this.putExtra(LoginActivity.DATA_PLAYER, dataPlayer)
+            this.putExtra(DATA_PLAYER, dataPlayer)
         }
         startActivity(intent)
     }
@@ -117,7 +122,7 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
     private fun toProfile() {
         val intent = Intent(this, ProfileActivity::class.java).apply {
-            this.putExtra(LoginActivity.DATA_PLAYER, dataPlayer)
+            this.putExtra(DATA_PLAYER, dataPlayer)
         }
         startActivity(intent)
     }
