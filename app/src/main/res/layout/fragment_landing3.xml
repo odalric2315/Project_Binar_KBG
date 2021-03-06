@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/colorPrimary"
     android:theme="@style/Widget.Theme.ProjecBinarKBG.ActionBar.Fullscreen"
     tools:context="com.project_binar.kbg.ui.lending_page.LandingFragment3">
 
@@ -12,6 +12,7 @@
         android:id="@+id/landing3_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:importantForAccessibility="no"
         android:scaleType="fitStart"
         android:src="@drawable/landing_page3_bg"
@@ -25,10 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
+        android:background="@android:color/transparent"
         android:importantForAccessibility="no"
         android:src="@drawable/landing_page3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,10 +38,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:background="@android:color/transparent"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="@string/title_lending3"
-        android:textColor="@color/black"
+        android:textColor="@color/textPopupEditTextColor"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

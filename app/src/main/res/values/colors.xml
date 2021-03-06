@@ -21,6 +21,7 @@
     <color name="textPopupEditTextColor">@color/black</color>
     <color name="textLogouVersus">@color/red</color>
     <color name="color_image_button">@color/black</color>
+    <color name="colorOutlineEditText">@color/colorAccent</color>
 
 <!--    <color name="textColorPrimary">#000000</color>-->
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/colorPrimary"
     tools:context="com.project_binar.kbg.ui.login.LoginActivity">
 
     <LinearLayout
@@ -23,7 +23,7 @@
             android:layout_marginTop="50dp"
             android:gravity="center"
             android:text="@string/title_welcome_back"
-            android:textColor="@color/black"
+            android:textColor="@color/textPopupEditTextColor"
             android:textSize="26dp" />
 
         <ImageView
@@ -38,6 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="25dp"
+            android:textColor="@color/textPopupEditTextColor"
+            android:textColorHint="@color/colorAccent"
             android:layout_marginRight="25dp"
             android:background="@drawable/et_background"
             android:ems="10"
@@ -50,6 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="25dp"
+            android:textColorHint="@color/colorAccent"
+            android:textColor="@color/textPopupEditTextColor"
             android:layout_marginRight="25dp"
             android:background="@drawable/et_background"
             android:ems="10"
@@ -84,7 +88,7 @@
             android:gravity="end"
             android:text="@string/title_question_register"
             android:textAlignment="textEnd"
-            android:textColor="@color/black" />
+            android:textColor="@color/textPopupEditTextColor" />
 
         <TextView
             android:layout_width="wrap_content"

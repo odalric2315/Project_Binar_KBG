@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/colorPrimary"
     android:theme="@style/Widget.Theme.ProjecBinarKBG.ActionBar.Fullscreen"
     tools:context="com.project_binar.kbg.ui.lending_page.LandingFragment2">
 
@@ -13,10 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
+        android:background="@android:color/transparent"
         android:importantForAccessibility="no"
         android:src="@drawable/landing_page2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,9 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:background="@android:color/transparent"
         android:fontFamily="casual"
         android:text="@string/landing2_text"
-        android:textColor="@color/black"
+        android:textColor="@color/textPopupEditTextColor"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
