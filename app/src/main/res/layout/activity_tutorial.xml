@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.project_binar.kbg.ui.tutorial.TutorialActivity">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/button_close_tutorialpage"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/btn_close"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_close"
+        android:background="@android:color/transparent"
+        android:tint="@color/color_image_button"
         tools:ignore="VectorDrawableCompat" />
 
     <LinearLayout
@@ -53,6 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
                     android:text="Nama"
+                    android:textColor="@color/textPopupEditTextColor"
                     android:gravity="center"
                     android:textSize="26dp"/>
 
@@ -104,7 +106,7 @@
                     android:gravity="center_horizontal"
                     android:rotation="-30"
                     android:text="VS"
-                    android:textColor="#D10000"
+                    android:textColor="@color/textLogouVersus"
                     android:textSize="80dp" />
             </LinearLayout>
 
@@ -119,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
                     android:gravity="center"
+                    android:textColor="@color/textPopupEditTextColor"
                     android:textSize="26dp"
                     android:text="CPU" />
 

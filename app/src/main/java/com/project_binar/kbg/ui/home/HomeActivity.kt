@@ -5,14 +5,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityHomeBinding
-import com.project_binar.kbg.databinding.EditDialogBinding
-import com.project_binar.kbg.ui.setting.SettingActivity
 import com.project_binar.kbg.model.Player
-import com.project_binar.kbg.ui.leaderboard.LeaderboardActivity
 import com.project_binar.kbg.presenter.home.HomePresenterImp
 import com.project_binar.kbg.ui.Multiplayer.MultiPlayerActivity
+import com.project_binar.kbg.ui.leaderboard.LeaderboardActivity
 import com.project_binar.kbg.ui.login.LoginActivity
 import com.project_binar.kbg.ui.profile.ProfileActivity
+import com.project_binar.kbg.ui.setting.SettingActivity
 import com.project_binar.kbg.ui.tutorial.TutorialActivity
 import com.project_binar.kbg.util.SuitPrefs
 
@@ -21,6 +20,11 @@ class HomeActivity : AppCompatActivity(), HomeView {
     private lateinit var presenterImp: HomePresenterImp
     private lateinit var suitPrefs: SuitPrefs
     private var dataPlayer: Player? = null
+
+    companion object {
+        const val DATA_PLAYER = "data_player"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -92,14 +96,16 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
     private fun toTutorial() {
         val intent = Intent(this, TutorialActivity::class.java).apply {
-            this.putExtra(LoginActivity.DATA_PLAYER, dataPlayer)
+            this.putExtra(DATA_PLAYER, dataPlayer)
         }
         startActivity(intent)
     }
-    private fun toLeaderboard(){
+
+    private fun toLeaderboard() {
         val intent = Intent(this, LeaderboardActivity::class.java)
         startActivity(intent)
     }
+
     override fun onResume() {
         super.onResume()
         dataPlayer?.id?.let { presenterImp.getSinglePlayer(it) }
@@ -107,7 +113,7 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
     private fun toMultiplayerGame() {
         val intent = Intent(this, MultiPlayerActivity::class.java).apply {
-            this.putExtra(LoginActivity.DATA_PLAYER, dataPlayer)
+            this.putExtra(DATA_PLAYER, dataPlayer)
         }
         startActivity(intent)
     }
@@ -119,7 +125,7 @@ class HomeActivity : AppCompatActivity(), HomeView {
 
     private fun toProfile() {
         val intent = Intent(this, ProfileActivity::class.java).apply {
-            this.putExtra(LoginActivity.DATA_PLAYER, dataPlayer)
+            this.putExtra(DATA_PLAYER, dataPlayer)
         }
         startActivity(intent)
     }

@@ -18,7 +18,7 @@ class SuitPrefs(context: Context) {
         const val NAME = "name"
         const val LOGIN = "login"
         const val PLAYER = "PLAYER"
-        const val DARKTHEME = "darktheme"
+        const val DARKTHEME = "NightMode"
     }
 
     var name: String?
@@ -50,14 +50,9 @@ class SuitPrefs(context: Context) {
 //        val appSettingPrefs: SharedPreferences = getSharedPreferences("AppSettingPrefs", 0)
 //        val sharedPrefEdit: SharedPreferences.Editor = appSettingPrefs.edit()
 //        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", true)
-        val editor: SharedPreferences.Editor = appSettingPrefs.edit()
+        val prefsEditor: SharedPreferences.Editor = appSettingPrefs.edit()
         appSettingPrefs.getBoolean("NightMode", isNightModeOn!!)
         appSettingPrefs.apply{}
-    }
-
-    fun loadDarkMode(): Boolean {
-        val isNightModeOn = appSettingPrefs.getBoolean("Nightmode", true)
-        return (isNightModeOn)
     }
 
     fun savePlayer(obj: Player?) {

@@ -1,10 +1,10 @@
 <vector
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:name="vector"
-    android:width="42dp"
-    android:height="39dp"
+    android:width="50dp"
+    android:height="50dp"
     android:viewportWidth="42"
-    android:viewportHeight="39">
+    android:viewportHeight="42">
     <group android:name="group">
         <path
             android:name="path"

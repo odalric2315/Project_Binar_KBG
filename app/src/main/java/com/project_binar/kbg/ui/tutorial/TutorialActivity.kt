@@ -30,7 +30,7 @@ class TutorialActivity : AppCompatActivity() {
         binding = ActivityTutorialBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //Nama Player/User db
-        dataPlayer = intent.getParcelableExtra<Player>(LoginActivity.DATA_PLAYER)
+        dataPlayer = intent.getParcelableExtra<Player>(HomeActivity.DATA_PLAYER)
         binding.textPlayerNameTutorialpage.text = dataPlayer?.nama
         playerName = binding.textPlayerNameTutorialpage.text.toString()
         playerName = getString(R.string.title_name)

@@ -19,6 +19,7 @@
             android:src="@drawable/img_profile_picture" />
 
         <TextView
+            android:id="@+id/text_nama_drawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="12dp"

@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Widget.Theme.ProjecBinarKBR.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+    <style name="Widget.Theme.ProjecBinarKBG.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
 
-    <style name="Widget.Theme.ProjecBinarKBR.ButtonBar.Fullscreen" parent="">
+    <style name="Widget.Theme.ProjecBinarKBG.ButtonBar.Fullscreen" parent="">
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
-        <!-- Base application theme. -->
-        <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
-            <!-- Customize your theme here. -->
-            <item name="colorPrimary">@color/colorPrimary</item>
-            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-            <item name="colorAccent">@color/colorAccent</item>
-            <item name="android:textColorPrimary">@android:color/white</item>
-<!--            <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>-->
-        </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!--            <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>-->
+    </style>
 
-<!--    &lt;!&ndash; Dark application theme. &ndash;&gt;-->
-<!--    <style name="DarkTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">-->
-<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
-<!--        <item name="colorPrimaryDark">#878787</item>-->
-<!--        <item name="colorAccent">#BCBCBC</item>-->
-<!--        <item name="android:textColorPrimary">@android:color/black</item>-->
-<!--        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>-->
-<!--    </style>-->
-<!--    <style name="WindowAnimationTransition">-->
-<!--        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>-->
-<!--        <item name="android:windowExitAnimation">@android:anim/fade_out</item>-->
-<!--    </style>-->
+    <!--    &lt;!&ndash; Dark application theme. &ndash;&gt;-->
+    <!--    <style name="DarkTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">-->
+    <!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+    <!--        <item name="colorPrimaryDark">#878787</item>-->
+    <!--        <item name="colorAccent">#BCBCBC</item>-->
+    <!--        <item name="android:textColorPrimary">@android:color/black</item>-->
+    <!--        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>-->
+    <!--    </style>-->
+    <!--    <style name="WindowAnimationTransition">-->
+    <!--        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>-->
+    <!--        <item name="android:windowExitAnimation">@android:anim/fade_out</item>-->
+    <!--    </style>-->
 
 
 </resources>

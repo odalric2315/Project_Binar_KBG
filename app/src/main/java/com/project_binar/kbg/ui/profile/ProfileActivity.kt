@@ -1,5 +1,6 @@
 package com.project_binar.kbg.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,17 +10,23 @@ import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityProfileBinding
 import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.presenter.profil.ProfilPresenterImp
+import com.project_binar.kbg.ui.home.HomeActivity
 import com.project_binar.kbg.ui.login.LoginActivity
 
 class ProfileActivity : AppCompatActivity(), ProfilView {
     private lateinit var binding: ActivityProfileBinding
     private lateinit var presenter: ProfilPresenterImp
+
+    companion object{
+        const val DATA_PLAYER = "data_player"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val dataPlayer = intent.getParcelableExtra<Player>(LoginActivity.DATA_PLAYER)
+        val dataPlayer = intent.getParcelableExtra<Player>(DATA_PLAYER)
         binding.etEditNameProfile.setText(dataPlayer?.nama)
 
         dataPlayer?.apply {
@@ -30,7 +37,9 @@ class ProfileActivity : AppCompatActivity(), ProfilView {
         val playerDb = SuitDb.getInstance(this)
 
         binding.btnBackProfile.setOnClickListener {
-            finish()
+            val intentProfile = Intent(this, HomeActivity::class.java)
+            intentProfile.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intentProfile)
         }
 
         binding.btnSaveNameProfil.setOnClickListener {
@@ -46,7 +55,7 @@ class ProfileActivity : AppCompatActivity(), ProfilView {
             Toast.makeText(this, "Berhasil Update Nama Player", Toast.LENGTH_SHORT).show()
             Handler(Looper.getMainLooper()).postDelayed({
                 finish()
-            },1000)
+            }, 1000)
         }
 
     }

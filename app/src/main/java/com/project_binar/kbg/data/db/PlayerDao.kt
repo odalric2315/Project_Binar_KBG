@@ -1,8 +1,6 @@
 package com.project_binar.kbg.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.project_binar.kbg.model.Player
 
 @Dao

@@ -1,6 +1,7 @@
 package com.project_binar.kbg.ui.splash
 
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,13 @@ class SplashScreenActivity : AppCompatActivity(), SplashView {
 
         val splashContractImpl = SplashPresenterImp(this@SplashScreenActivity, this)
 
-        splashContractImpl.checkStatus()
+        splashContractImpl.apply {
+            checkStatus()
+
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP){
+                getActiveTheme ()
+            }
+        }
     }
 
     override fun showLoading(isActive: Boolean) {

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#202020</color>
+    <color name="colorPrimaryDark">#202020</color>
+    <color name="colorAccent">@color/white</color>
+    <color name="textPopupEditTextColor">@color/white</color>
+    <!--    <color name="textColorPrimary">#000000</color>-->
+    <color name="textLogouVersus">@color/white</color>
+    <color name="color_image_button">@color/white</color>
+</resources>

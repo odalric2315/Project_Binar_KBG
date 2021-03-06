@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/btn_backsetting"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
+        android:contentDescription="@string/backsetting"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_to_settings"
-        android:contentDescription="@string/backsetting" />
+        android:src="@drawable/ic_round_right"
+        android:tint="@color/color_image_button"
+        android:background="@android:color/transparent"/>
 
     <TextView
         android:id="@+id/tv_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
         android:text="Settings"
-        android:textColor="#777575"
-        android:textSize="36sp"
+        android:textColor="@color/textPopupEditTextColor"
+        android:textSize="28dp"
         android:textStyle="bold"
         android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_backsetting"
         app:layout_constraintStart_toEndOf="@+id/btn_backsetting"
         app:layout_constraintTop_toTopOf="@+id/btn_backsetting"
         tools:ignore="HardcodedText" />
@@ -42,10 +45,11 @@
         android:layout_marginTop="65dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
-        android:background="@drawable/btn_setting_background"
+        android:background="@drawable/item_bg_setting"
         android:text="Dark Theme"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold"
+        android:textColor="@color/textPopupEditTextColor"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,11 +68,11 @@
         android:gravity="start"
         android:text="About Us"
         android:textAllCaps="false"
-        android:textColor="#777575"
+        android:textColor="@color/textPopupEditTextColor"
         android:textSize="28sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:backgroundTint="#E5E5E5"
+        android:background="@drawable/item_bg_setting"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_darktheme"
@@ -78,14 +82,16 @@
         android:id="@+id/swt_darktheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:checked="false"
         android:clickable="true"
+        android:focusable="true"
+        android:thumbTint="@color/white"
+        android:trackTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_darktheme"
         app:layout_constraintEnd_toEndOf="@+id/tv_darktheme"
         app:layout_constraintTop_toTopOf="@+id/tv_darktheme"
-        tools:ignore="UseSwitchCompatOrMaterialXml"
-        android:focusable="true" />
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

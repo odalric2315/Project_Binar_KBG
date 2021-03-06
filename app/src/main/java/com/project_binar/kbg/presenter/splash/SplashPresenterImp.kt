@@ -2,6 +2,7 @@ package com.project_binar.kbg.presenter.splash
 
 import android.app.Activity
 import android.content.Intent
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import com.project_binar.kbg.R
 import com.project_binar.kbg.ui.home.HomeActivity
@@ -15,8 +16,7 @@ import kotlinx.coroutines.launch
 class SplashPresenterImp(
     private val context: Activity,
     private val splashView: SplashView
-) :
-    SplashPresenter {
+) : SplashPresenter {
     private val prefSuitPrefs = SuitPrefs(context)
 
     override fun checkStatus() {
@@ -33,6 +33,14 @@ class SplashPresenterImp(
 
         ContextCompat.getDrawable(context, R.drawable.img_gametitle)?.let {
             splashView.setImageDrawable(it)
+        }
+    }
+
+    override fun getActiveTheme() {
+        if (prefSuitPrefs.darktheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 }
