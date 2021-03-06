@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".ui.leaderboard.LeaderboardActivity">
 
   <ImageView
@@ -18,7 +19,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:srcCompat="@drawable/piala" />
 
-  <ImageView
+  <ImageButton
       android:id="@+id/btn_back_leaderboard"
       android:layout_width="50dp"
       android:layout_height="50dp"
@@ -28,7 +29,9 @@
       android:importantForAccessibility="no"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/back_to_leaderboard" />
+      android:src="@drawable/ic_round_right"
+      android:background="@android:color/transparent"
+      android:tint="@color/color_image_button"/>
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/rv_leaderboard"

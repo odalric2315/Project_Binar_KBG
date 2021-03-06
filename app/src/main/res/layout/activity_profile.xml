@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".ui.profile.ProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Multiplayer Game"
-                android:textColor="@color/black"
+                android:textColor="@color/textPopupEditTextColor"
                 android:textSize="24sp" />
 
             <FrameLayout
@@ -104,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Win Rate"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textPopupEditTextColor"
                         android:textSize="24sp" />
 
                     <TextView
@@ -114,7 +115,7 @@
                         android:layout_marginTop="18dp"
                         android:gravity="center"
                         android:text="100%"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textPopupEditTextColor"
                         android:textSize="28sp" />
                 </LinearLayout>
             </FrameLayout>
@@ -137,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Win"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textPopupEditTextColor"
                         android:textSize="24sp" />
 
                     <TextView
@@ -147,7 +148,7 @@
                         android:layout_marginTop="18dp"
                         android:gravity="center"
                         android:text="0"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textPopupEditTextColor"
                         android:textSize="28sp" />
                 </LinearLayout>
             </FrameLayout>
@@ -170,7 +171,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Lose"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textPopupEditTextColor"
                         android:textSize="24sp" />
 
                     <TextView
@@ -180,7 +181,7 @@
                         android:layout_marginTop="18dp"
                         android:gravity="center"
                         android:text="0"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textPopupEditTextColor"
                         android:textSize="28sp" />
                 </LinearLayout>
             </FrameLayout>

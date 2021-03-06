@@ -5,9 +5,9 @@
     android:id="@+id/parent_multi_player"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/colorPrimary">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/button_close"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -15,9 +15,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/close"
-        app:srcCompat="@drawable/btn_close"
-        tools:ignore="VectorDrawableCompat" />
+        android:src="@drawable/ic_close"
+        android:tint="@color/color_image_button"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/player_1"
+                    android:textColor="@color/textPopupEditTextColor"
                     android:textSize="26sp" />
 
                 <LinearLayout
@@ -140,7 +142,7 @@
                 android:fontFamily="casual"
                 android:rotation="-30"
                 android:text="@string/vs"
-                android:textColor="#D10000"
+                android:textColor="@color/textLogouVersus"
                 android:textSize="60sp"
                 android:textStyle="bold" />
 
@@ -157,6 +159,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/player_2"
+                    android:textColor="@color/textPopupEditTextColor"
                     android:textSize="26sp" />
 
                 <LinearLayout
@@ -229,14 +232,16 @@
                     app:srcCompat="@drawable/ic_scissor"
                     tools:ignore="VectorDrawableCompat" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/button_refresh"
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:contentDescription="@string/refresh"
-                    app:srcCompat="@drawable/ic_refresh"
+                    app:srcCompat="@drawable/ic_reload"
+                    android:background="@android:color/transparent"
+                    android:tint="@color/color_image_button"
                     tools:ignore="VectorDrawableCompat" />
             </LinearLayout>
         </LinearLayout>

@@ -6,11 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityHomeBinding
 import com.project_binar.kbg.model.Player
-import com.project_binar.kbg.ui.leaderboard.LeaderboardActivity
 import com.project_binar.kbg.presenter.home.HomePresenterImp
 import com.project_binar.kbg.ui.Multiplayer.MultiPlayerActivity
+import com.project_binar.kbg.ui.leaderboard.LeaderboardActivity
 import com.project_binar.kbg.ui.login.LoginActivity
 import com.project_binar.kbg.ui.profile.ProfileActivity
+import com.project_binar.kbg.ui.setting.SettingActivity
 import com.project_binar.kbg.ui.tutorial.TutorialActivity
 import com.project_binar.kbg.util.SuitPrefs
 
@@ -23,7 +24,7 @@ class HomeActivity : AppCompatActivity(), HomeView {
     companion object{
         const val DATA_PLAYER = "data_player"
     }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -72,6 +73,8 @@ class HomeActivity : AppCompatActivity(), HomeView {
         //tombol setting
         binding.buttonSettingHomepage.setOnClickListener {
             //toSettings()
+            val intent = Intent(this, SettingActivity::class.java)
+            startActivity(intent)
         }
 
     }
