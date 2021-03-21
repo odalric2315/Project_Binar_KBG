@@ -15,18 +15,18 @@ class SuitPrefs(context: Context) {
         context.getSharedPreferences("AppSettingPrefs", Context.MODE_PRIVATE)
 
     companion object {
-        const val NAME = "name"
+        const val TOKEN = "TOKEN"
         const val LOGIN = "login"
         const val PLAYER = "PLAYER"
         const val DARKTHEME = "NightMode"
     }
 
-    var name: String?
+    var token: String?
         get() {
-            return prefs.getString(NAME, "No Data")
+            return prefs.getString(TOKEN, "No Data")
         }
         set(value) {
-            prefs.edit().putString(NAME, value).apply()
+            prefs.edit().putString(TOKEN, value).apply()
         }
 
     var login: Boolean

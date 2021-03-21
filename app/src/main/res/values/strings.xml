@@ -22,6 +22,7 @@
     <string name="status_result_draw">Draw!</string>
     <string name="title_welcome_back">Selamat datang kembali</string>
     <string name="hint_username">Username</string>
+    <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">@string/title_name</string>
     <string name="title_btn_login">Login</string>
