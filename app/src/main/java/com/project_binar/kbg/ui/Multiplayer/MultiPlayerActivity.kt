@@ -53,6 +53,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
 
         binding.buttonClose.setOnClickListener {
             toHome()
+            finish()
         }
 
         binding.buttonRefresh.setOnClickListener {
@@ -236,6 +237,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
         view.buttonKemenu.setOnClickListener {
             toHome()
             dialog.dismiss()
+            finish()
         }
     }
 

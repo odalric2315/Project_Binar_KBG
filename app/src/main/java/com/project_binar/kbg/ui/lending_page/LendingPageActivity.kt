@@ -50,5 +50,6 @@ class LendingPageActivity : AppCompatActivity() {
     private fun goToRegister() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

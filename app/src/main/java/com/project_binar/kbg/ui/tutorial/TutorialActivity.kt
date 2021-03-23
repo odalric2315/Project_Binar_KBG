@@ -21,6 +21,7 @@ class TutorialActivity : AppCompatActivity() {
     private lateinit var cpu: String
     private lateinit var playerName: String
     private lateinit var hasil: String
+    private lateinit var forDialog: String
     private var dataPlayer: Player? = null
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -33,10 +34,10 @@ class TutorialActivity : AppCompatActivity() {
         dataPlayer = intent.getParcelableExtra<Player>(HomeActivity.DATA_PLAYER)
         binding.textPlayerNameTutorialpage.text = dataPlayer?.nama
         playerName = binding.textPlayerNameTutorialpage.text.toString()
-        playerName = getString(R.string.title_name)
 
         binding.buttonCloseTutorialpage.setOnClickListener {
             toHome()
+            finish()
         }
 
         binding.imgBatuPlayerTutorialpage.setOnClickListener {
@@ -67,6 +68,7 @@ class TutorialActivity : AppCompatActivity() {
         Toast.makeText(this, "CPU memilih $cpu", Toast.LENGTH_SHORT).show()
         if (player == cpu) {
             hasil = getString(R.string.status_result_draw)
+            forDialog = "draw"
             showResultDialog()
         } else {
             if ((player == getString(R.string.title_stone)
@@ -79,9 +81,11 @@ class TutorialActivity : AppCompatActivity() {
                         && cpu == getString(R.string.title_paper))
             ) {
                 hasil = "$playerName \nWON!"
+                forDialog = "win"
                 showResultDialog()
             } else {
                 hasil = "CPU \nWON!"
+                forDialog = "lose"
                 showResultDialog()
             }
 
@@ -94,6 +98,13 @@ class TutorialActivity : AppCompatActivity() {
         builder.setView(view.root)
         val dialog = builder.create()
         view.textHasilgameTutorialpage.text = hasil
+
+        if(forDialog=="win") {
+            view.vectorGameresult.setAnimation(R.raw.if_win)
+        } else if(forDialog=="lose") {
+            view.vectorGameresult.setAnimation(R.raw.if_lose_thunder)
+        }
+
         view.buttonMainlagi.setOnClickListener {
             binding.imgBatuPlayerTutorialpage.setBackgroundResource(0)
             binding.imgKertasPlayerTutorialpage.setBackgroundResource(0)
@@ -104,6 +115,7 @@ class TutorialActivity : AppCompatActivity() {
         view.buttonKemenu.setOnClickListener {
             toHome()
             dialog.dismiss()
+            finish()
         }
         dialog.show()
     }
