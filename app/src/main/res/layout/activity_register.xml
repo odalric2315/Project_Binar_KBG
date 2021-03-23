@@ -27,13 +27,23 @@
             android:textSize="26dp"
             android:textStyle="bold" />
 
-        <ImageView
+<!--        <ImageView-->
+<!--            android:id="@+id/profile_picture_registerpage"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="125dp"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            app:srcCompat="@drawable/img_profile_picture"-->
+<!--            tools:ignore="VectorDrawableCompat" />-->
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/profile_picture_registerpage"
             android:layout_width="match_parent"
             android:layout_height="125dp"
-            android:layout_marginTop="25dp"
-            app:srcCompat="@drawable/img_profile_picture"
-            tools:ignore="VectorDrawableCompat" />
+            app:lottie_rawRes="@raw/regis_profile"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="25dp"/>
 
         <EditText
             android:id="@+id/et_name_registerpage"

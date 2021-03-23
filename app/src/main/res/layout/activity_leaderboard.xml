@@ -7,17 +7,29 @@
     android:background="@color/colorPrimary"
     tools:context=".ui.leaderboard.LeaderboardActivity">
 
-  <ImageView
-      android:id="@+id/logo_leaderboard"
-      android:layout_width="170dp"
-      android:layout_height="170dp"
-      android:layout_marginTop="50dp"
-      android:importantForAccessibility="no"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
+<!--  <ImageView-->
+<!--      android:id="@+id/logo_leaderboard"-->
+<!--      android:layout_width="170dp"-->
+<!--      android:layout_height="170dp"-->
+<!--      android:layout_marginTop="50dp"-->
+<!--      android:importantForAccessibility="no"-->
+<!--      app:layout_constraintEnd_toEndOf="parent"-->
+<!--      app:layout_constraintHorizontal_bias="0.5"-->
+<!--      app:layout_constraintStart_toStartOf="parent"-->
+<!--      app:layout_constraintTop_toTopOf="parent"-->
+<!--      app:srcCompat="@drawable/piala" />-->
+
+  <com.airbnb.lottie.LottieAnimationView
+      android:id="@+id/vector_leaderboard"
+      android:layout_width="match_parent"
+      android:layout_height="250dp"
+      app:lottie_rawRes="@raw/trophy_leaderboard"
+      app:lottie_autoPlay="true"
+      app:lottie_loop="true"
+      android:background="@android:color/transparent"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/piala" />
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
 
   <ImageButton
       android:id="@+id/btn_back_leaderboard"
@@ -47,6 +59,6 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/logo_leaderboard"
+      app:layout_constraintTop_toBottomOf="@+id/vector_leaderboard"
       tools:listitem="@layout/list_leaderboard" />
 </androidx.constraintlayout.widget.ConstraintLayout>

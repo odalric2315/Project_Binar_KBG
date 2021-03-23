@@ -31,6 +31,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
     private lateinit var player2: String
     private lateinit var playerName: String
     private lateinit var hasil: String
+    private lateinit var forDialog: String
     private var lifePlayer1: Int = 3
     private var lifePlayer2: Int = 3
     private var dataPlayer: Player? = null
@@ -149,6 +150,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
             delay(300)
             if (player1 == player2) {
                 hasil = getString(R.string.status_result_draw)
+                forDialog = "draw"
                 result(hasil)
                 refresh()
             } else {
@@ -161,12 +163,14 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
                     refresh()
 
                     hasil = "$playerName WON!"
+                    forDialog = "win"
                 } else {
                     lifePlayer1--
                     lifeIndicator()
                     refresh()
 
-                    hasil = "Player 2 WON!"
+                    hasil = "You LOSE!"
+                    forDialog = "lose"
                 }
 
                 if (lifePlayer1 == 0 || lifePlayer2 == 0) {
@@ -212,6 +216,13 @@ class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
         builder.setView(view.root)
         val dialog = builder.create()
         view.textHasilgameTutorialpage.text = hasil
+
+        if(forDialog=="win") {
+            view.vectorGameresult.setAnimation(R.raw.if_win)
+        } else if(forDialog=="lose") {
+            view.vectorGameresult.setAnimation(R.raw.if_lose_thunder)
+        }
+
         dialog.show()
 
         //Save Win/Lose ke database disini

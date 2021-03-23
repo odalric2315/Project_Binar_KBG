@@ -24,6 +24,15 @@
             android:textSize="28sp"
             android:gravity="center"/>
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/vector_gameresult"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:lottie_rawRes="@raw/if_draw"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:background="@android:color/transparent" />
+
         <TextView
             android:id="@+id/text_hasilgame_tutorialpage"
             android:layout_width="match_parent"

@@ -26,18 +26,18 @@
             android:textColor="@color/textPopupEditTextColor"
             android:textSize="26dp" />
 
-        <ImageView
-            android:id="@+id/img_welcome_loginpage"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            app:srcCompat="@drawable/login" />
+<!--        <ImageView-->
+<!--            android:id="@+id/img_welcome_loginpage"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="150dp"-->
+<!--            app:srcCompat="@drawable/login" />-->
 
         <EditText
             android:id="@+id/et_username_loginpage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="200dp"
             android:textColor="@color/textPopupEditTextColor"
             android:textColorHint="@color/colorAccent"
             android:layout_marginRight="25dp"
@@ -71,6 +71,18 @@
             android:textColor="@color/white"
             android:text="@string/title_btn_login" />
     </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/img_welcome_loginpage"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:lottie_rawRes="@raw/login_wink"
+        android:scaleType="fitCenter"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        android:background="@android:color/transparent"/>
 
     <LinearLayout
         android:id="@+id/button_register_page"

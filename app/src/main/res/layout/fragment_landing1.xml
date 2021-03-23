@@ -8,17 +8,18 @@
     android:theme="@style/Widget.Theme.ProjecBinarKBG.ActionBar.Fullscreen"
     tools:context="com.project_binar.kbg.ui.lending_page.LandingFragment1">
 
-    <ImageView
-        android:id="@+id/landing1_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        android:importantForAccessibility="no"
-        android:src="@drawable/landing_page1"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/landing1_vector"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:lottie_rawRes="@raw/vs_player"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="120dp"/>
 
     <TextView
         android:id="@+id/landing1_text"
@@ -34,5 +35,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/landing1_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/landing1_vector" />
 </androidx.constraintlayout.widget.ConstraintLayout>
