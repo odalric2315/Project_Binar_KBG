@@ -4,9 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mvvm2application.model.register.DataRegister
-import com.example.mvvm2application.model.register.RegisterBody
-import com.example.mvvm2application.model.register.RegisterResponse
+import com.project_binar.kbg.model.register.RegisterBody
+import com.project_binar.kbg.model.register.RegisterResponse
 import com.project_binar.kbg.repository.RemoteRepository
 import kotlinx.coroutines.launch
 

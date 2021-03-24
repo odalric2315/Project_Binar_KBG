@@ -5,8 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.mvvm2application.model.login.LoginBody
-import com.project_binar.kbg.R
+import com.project_binar.kbg.model.login.LoginBody
 import com.project_binar.kbg.api.ApiClient
 import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityLoginBinding
@@ -16,9 +15,6 @@ import com.project_binar.kbg.ui.home.HomeActivity
 import com.project_binar.kbg.ui.register.RegisterActivity
 import com.project_binar.kbg.util.SuitPrefs
 import com.project_binar.kbg.util.SuitViewModelFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -42,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
 
             val email = binding.etEmailLoginpage.text.toString().trim()
             val password = binding.etPasswordLoginpage.text.toString().trim()
-            val loginBody=LoginBody(email, password)
+            val loginBody= LoginBody(email, password)
             viewModel.login(loginBody)
 
             //Implementasi database

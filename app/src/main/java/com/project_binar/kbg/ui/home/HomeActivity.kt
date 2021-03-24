@@ -7,13 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.project_binar.kbg.api.ApiClient
-import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityHomeBinding
 import com.project_binar.kbg.databinding.DialogMenuVsChoiceBinding
 import com.project_binar.kbg.model.Player
-import com.project_binar.kbg.presenter.home.HomePresenterImp
 import com.project_binar.kbg.repository.RemoteRepository
-import com.project_binar.kbg.ui.Multiplayer.MultiPlayerActivity
+import com.project_binar.kbg.ui.multiplayer.MultiPlayerActivity
 import com.project_binar.kbg.ui.leaderboard.LeaderboardActivity
 import com.project_binar.kbg.ui.login.LoginActivity
 import com.project_binar.kbg.ui.profile.ProfileActivity

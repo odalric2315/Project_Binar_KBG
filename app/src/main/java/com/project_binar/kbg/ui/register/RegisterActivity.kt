@@ -3,28 +3,21 @@ package com.project_binar.kbg.ui.register
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.mvvm2application.model.register.RegisterBody
+import com.project_binar.kbg.model.register.RegisterBody
 import com.project_binar.kbg.R
 import com.project_binar.kbg.api.ApiClient
-import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityRegisterBinding
-import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.repository.RemoteRepository
 import com.project_binar.kbg.ui.login.LoginActivity
 import com.project_binar.kbg.util.SuitViewModelFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mvvm2application.model.login.DataLogin
-import com.example.mvvm2application.model.login.LoginBody
+import com.project_binar.kbg.model.login.DataLogin
+import com.project_binar.kbg.model.login.LoginBody
 import com.project_binar.kbg.repository.RemoteRepository
 import kotlinx.coroutines.launch
 

@@ -19,12 +19,13 @@ import com.project_binar.kbg.ui.login.LoginActivity
 import com.project_binar.kbg.util.SuitPrefs
 import com.project_binar.kbg.util.SuitViewModelFactory
 
-class ProfileActivity : AppCompatActivity(){
+class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
-//    private lateinit var presenter: ProfilPresenterImp
+
+    //    private lateinit var presenter: ProfilPresenterImp
     private lateinit var viewModel: ProfileViewModel
 
-    companion object{
+    companion object {
         const val DATA_PLAYER = "data_player"
     }
 
@@ -36,7 +37,7 @@ class ProfileActivity : AppCompatActivity(){
         val repository = RemoteRepository(ApiClient.service())
         val SuitViewModelFactory = SuitViewModelFactory(repository)
         val suitPrefs = SuitPrefs(this)
-        viewModel=ViewModelProvider(this,SuitViewModelFactory).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(this, SuitViewModelFactory).get(ProfileViewModel::class.java)
         viewModel.getProfile(suitPrefs.token!!)
         viewModel.getDataProfile.observe(this, {
             binding.etEditNameProfile.setText(it.username)

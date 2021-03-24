@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mvvm2application.model.profile.DataProfile
+import com.project_binar.kbg.model.profile.DataProfile
 import com.project_binar.kbg.repository.RemoteRepository
 import kotlinx.coroutines.launch
 

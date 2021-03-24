@@ -1,4 +1,4 @@
-package com.example.mvvm2application.model.register
+package com.project_binar.kbg.model.register
 
 
 import com.google.gson.annotations.SerializedName

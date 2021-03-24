@@ -1,13 +1,13 @@
 package com.project_binar.kbg.api
 
-import com.example.mvvm2application.model.login.LoginBody
-import com.example.mvvm2application.model.login.LoginResponse
-import com.example.mvvm2application.model.profile.ProfileResponse
-import com.example.mvvm2application.model.register.RegisterBody
-import com.example.mvvm2application.model.register.RegisterResponse
 import com.project_binar.kbg.model.history.AddHistoryBody
 import com.project_binar.kbg.model.history.AddHistoryResponse
 import com.project_binar.kbg.model.history.GetHistoryResponse
+import com.project_binar.kbg.model.login.LoginBody
+import com.project_binar.kbg.model.login.LoginResponse
+import com.project_binar.kbg.model.profile.ProfileResponse
+import com.project_binar.kbg.model.register.RegisterBody
+import com.project_binar.kbg.model.register.RegisterResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

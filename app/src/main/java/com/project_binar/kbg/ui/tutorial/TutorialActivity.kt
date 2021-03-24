@@ -13,7 +13,6 @@ import com.project_binar.kbg.databinding.ActivityTutorialBinding
 import com.project_binar.kbg.databinding.DialogGameresultBinding
 import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.ui.home.HomeActivity
-import com.project_binar.kbg.ui.login.LoginActivity
 
 class TutorialActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTutorialBinding
