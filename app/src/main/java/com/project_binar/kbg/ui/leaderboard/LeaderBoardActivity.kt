@@ -10,17 +10,17 @@ import com.project_binar.kbg.adapter.PlayerAdapter
 import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityLeaderboardBinding
 import com.project_binar.kbg.model.Player
-import com.project_binar.kbg.presenter.leaderboard.LeaderboardPresenterImp
+import com.project_binar.kbg.presenter.leaderboard.LeaderBoardPresenterImp
 import com.project_binar.kbg.ui.profile.ProfileActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
+class LeaderBoardActivity : AppCompatActivity(), LeaderBoardView {
     private lateinit var binding: ActivityLeaderboardBinding
     private val playerData: MutableList<Player> = mutableListOf()
     private lateinit var adapter: PlayerAdapter
-    private lateinit var presenter: LeaderboardPresenterImp
+    private lateinit var presenter: LeaderBoardPresenterImp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,15 +29,15 @@ class LeaderboardActivity : AppCompatActivity(), LeaderboarView {
 
         val database = SuitDb.getInstance(this)
 
-        presenter = LeaderboardPresenterImp(this, database.playerDao())
+        presenter = LeaderBoardPresenterImp(this, database.playerDao())
         presenter.getData()
 
         /*set adapter*/
         binding.rvLeaderboard.apply {
-            layoutManager = LinearLayoutManager(this@LeaderboardActivity)
+            layoutManager = LinearLayoutManager(this@LeaderBoardActivity)
             addItemDecoration(
                 DividerItemDecoration(
-                    this@LeaderboardActivity,
+                    this@LeaderBoardActivity,
                     DividerItemDecoration.VERTICAL
                 )
             )

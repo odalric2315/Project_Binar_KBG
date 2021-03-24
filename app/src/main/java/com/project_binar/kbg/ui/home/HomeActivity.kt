@@ -12,7 +12,7 @@ import com.project_binar.kbg.databinding.DialogMenuVsChoiceBinding
 import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.repository.RemoteRepository
 import com.project_binar.kbg.ui.multiplayer.MultiPlayerActivity
-import com.project_binar.kbg.ui.leaderboard.LeaderboardActivity
+import com.project_binar.kbg.ui.leaderboard.LeaderBoardActivity
 import com.project_binar.kbg.ui.login.LoginActivity
 import com.project_binar.kbg.ui.profile.ProfileActivity
 import com.project_binar.kbg.ui.setting.SettingActivity
@@ -114,7 +114,7 @@ class HomeActivity : AppCompatActivity(){
     }
 
     private fun toLeaderboard() {
-        val intent = Intent(this, LeaderboardActivity::class.java)
+        val intent = Intent(this, LeaderBoardActivity::class.java)
         startActivity(intent)
     }
 

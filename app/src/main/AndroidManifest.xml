@@ -15,7 +15,7 @@
             android:name=".ui.history.HistoryActivity"
             android:theme="@style/Theme.FullScreen" />
         <activity
-            android:name=".ui.leaderboard.LeaderboardActivity"
+            android:name=".ui.leaderboard.LeaderBoardActivity"
             android:theme="@style/Theme.FullScreen" />
         <activity
             android:name=".ui.profile.ProfileActivity"

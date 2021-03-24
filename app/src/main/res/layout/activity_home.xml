@@ -12,17 +12,17 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginRight="18dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginRight="18dp">
 
             <ImageView
                 android:id="@+id/img_profile_homepage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:padding="4dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginRight="8dp"
+                android:padding="4dp"
                 android:src="@drawable/img_profile_picture" />
 
             <TextView
@@ -30,10 +30,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
                 android:layout_toRightOf="@id/img_profile_homepage"
                 android:gravity="center_vertical"
                 android:text="@string/title_name"
-                android:layout_marginRight="8dp"
                 android:textColor="@color/textPopupEditTextColor"
                 android:textSize="20dp" />
 
@@ -75,35 +75,27 @@
                 android:layout_height="160dp"
                 android:orientation="horizontal">
 
-                <ImageView
+                <!--            <ImageView-->
+                <!--                android:id="@+id/img_multiplayer_homepage"-->
+                <!--                android:layout_width="160dp"-->
+                <!--                android:layout_height="match_parent"-->
+                <!--                android:layout_marginRight="8dp"-->
+                <!--                android:adjustViewBounds="true"-->
+                <!--                android:scaleType="fitCenter"-->
+                <!--                app:srcCompat="@drawable/img_multiplayer" />-->
+
+                <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/img_multiplayer_homepage"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_marginRight="8dp"
                     android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/img_multiplayer" />
-<!--            <ImageView-->
-<!--                android:id="@+id/img_multiplayer_homepage"-->
-<!--                android:layout_width="160dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginRight="8dp"-->
-<!--                android:adjustViewBounds="true"-->
-<!--                android:scaleType="fitCenter"-->
-<!--                app:srcCompat="@drawable/img_multiplayer" />-->
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/img_multiplayer_homepage"
-                android:layout_width="160dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginRight="8dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                app:lottie_rawRes="@raw/select_mode"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                android:background="@android:color/transparent" />
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/select_mode" />
 
                 <ImageView
                     android:id="@+id/image_vs_cpu"
@@ -119,171 +111,170 @@
                 android:id="@+id/textView_play"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Play"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="20sp"/>
-                <TextView
-                    android:id="@+id/text_title_multiplayer_homepage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Mode Game"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/text_detail_multiplayer_homepage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_weight="1"
-                    android:text="Pilih mode permainan dan dapatkan poin"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/text_title_multiplayer_homepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mode Game"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_detail_multiplayer_homepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_weight="1"
+                android:text="Pilih mode permainan dan dapatkan poin"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_leaderboard_homepage"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:background="@drawable/btn_leaderboard_background"
+        android:orientation="horizontal">
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/img_leaderboard_homepage"-->
+        <!--                android:layout_width="160dp"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_gravity="center"-->
+        <!--                android:layout_marginRight="8dp"-->
+        <!--                android:adjustViewBounds="true"-->
+        <!--                android:scaleType="fitCenter"-->
+        <!--                app:srcCompat="@drawable/landing_page3" />-->
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/img_leaderboard_homepage"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="8dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/first_place" />
 
         <LinearLayout
-            android:id="@+id/button_leaderboard_homepage"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/btn_leaderboard_background"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-<!--            <ImageView-->
-<!--                android:id="@+id/img_leaderboard_homepage"-->
-<!--                android:layout_width="160dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginRight="8dp"-->
-<!--                android:adjustViewBounds="true"-->
-<!--                android:scaleType="fitCenter"-->
-<!--                app:srcCompat="@drawable/landing_page3" />-->
+            <TextView
+                android:id="@+id/text_title_leaderboard_homepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Leaderboard"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_detail_leaderboard_homepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_weight="1"
+                android:text="Cek poin dan riwayat permainanmu"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/button_tutorial_homepage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_tutorial_background"
+            android:orientation="vertical">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/img_leaderboard_homepage"
-                android:layout_width="160dp"
+                android:id="@+id/img_tutorial_homepage"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginRight="8dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                app:lottie_rawRes="@raw/first_place"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                android:background="@android:color/transparent" />
+                app:lottie_rawRes="@raw/question" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/text_tutorial_homepage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/text_title_leaderboard_homepage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Leaderboard"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/text_detail_leaderboard_homepage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_weight="1"
-                    android:text="Cek poin dan riwayat permainanmu"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Video Tutorial"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="20dp"
+            android:id="@+id/button_setting_homepage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:background="@drawable/btn_setting_background"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/button_tutorial_homepage"
-                android:layout_width="wrap_content"
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/img_setting_homepage"-->
+            <!--                    android:layout_width="125dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_gravity="center"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    app:srcCompat="@drawable/settings" />-->
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/img_setting_homepage"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="15dp"
+                android:layout_gravity="top|center_horizontal"
                 android:layout_weight="1"
-                android:background="@drawable/btn_tutorial_background"
-                android:orientation="vertical">
+                android:background="@android:color/transparent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/slider" />
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/img_tutorial_homepage"
-                    android:layout_width="125dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="top|center_horizontal"
-                    android:layout_weight="1"
-                    app:lottie_rawRes="@raw/question"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true"
-                    android:background="@android:color/transparent" />
-
-                <TextView
-                    android:id="@+id/text_tutorial_homepage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="Video Tutorial"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:text="Tutorial"
-                    android:textColor="@color/black" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/button_setting_homepage"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/btn_setting_background"
-                android:orientation="vertical">
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/img_setting_homepage"-->
-<!--                    android:layout_width="125dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_weight="1"-->
-<!--                    app:srcCompat="@drawable/settings" />-->
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/img_setting_homepage"
-                    android:layout_width="125dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="top|center_horizontal"
-                    android:layout_weight="1"
-                    app:lottie_rawRes="@raw/slider"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true"
-                    android:background="@android:color/transparent" />
-
-                <TextView
-                    android:id="@+id/text_setting_homepage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="Settings"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/text_setting_homepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Settings"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

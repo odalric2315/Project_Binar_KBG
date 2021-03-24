@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".ui.leaderboard.LeaderboardActivity">
+    tools:context=".ui.leaderboard.LeaderBoardActivity">
 
 <!--  <ImageView-->
 <!--      android:id="@+id/logo_leaderboard"-->

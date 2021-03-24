@@ -2,9 +2,6 @@ package com.project_binar.kbg.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -12,10 +9,8 @@ import com.project_binar.kbg.api.ApiClient
 import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityProfileBinding
 import com.project_binar.kbg.model.Player
-import com.project_binar.kbg.presenter.profil.ProfilPresenterImp
 import com.project_binar.kbg.repository.RemoteRepository
 import com.project_binar.kbg.ui.home.HomeActivity
-import com.project_binar.kbg.ui.login.LoginActivity
 import com.project_binar.kbg.util.SuitPrefs
 import com.project_binar.kbg.util.SuitViewModelFactory
 

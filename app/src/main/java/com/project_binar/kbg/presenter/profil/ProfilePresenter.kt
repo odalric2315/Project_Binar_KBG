@@ -1,5 +1,5 @@
 package com.project_binar.kbg.presenter.profil
 
-interface ProfilPresenter {
+interface ProfilePresenter {
     fun updateNamePlayer(nama: String, id: Int)
 }
