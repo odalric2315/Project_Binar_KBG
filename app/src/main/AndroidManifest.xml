@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.project_binar.kbg">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjecBinarKBG">
-
+        <activity
+            android:name=".ui.history.HistoryActivity"
+            android:theme="@style/Theme.FullScreen" />
         <activity
             android:name=".ui.leaderboard.LeaderboardActivity"
             android:theme="@style/Theme.FullScreen" />
@@ -41,7 +45,7 @@
             android:name=".ui.tutorial.TutorialActivity"
             android:theme="@style/Theme.FullScreen" />
         <activity
-            android:name=".ui.Multiplayer.MultiPlayerActivity"
+            android:name=".ui.multiplayer.MultiPlayerActivity"
             android:theme="@style/Theme.FullScreen" />
         <activity
             android:name=".ui.setting.SettingActivity"

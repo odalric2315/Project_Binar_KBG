@@ -1,12 +1,12 @@
 package com.project_binar.kbg.presenter.multiplayer
 
 import com.project_binar.kbg.data.db.PlayerDao
-import com.project_binar.kbg.ui.Multiplayer.MultiplayerView
+import com.project_binar.kbg.ui.multiplayer.MultiPlayerView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MultiPlayerPresenterImp(
-    private val view: MultiplayerView,
+    private val view: MultiPlayerView,
     private val playerDao: PlayerDao
 ) : MultiPlayerPresenter {
     override fun updateWin(win: Int, id: Int) {

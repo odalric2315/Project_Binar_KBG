@@ -37,15 +37,6 @@
                 android:textColor="@color/textPopupEditTextColor"
                 android:textSize="20dp" />
 
-            <ImageView
-                android:id="@+id/img_editnama_homepage"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_toRightOf="@id/text_nama_homepage"
-                app:srcCompat="@drawable/btn_edit_profile" />
-
             <TextView
                 android:id="@+id/button_logout_homepage"
                 android:layout_width="wrap_content"
@@ -72,13 +63,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/button_multiplayer_homepage"
+            android:id="@+id/button_play_homepage"
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:layout_weight="1"
             android:background="@drawable/btn_multiplayer_background"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_multiplayer_homepage"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="8dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/img_multiplayer" />
 <!--            <ImageView-->
 <!--                android:id="@+id/img_multiplayer_homepage"-->
 <!--                android:layout_width="160dp"-->
@@ -101,11 +105,25 @@
                 app:lottie_loop="true"
                 android:background="@android:color/transparent" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/image_vs_cpu"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/img_tutorial" />
+            </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView_play"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Play"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/text_title_multiplayer_homepage"
                     android:layout_width="match_parent"
@@ -221,6 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
+                    android:text="Video Tutorial"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="Tutorial"

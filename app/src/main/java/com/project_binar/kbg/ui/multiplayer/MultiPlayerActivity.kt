@@ -1,4 +1,4 @@
-package com.project_binar.kbg.ui.Multiplayer
+package com.project_binar.kbg.ui.multiplayer
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -18,13 +18,12 @@ import com.project_binar.kbg.databinding.DialogGameresultBinding
 import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.presenter.multiplayer.MultiPlayerPresenterImp
 import com.project_binar.kbg.ui.home.HomeActivity
-import com.project_binar.kbg.ui.login.LoginActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MultiPlayerActivity : AppCompatActivity(), MultiplayerView {
+class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
     private lateinit var binding: ActivityMultiplayerBinding
     private lateinit var presenter: MultiPlayerPresenterImp
     private lateinit var player1: String
