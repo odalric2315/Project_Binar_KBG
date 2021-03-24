@@ -3,6 +3,7 @@ package com.project_binar.kbg.util
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.project_binar.kbg.repository.RemoteRepository
+import com.project_binar.kbg.ui.history.HistoryViewModel
 import com.project_binar.kbg.ui.home.HomeViewModel
 import com.project_binar.kbg.ui.login.LoginViewModel
 import com.project_binar.kbg.ui.profile.ProfileViewModel
@@ -22,6 +23,9 @@ class SuitViewModelFactory (private val repository: RemoteRepository) : ViewMode
         }
         else if(modelClass.isAssignableFrom(RegisterViewModel::class.java)){
             return RegisterViewModel(repository) as T
+        }
+        else if (modelClass.isAssignableFrom(HistoryViewModel::class.java)){
+            return HistoryViewModel(repository) as T
         }
         throw IllegalArgumentException("ERROR UNKNOWN VIEWMODEL CLASS")
     }

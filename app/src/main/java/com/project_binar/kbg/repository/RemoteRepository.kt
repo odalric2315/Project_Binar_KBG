@@ -7,6 +7,9 @@ import com.example.mvvm2application.model.profile.ProfileResponse
 import com.example.mvvm2application.model.register.RegisterBody
 import com.example.mvvm2application.model.register.RegisterResponse
 import com.project_binar.kbg.api.ApiService
+import com.project_binar.kbg.model.history.AddHistoryBody
+import com.project_binar.kbg.model.history.AddHistoryResponse
+import com.project_binar.kbg.model.history.GetHistoryResponse
 
 class RemoteRepository(private val apiService: ApiService) {
     suspend fun login(
@@ -44,6 +47,31 @@ class RemoteRepository(private val apiService: ApiService) {
         if (response.isSuccessful) {
             onResult(response.body())
         } else {
+            onError(response.message())
+        }
+    }
+    suspend fun getHistory(
+        token: String,
+        onResult:(GetHistoryResponse?) -> Unit,
+        onError: (String) -> Unit
+    ) {
+        val response = apiService.getHistory(token)
+        if (response.isSuccessful) {
+            onResult(response.body())
+        } else {
+            onError(response.message())
+        }
+    }
+    suspend fun addHistory(
+        token: String,
+        addHistoryBody: AddHistoryBody,
+        onResult: (AddHistoryResponse?)-> Unit,
+        onError: (String) -> Unit
+    ) {
+        val response = apiService.addHistory(token,addHistoryBody)
+        if (response.isSuccessful){
+            onResult(response.body())
+        }else {
             onError(response.message())
         }
     }

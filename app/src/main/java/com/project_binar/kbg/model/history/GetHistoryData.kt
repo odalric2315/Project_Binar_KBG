@@ -1,4 +1,4 @@
-package com.example.mygameapplication.model.gethistory
+package com.project_binar.kbg.model.history
 
 
 import com.google.gson.annotations.SerializedName

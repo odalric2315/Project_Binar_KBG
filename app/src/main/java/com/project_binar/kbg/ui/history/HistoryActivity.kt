@@ -1,11 +1,16 @@
-package com.com.dagger.projecbinar_kbr.ui.history
+package com.project_binar.kbg.ui.history
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.com.dagger.projecbinar_kbr.R
+import com.project_binar.kbg.adapter.HistoryAdapter
+import com.project_binar.kbg.api.ApiClient
+import com.project_binar.kbg.databinding.ActivityHistoryBinding
+import com.project_binar.kbg.repository.RemoteRepository
+import com.project_binar.kbg.util.SuitPrefs
+import com.project_binar.kbg.util.SuitViewModelFactory
 
 class HistoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHistoryBinding
@@ -17,7 +22,7 @@ class HistoryActivity : AppCompatActivity() {
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val repository = RemoteRepository(ApiClient.service())
-        val gameViewModelFactory = GameViewModelFactory(repository)
+        val gameViewModelFactory = SuitViewModelFactory(repository)
         adapter= HistoryAdapter()
         sharePreferenceHelper = SuitPrefs(this)
         viewModel= ViewModelProvider(this,gameViewModelFactory).get(HistoryViewModel::class.java)

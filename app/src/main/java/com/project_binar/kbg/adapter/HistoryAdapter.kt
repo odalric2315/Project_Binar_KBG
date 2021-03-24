@@ -1,10 +1,10 @@
-package com.com.dagger.projecbinar_kbr.util
+package com.project_binar.kbg.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mygameapplication.databinding.ItemHistoryBinding
-import com.example.mygameapplication.model.gethistory.GetHistoryData
+import com.project_binar.kbg.databinding.ItemHistoryBinding
+import com.project_binar.kbg.model.history.GetHistoryData
 
 class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     private var data= mutableListOf<GetHistoryData>()

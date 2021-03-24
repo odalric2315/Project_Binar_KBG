@@ -1,12 +1,12 @@
-package com.com.dagger.projecbinar_kbr.ui.history
+package com.project_binar.kbg.ui.history
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mygameapplication.model.gethistory.GetHistoryData
-import com.example.mygameapplication.repository.RemoteRepository
+import com.project_binar.kbg.model.history.GetHistoryData
+import com.project_binar.kbg.repository.RemoteRepository
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(private val repository: RemoteRepository) : ViewModel() {
