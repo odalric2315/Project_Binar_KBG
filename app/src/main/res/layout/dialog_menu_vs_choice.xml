@@ -23,18 +23,30 @@
             android:orientation="horizontal"
             android:padding="20dp">
 
-            <ImageView
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:srcCompat="@drawable/img_multiplayer" />-->
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/img_vs_player"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/img_multiplayer" />
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/vs_player" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginStart="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -63,18 +75,30 @@
             android:orientation="horizontal"
             android:padding="20dp">
 
-            <ImageView
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:srcCompat="@drawable/img_tutorial" />-->
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/img_vs_cpu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/img_tutorial" />
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/robot" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginStart="10dp">
 
                 <TextView
                     android:layout_width="match_parent"

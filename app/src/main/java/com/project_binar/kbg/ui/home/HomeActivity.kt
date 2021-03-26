@@ -81,6 +81,7 @@ class HomeActivity : AppCompatActivity(){
         //tombol logout
         binding.buttonLogoutHomepage.setOnClickListener {
             toLogin()
+            finish()
         }
 
         //tombol main
