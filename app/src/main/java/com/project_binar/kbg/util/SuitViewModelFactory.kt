@@ -27,6 +27,9 @@ class SuitViewModelFactory (private val repository: RemoteRepository) : ViewMode
             modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
                 return HistoryViewModel(repository) as T
             }
+            modelClass.isAssignableFrom(PlayViewModel::class.java) -> {
+                return PlayViewModel(repository) as T
+            }
             else -> throw IllegalArgumentException("ERROR UNKNOWN VIEWMODEL CLASS")
         }
     }

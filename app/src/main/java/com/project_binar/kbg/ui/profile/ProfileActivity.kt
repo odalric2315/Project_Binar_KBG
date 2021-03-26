@@ -2,6 +2,7 @@ package com.project_binar.kbg.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -38,6 +39,12 @@ class ProfileActivity : AppCompatActivity() {
             binding.etEditNameProfile.setText(it.username)
             binding.etEditEmailProfile.setText(it.email)
             Glide.with(this).load(it.photo).fitCenter().into(binding.imageProfilePic)
+            binding.progressBar.visibility= View.GONE
+            binding.profileLayout.visibility=View.VISIBLE
+        })
+        viewModel.getError.observe(this,{
+            startActivity(Intent(this,HomeActivity::class.java))
+            finish()
         })
 
         val dataPlayer = intent.getParcelableExtra<Player>(DATA_PLAYER)

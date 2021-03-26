@@ -15,9 +15,14 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     }
     inner class ViewHolder(var binding: ItemHistoryBinding): RecyclerView.ViewHolder(binding.root){
         fun bindViewHolder(getHistoryData: GetHistoryData){
-            binding.mode.text=getHistoryData.mode.toString().trim()
-            binding.message.text=getHistoryData.message.toString().trim()
-            binding.time.text=getHistoryData.createdAt.toString().trim()
+            val date = getHistoryData.createdAt.toString().take(10).trim()
+            val time = getHistoryData.createdAt.toString().substring(11, 19).trim()
+            val result = getHistoryData.message.toString().trim()
+            val mode = getHistoryData.mode.toString().trim()
+            binding.date.text=date
+            binding.message.text=result
+            binding.time.text=time
+            binding.mode.text=mode
         }
     }
 

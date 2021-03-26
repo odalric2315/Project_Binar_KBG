@@ -2,6 +2,7 @@ package com.project_binar.kbg.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -9,7 +10,9 @@ import com.bumptech.glide.Glide
 import com.project_binar.kbg.api.ApiClient
 import com.project_binar.kbg.databinding.ActivityHomeBinding
 import com.project_binar.kbg.databinding.DialogMenuVsChoiceBinding
+import com.project_binar.kbg.databinding.DialogVideoBinding
 import com.project_binar.kbg.model.Player
+import com.project_binar.kbg.model.login.LoginBody
 import com.project_binar.kbg.repository.RemoteRepository
 import com.project_binar.kbg.ui.multiplayer.MultiPlayerActivity
 import com.project_binar.kbg.ui.leaderboard.LeaderBoardActivity
@@ -40,9 +43,22 @@ class HomeActivity : AppCompatActivity(){
         val SuitViewModelFactory = SuitViewModelFactory(repository)
         viewModel=ViewModelProvider(this,SuitViewModelFactory).get(HomeViewModel::class.java)
         viewModel.getProfile(suitPrefs.token!!)
+        binding.linearLayout2.visibility=View.GONE
         viewModel.getDataProfile.observe(this,{
             binding.textNamaHomepage.text=it.username
-            Glide.with(this).load(it.photo).centerCrop().into(binding.imgProfileHomepage)
+            Glide.with(this).load(it.photo).circleCrop().fitCenter().into(binding.imgProfileHomepage)
+            binding.progressBar2.visibility= View.GONE
+            binding.linearLayout2.visibility=View.VISIBLE
+        })
+        viewModel.getError.observe(this,{
+            val loginBody=LoginBody(suitPrefs.email,suitPrefs.password)
+            viewModel.login(loginBody)
+        })
+        viewModel.getDataLogin.observe(this,{
+            suitPrefs.token="Bearer ${it.token}"
+        })
+        viewModel.getErrorLogin.observe(this,{
+            toLogin()
         })
 //
 //        dataPlayer = suitPrefs.getPlayer()
@@ -78,8 +94,8 @@ class HomeActivity : AppCompatActivity(){
         }
 
         //tombol tutorial
-        binding.buttonTutorialHomepage.setOnClickListener {
-            toTutorial()
+        binding.buttonVideoHomepage.setOnClickListener {
+            showVideoDialog()
         }
 
         //tombol setting
@@ -147,6 +163,7 @@ class HomeActivity : AppCompatActivity(){
         val view = DialogMenuVsChoiceBinding.inflate(layoutInflater)
         builder.setView(view.root)
         val dialog = builder.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
         view.buttonPlayMultiplayer.setOnClickListener {
             toMultiplayerGame()
@@ -158,5 +175,55 @@ class HomeActivity : AppCompatActivity(){
             dialog.dismiss()
             finish()
         }
+    }
+    private fun showVideoDialog() {
+        val builder = AlertDialog.Builder(this)
+        val view = DialogVideoBinding.inflate(layoutInflater)
+        builder.setView(view.root)
+        val dialog = builder.create()
+//        val videoPath = "android.resource://$packageName/${R.raw.video}"
+//        var videoStatus = true
+//        val videoUri = Uri.parse(videoPath)
+//        view.videoView.setVideoURI(videoUri)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+//        view.playButton.setImageResource(R.drawable.ic_baseline_pause_button)
+//        view.videoView.start()
+//        view.videoView.setOnCompletionListener {
+//            it.seekTo(0)
+//            videoStatus = false
+//            view.videoView.pause()
+//            view.playButton.setImageResource(R.drawable.ic_baseline_play_button)
+//        }
+//        view.playButton.setOnClickListener {
+//            if (videoStatus) {
+//                videoStatus = false
+//                view.videoView.pause()
+//                view.playButton.setImageResource(R.drawable.ic_baseline_play_button)
+//            } else {
+//                videoStatus = true
+//                view.playButton.setImageResource(R.drawable.ic_baseline_pause_button)
+//                view.videoView.start()
+//            }
+//        }
+        dialog.show()
+    }
+    //Fullscreen
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemUI()
+    }
+    private fun hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
+                // Set the content to appear under the system bars so that the
+                // content doesn't resize when the system bars hide and show.
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                // Hide the nav bar and status bar
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 }

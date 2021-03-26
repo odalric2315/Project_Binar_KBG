@@ -9,15 +9,23 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 import com.google.android.material.snackbar.Snackbar
 import com.project_binar.kbg.R
+import com.project_binar.kbg.api.ApiClient
 import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityMultiplayerBinding
 import com.project_binar.kbg.databinding.DialogGameresultBinding
 import com.project_binar.kbg.model.Player
+import com.project_binar.kbg.model.history.AddHistoryBody
 import com.project_binar.kbg.presenter.multiplayer.MultiPlayerPresenterImp
+import com.project_binar.kbg.repository.RemoteRepository
 import com.project_binar.kbg.ui.home.HomeActivity
+import com.project_binar.kbg.util.PlayViewModel
+import com.project_binar.kbg.util.SuitPrefs
+import com.project_binar.kbg.util.SuitViewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -26,6 +34,8 @@ import kotlinx.coroutines.launch
 class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
     private lateinit var binding: ActivityMultiplayerBinding
     private lateinit var presenter: MultiPlayerPresenterImp
+    private lateinit var suitPrefs: SuitPrefs
+    private lateinit var viewModel:PlayViewModel
     private lateinit var player1: String
     private lateinit var player2: String
     private lateinit var playerName: String
@@ -41,10 +51,13 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
         super.onCreate(savedInstanceState)
         binding = ActivityMultiplayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val repository = RemoteRepository(ApiClient.service())
+        val suitViewModelFactory = SuitViewModelFactory(repository)
+        viewModel = ViewModelProvider(this,suitViewModelFactory).get(PlayViewModel::class.java)
         dataPlayer = intent.getParcelableExtra(HomeActivity.DATA_PLAYER)
+        suitPrefs = SuitPrefs(this)
 
-        binding.player1Name.text = dataPlayer?.nama
+        binding.player1Name.text = suitPrefs.username
         playerName = binding.player1Name.text.toString().trim()
         val playerDb = SuitDb.getInstance(this)
         presenter = MultiPlayerPresenterImp(this, playerDb.playerDao())
@@ -87,6 +100,17 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
             it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
             playerTwoPick(player1)
         }
+        viewModel.addHistoryData.observe(this,{
+            binding.progressBar.visibility = View.GONE
+            binding.gameLayout.visibility = View.VISIBLE
+            showResultDialog()
+        })
+        viewModel.getError.observe(this,{
+            binding.progressBar.visibility = View.GONE
+            binding.gameLayout.visibility = View.VISIBLE
+            Toast.makeText(this,"Gagal update Hasil ke Server",Toast.LENGTH_SHORT).show()
+            showResultDialog()
+        })
 
 
     }
@@ -175,7 +199,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
 
                 if (lifePlayer1 == 0 || lifePlayer2 == 0) {
                     updateResult()
-                    showResultDialog()
+
                 } else result(hasil)
             }
         }
@@ -241,11 +265,24 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
     }
 
     private fun updateResult() {
+        var apiResult : String?
         if (lifePlayer1 != 0) {
+            apiResult = "Player Win"
+            val addHistoryBody = AddHistoryBody("Multiplayer",apiResult)
+            binding.progressBar.visibility=View.VISIBLE
+            binding.gameLayout.visibility=View.GONE
+            viewModel.addHistory(suitPrefs.token!!, addHistoryBody)
             dataPlayer?.id?.let { id ->
                 presenter.updateWin(1, id)
             }
-        } else dataPlayer?.id?.let { id -> presenter.updateLose(1, id) }
+        } else {
+            apiResult = "Opponent Win"
+            val addHistoryBody = AddHistoryBody("Multiplayer",apiResult)
+            binding.progressBar.visibility=View.VISIBLE
+            binding.gameLayout.visibility=View.GONE
+            viewModel.addHistory(suitPrefs.token!!, addHistoryBody)
+            dataPlayer?.id?.let { id -> presenter.updateLose(1, id) }
+        }
     }
 
     ////////////////////////////////////////////////

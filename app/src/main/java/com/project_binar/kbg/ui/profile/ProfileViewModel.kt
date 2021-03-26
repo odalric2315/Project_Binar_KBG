@@ -12,11 +12,13 @@ import kotlinx.coroutines.launch
 class ProfileViewModel(private val repository: RemoteRepository) : ViewModel() {
     private val _dataProfile = MutableLiveData<DataProfile>()
     val getDataProfile: LiveData<DataProfile> = _dataProfile
-
+    private val _error = MutableLiveData<String>()
+    val getError: LiveData<String> = _error
     fun getProfile(token: String) = viewModelScope.launch {repository.getProfile(token,{
         _dataProfile.value=it?.data
     },{
         Log.e("ERROR",it)
+        _error.value=it
     })
     }
 }

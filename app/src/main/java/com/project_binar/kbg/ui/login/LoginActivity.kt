@@ -1,10 +1,16 @@
 package com.project_binar.kbg.ui.login
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.project_binar.kbg.R
 import com.project_binar.kbg.model.login.LoginBody
 import com.project_binar.kbg.api.ApiClient
 import com.project_binar.kbg.data.db.SuitDb
@@ -22,6 +28,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var suitPrefs: SuitPrefs
     private lateinit var viewModel: LoginViewModel
     private var player: Player? = null
+    @SuppressLint("ResourceAsColor")
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -40,7 +48,9 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.etPasswordLoginpage.text.toString().trim()
             val loginBody= LoginBody(email, password)
             viewModel.login(loginBody)
-
+            binding.progressBar3.visibility= View.GONE
+            binding.vlinearLayoutLoginpage.visibility=View.GONE
+            binding.buttonRegisterPage.visibility=View.GONE
             //Implementasi database
 //            GlobalScope.launch {
 //                player = databaseSuitDb.playerDao().loginPlayer(email, password)
@@ -64,21 +74,33 @@ class LoginActivity : AppCompatActivity() {
 //                        ).show()
 //                    }
 //                }
-//            }
-            binding.etPasswordLoginpage.setText("")
-            binding.etEmailLoginpage.setText("")
+////            }
+//            binding.etPasswordLoginpage.setText("")
+//            binding.etEmailLoginpage.setText("")
 
         }
         viewModel.getDataLogin.observe(this,{
             suitPrefs.token = "Bearer ${it.token}"
             suitPrefs.login = true
-            Toast.makeText(this,"Hallo ${it.username}", Toast.LENGTH_SHORT).show()
+            suitPrefs.email=it.email
+            suitPrefs.username=it.username
+            suitPrefs.password=binding.etPasswordLoginpage.text.toString().trim()
             toHome()
+        })
+        viewModel.getError.observe(this,{
+            Toast.makeText(this,"Salah Email/Password",Toast.LENGTH_SHORT).show()
+            binding.progressBar3.visibility=View.GONE
+            binding.vlinearLayoutLoginpage.visibility=View.GONE
+            binding.buttonRegisterPage.visibility=View.GONE
+            binding.etEmailLoginpage.backgroundTintList= ColorStateList.valueOf(R.color.red)
+            binding.etPasswordLoginpage.backgroundTintList= ColorStateList.valueOf(R.color.red)
+            binding.etEmailLoginpage.setText("")
+            binding.etPasswordLoginpage.setText("")
+
         })
 
         binding.buttonRegisterPage.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            toRegister()
         }
     }
 

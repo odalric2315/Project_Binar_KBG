@@ -19,6 +19,9 @@ class SuitPrefs(context: Context) {
         const val LOGIN = "login"
         const val PLAYER = "PLAYER"
         const val DARKTHEME = "NightMode"
+        const val USERNAME = "USERNAME"
+        const val EMAIL = "EMAIL"
+        const val PASSWORD = "PASSWORD"
     }
 
     var token: String?
@@ -44,6 +47,28 @@ class SuitPrefs(context: Context) {
         set(value) {
             prefs.edit().putBoolean(DARKTHEME, value).apply()
         }
+    var username: String?
+        get() {
+            return prefs.getString(USERNAME,"")
+        }
+        set(value) {
+            prefs.edit().putString(USERNAME,value).apply()
+        }
+    var email: String?
+        get() {
+            return prefs.getString(EMAIL,"")
+        }
+        set(value) {
+            prefs.edit().putString(EMAIL,value).apply()
+        }
+    var password: String?
+        get() {
+            return prefs.getString(PASSWORD,"")
+        }
+        set(value) {
+            prefs.edit().putString(PASSWORD,value).apply()
+        }
+
 
     @SuppressLint("CommitPrefEdits")
     fun appSettingPrefs(isNightModeOn: Boolean?) {
@@ -70,6 +95,7 @@ class SuitPrefs(context: Context) {
             object : TypeToken<Player>() {}.type
         )
     }
+
 
     fun removeSharePref(key: String) {
         prefs.edit().remove(key).apply()

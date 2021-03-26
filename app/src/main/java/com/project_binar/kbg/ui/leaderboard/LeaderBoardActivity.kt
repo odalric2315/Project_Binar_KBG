@@ -11,6 +11,7 @@ import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityLeaderboardBinding
 import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.presenter.leaderboard.LeaderBoardPresenterImp
+import com.project_binar.kbg.ui.history.HistoryActivity
 import com.project_binar.kbg.ui.profile.ProfileActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -54,6 +55,9 @@ class LeaderBoardActivity : AppCompatActivity(), LeaderBoardView {
         binding.btnBackLeaderboard.setOnClickListener {
             finish()
         }
+        binding.vectorLeaderboard.setOnClickListener {
+            toHistory()
+        }
     }
 
     override fun showData(data: List<Player>) {
@@ -73,5 +77,8 @@ class LeaderBoardActivity : AppCompatActivity(), LeaderBoardView {
         intent.putExtra(ProfileActivity.DATA_PLAYER, dataPlayer)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+    }
+    private fun toHistory(){
+        startActivity(Intent(this,HistoryActivity::class.java))
     }
 }

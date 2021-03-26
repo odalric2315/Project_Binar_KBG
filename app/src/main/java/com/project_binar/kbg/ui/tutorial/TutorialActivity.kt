@@ -4,18 +4,28 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.project_binar.kbg.R
+import com.project_binar.kbg.api.ApiClient
 import com.project_binar.kbg.databinding.ActivityTutorialBinding
 import com.project_binar.kbg.databinding.DialogGameresultBinding
 import com.project_binar.kbg.model.Player
+import com.project_binar.kbg.model.history.AddHistoryBody
+import com.project_binar.kbg.repository.RemoteRepository
 import com.project_binar.kbg.ui.home.HomeActivity
+import com.project_binar.kbg.util.PlayViewModel
+import com.project_binar.kbg.util.SuitPrefs
+import com.project_binar.kbg.util.SuitViewModelFactory
 
 class TutorialActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTutorialBinding
+    private lateinit var viewModel: PlayViewModel
+    private lateinit var suitPrefs: SuitPrefs
     private lateinit var player: String
     private lateinit var cpu: String
     private lateinit var playerName: String
@@ -29,11 +39,14 @@ class TutorialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTutorialBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val repository = RemoteRepository(ApiClient.service())
+        val suitViewModelFactory = SuitViewModelFactory(repository)
+        suitPrefs= SuitPrefs(this)
+        viewModel = ViewModelProvider(this,suitViewModelFactory).get(PlayViewModel::class.java)
         //Nama Player/User db
         dataPlayer = intent.getParcelableExtra<Player>(HomeActivity.DATA_PLAYER)
-        binding.textPlayerNameTutorialpage.text = dataPlayer?.nama
+        binding.textPlayerNameTutorialpage.text = suitPrefs.username
         playerName = binding.textPlayerNameTutorialpage.text.toString()
-
         binding.buttonCloseTutorialpage.setOnClickListener {
             toHome()
             finish()
@@ -59,6 +72,17 @@ class TutorialActivity : AppCompatActivity() {
                 getDrawable(R.drawable.btn_hand_background)
             game(player)
         }
+        viewModel.addHistoryData.observe(this,{
+            binding.progressBar.visibility= View.GONE
+            binding.tutorialLayout.visibility=View.VISIBLE
+            showResultDialog()
+        })
+        viewModel.getError.observe(this,{
+            binding.progressBar.visibility= View.GONE
+            binding.tutorialLayout.visibility=View.VISIBLE
+            Toast.makeText(this,"Gagal update Hasil ke Server",Toast.LENGTH_SHORT).show()
+            showResultDialog()
+        })
 
     }
 
@@ -68,7 +92,7 @@ class TutorialActivity : AppCompatActivity() {
         if (player == cpu) {
             hasil = getString(R.string.status_result_draw)
             forDialog = "draw"
-            showResultDialog()
+            addHistory()
         } else {
             if ((player == getString(R.string.title_stone)
                         && cpu == getString(R.string.title_scissor))
@@ -81,11 +105,11 @@ class TutorialActivity : AppCompatActivity() {
             ) {
                 hasil = "$playerName \nWON!"
                 forDialog = "win"
-                showResultDialog()
+                addHistory()
             } else {
                 hasil = "CPU \nWON!"
                 forDialog = "lose"
-                showResultDialog()
+                addHistory()
             }
 
         }
@@ -117,6 +141,27 @@ class TutorialActivity : AppCompatActivity() {
             finish()
         }
         dialog.show()
+    }
+    private fun addHistory(){
+        if (forDialog.equals("win")){
+            val apiResult = "Player Win"
+            val addHistoryBody = AddHistoryBody("Singleplayer",apiResult)
+            binding.progressBar.visibility=View.VISIBLE
+            binding.tutorialLayout.visibility=View.GONE
+            viewModel.addHistory(suitPrefs.token!!,addHistoryBody)
+        } else if (forDialog.equals("lose")){
+            val apiResult = "Opponent Win"
+            val addHistoryBody = AddHistoryBody("Singleplayer",apiResult)
+            binding.progressBar.visibility=View.VISIBLE
+            binding.tutorialLayout.visibility=View.GONE
+            viewModel.addHistory(suitPrefs.token!!,addHistoryBody)
+        }else{
+            val apiResult = "Draw"
+            val addHistoryBody = AddHistoryBody("Singleplayer",apiResult)
+            binding.progressBar.visibility=View.VISIBLE
+            binding.tutorialLayout.visibility=View.GONE
+            viewModel.addHistory(suitPrefs.token!!,addHistoryBody)
+        }
     }
 
     private fun toHome() {
