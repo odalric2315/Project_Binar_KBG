@@ -17,7 +17,8 @@ class HomeViewModel(private val repository: RemoteRepository) : ViewModel() {
     private val _dataLogin = MutableLiveData<DataLogin>()
     val getDataLogin: LiveData<DataLogin> = _dataLogin
     private val _error = MutableLiveData<String>()
-    val getErrorLogin: LiveData<String> = _error
+    private val _errorLogin = MutableLiveData<String>()
+    val getErrorLogin: LiveData<String> = _errorLogin
     val getError: LiveData<String> = _error
     fun getProfile(token: String) = viewModelScope.launch {
         repository.getProfile(token, {
@@ -31,7 +32,7 @@ class HomeViewModel(private val repository: RemoteRepository) : ViewModel() {
         repository.login(loginBody, {
             _dataLogin.value = it?.data
         }, {
-            _error.value = it
+            _errorLogin.value = it
         })
     }
 }

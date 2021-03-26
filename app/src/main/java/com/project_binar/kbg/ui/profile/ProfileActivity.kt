@@ -1,8 +1,17 @@
 package com.project_binar.kbg.ui.profile
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -17,14 +26,19 @@ import com.project_binar.kbg.util.SuitViewModelFactory
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
+    private lateinit var selectedImage: Uri
 
     //    private lateinit var presenter: ProfilPresenterImp
     private lateinit var viewModel: ProfileViewModel
 
     companion object {
         const val DATA_PLAYER = "data_player"
+        private const val REQUEST_CODE_IMAGE_PICKER = 100
+        private const val REQUEST_CODE_IMAGE_CAMERA = 200
+        private const val REQUEST_PERMISSION = 1
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
@@ -35,16 +49,18 @@ class ProfileActivity : AppCompatActivity() {
         val suitPrefs = SuitPrefs(this)
         viewModel = ViewModelProvider(this, SuitViewModelFactory).get(ProfileViewModel::class.java)
         viewModel.getProfile(suitPrefs.token!!)
+        binding.playerProfile.visibility=View.GONE
+        binding.statsLayout.visibility=View.GONE
         viewModel.getDataProfile.observe(this, {
             binding.etEditNameProfile.setText(it.username)
             binding.etEditEmailProfile.setText(it.email)
-            Glide.with(this).load(it.photo).fitCenter().into(binding.imageProfilePic)
-            binding.progressBar.visibility= View.GONE
-            binding.profileLayout.visibility=View.VISIBLE
+            Glide.with(this).load(it.photo).circleCrop().fitCenter().into(binding.imageProfilePic)
+            binding.progressBar.visibility = View.GONE
+            binding.playerProfile.visibility=View.VISIBLE
+            binding.statsLayout.visibility=View.VISIBLE
         })
-        viewModel.getError.observe(this,{
-            startActivity(Intent(this,HomeActivity::class.java))
-            finish()
+        viewModel.getError.observe(this, {
+            toHome()
         })
 
         val dataPlayer = intent.getParcelableExtra<Player>(DATA_PLAYER)
@@ -58,9 +74,10 @@ class ProfileActivity : AppCompatActivity() {
         val playerDb = SuitDb.getInstance(this)
 
         binding.btnBackProfile.setOnClickListener {
-            val intentProfile = Intent(this, HomeActivity::class.java)
-            intentProfile.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intentProfile)
+            toHome()
+        }
+        binding.imageProfilePic.setOnClickListener {
+            selectImage(this)
         }
 
 //        binding.btnSaveNameProfil.setOnClickListener {
@@ -71,7 +88,7 @@ class ProfileActivity : AppCompatActivity() {
 //        }
     }
 
-//    override fun showUpdatePlayer() {
+    //    override fun showUpdatePlayer() {
 //        runOnUiThread {
 //            Toast.makeText(this, "Berhasil Update Nama Player", Toast.LENGTH_SHORT).show()
 //            Handler(Looper.getMainLooper()).postDelayed({
@@ -80,4 +97,85 @@ class ProfileActivity : AppCompatActivity() {
 //        }
 //
 //    }
+    private fun toHome() {
+        val intentProfile = Intent(this, HomeActivity::class.java)
+        intentProfile.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intentProfile)
+        finish()
+    }
+
+    private fun startCamera() {
+        val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(takePicture, REQUEST_CODE_IMAGE_CAMERA)
+    }
+
+    private fun openImageLibrary() {
+        val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        pickPhoto.type = "image/*"
+        val mimeTypes = arrayOf("image/jpeg", "image/png")
+        pickPhoto.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
+        startActivityForResult(pickPhoto, REQUEST_CODE_IMAGE_PICKER)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun selectImage(context: Context) {
+        val options = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        builder.setTitle("Choose your profile picture")
+        builder.setItems(options) { dialog, item ->
+            when {
+                options[item] == "Take Photo" -> {
+                    if (checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        startCamera()
+                    } else {
+                        requestPermissions(
+                            arrayOf(android.Manifest.permission.CAMERA),
+                            REQUEST_PERMISSION
+                        )
+                    }
+                }
+                options[item] == "Choose from Gallery" -> {
+                    openImageLibrary()
+                }
+                options[item] == "Cancel" -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+        builder.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                REQUEST_CODE_IMAGE_PICKER -> {
+                    selectedImage = data?.data!!
+                    binding.imageProfilePic.setImageURI(selectedImage)
+                    Glide.with(this).load(selectedImage).fitCenter().circleCrop()
+                        .into(binding.imageProfilePic)
+                }
+                REQUEST_CODE_IMAGE_CAMERA -> {
+                    val image = data?.extras?.get("data") as Bitmap
+                    Glide.with(this).load(image).fitCenter().circleCrop()
+                        .into(binding.imageProfilePic)
+                }
+
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_PERMISSION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startCamera()
+            }
+        }
+    }
+
 }
