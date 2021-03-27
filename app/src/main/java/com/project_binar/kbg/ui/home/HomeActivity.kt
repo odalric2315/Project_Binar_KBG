@@ -1,12 +1,14 @@
 package com.project_binar.kbg.ui.home
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.project_binar.kbg.R
 import com.project_binar.kbg.api.ApiClient
 import com.project_binar.kbg.databinding.ActivityHomeBinding
 import com.project_binar.kbg.databinding.DialogMenuVsChoiceBinding
@@ -118,7 +120,7 @@ class HomeActivity : AppCompatActivity(){
     private fun toLogin() {
         suitPrefs.clearSharePref()
         val intent = Intent(this, LoginActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
     }
@@ -169,12 +171,10 @@ class HomeActivity : AppCompatActivity(){
         view.buttonPlayMultiplayer.setOnClickListener {
             toMultiplayerGame()
             dialog.dismiss()
-            finish()
         }
         view.buttonPlayVscpu.setOnClickListener {
             toTutorial()
             dialog.dismiss()
-            finish()
         }
     }
     private fun showVideoDialog() {
@@ -182,30 +182,30 @@ class HomeActivity : AppCompatActivity(){
         val view = DialogVideoBinding.inflate(layoutInflater)
         builder.setView(view.root)
         val dialog = builder.create()
-//        val videoPath = "android.resource://$packageName/${R.raw.video}"
-//        var videoStatus = true
-//        val videoUri = Uri.parse(videoPath)
-//        view.videoView.setVideoURI(videoUri)
+        val videoPath = "android.resource://$packageName/${R.raw.video_tutorial}"
+        var videoStatus = true
+        val videoUri = Uri.parse(videoPath)
+        view.videoView.setVideoURI(videoUri)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-//        view.playButton.setImageResource(R.drawable.ic_baseline_pause_button)
-//        view.videoView.start()
-//        view.videoView.setOnCompletionListener {
-//            it.seekTo(0)
-//            videoStatus = false
-//            view.videoView.pause()
-//            view.playButton.setImageResource(R.drawable.ic_baseline_play_button)
-//        }
-//        view.playButton.setOnClickListener {
-//            if (videoStatus) {
-//                videoStatus = false
-//                view.videoView.pause()
-//                view.playButton.setImageResource(R.drawable.ic_baseline_play_button)
-//            } else {
-//                videoStatus = true
-//                view.playButton.setImageResource(R.drawable.ic_baseline_pause_button)
-//                view.videoView.start()
-//            }
-//        }
+        view.playButton.setImageResource(R.drawable.ic_baseline_pause_button)
+        view.videoView.start()
+        view.videoView.setOnCompletionListener {
+            it.seekTo(0)
+            videoStatus = false
+            view.videoView.pause()
+            view.playButton.setImageResource(R.drawable.ic_baseline_play_button)
+        }
+        view.playButton.setOnClickListener {
+            if (videoStatus) {
+                videoStatus = false
+                view.videoView.pause()
+                view.playButton.setImageResource(R.drawable.ic_baseline_play_button)
+            } else {
+                videoStatus = true
+                view.playButton.setImageResource(R.drawable.ic_baseline_pause_button)
+                view.videoView.start()
+            }
+        }
         dialog.show()
     }
     //Fullscreen
