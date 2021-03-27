@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -43,10 +44,13 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding.etPasswordRegisterpage.text.toString().trim()
 //            val player = Player(nama = name, username = username, password = password)
             if (username.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-                if (username.length >= 6 && email.length >= 3 && password.length >= 6)  {
+                if (username.length >= 6 && email.length >= 6 && password.length >= 6)  {
                     val registerBody = RegisterBody(email, password, username)
-                    viewModel.register(registerBody)
 
+                    viewModel.register(registerBody)
+                    binding.progressBar.visibility= View.VISIBLE
+                    binding.vlinearLayoutRegisterpage.visibility= View.GONE
+                    binding.buttonLoginPage.visibility= View.GONE
 
                 } else {
                     binding.etEmailRegisterpage.backgroundTintList =
@@ -94,10 +98,16 @@ class RegisterActivity : AppCompatActivity() {
         viewModel._dataRegister.observe(this, {
             if (it.success == true) {
                 Handler(Looper.getMainLooper()).postDelayed({
+                    binding.progressBar.visibility= View.GONE
+                    binding.vlinearLayoutRegisterpage.visibility= View.VISIBLE
+                    binding.buttonLoginPage.visibility= View.VISIBLE
                     toLogin()
                 },500)
             } else {
                 Toast.makeText(this, "Gagal Register", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility= View.GONE
+                binding.vlinearLayoutRegisterpage.visibility= View.VISIBLE
+                binding.buttonLoginPage.visibility= View.VISIBLE
             }
         })
         binding.buttonLoginPage.setOnClickListener {

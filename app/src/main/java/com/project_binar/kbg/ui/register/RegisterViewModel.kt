@@ -17,7 +17,7 @@ class RegisterViewModel (private val repository: RemoteRepository) : ViewModel()
                 _dataRegister.value=it
             },{
                 _error.value=it
-                Log.e("error","$_dataRegister")
+                Log.e("error",it)
 
             })
     }

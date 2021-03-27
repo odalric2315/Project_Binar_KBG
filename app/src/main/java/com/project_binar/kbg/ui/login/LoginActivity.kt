@@ -90,8 +90,8 @@ class LoginActivity : AppCompatActivity() {
         viewModel.getError.observe(this,{
             Toast.makeText(this,"Salah Email/Password",Toast.LENGTH_SHORT).show()
             binding.progressBar3.visibility=View.GONE
-            binding.vlinearLayoutLoginpage.visibility=View.GONE
-            binding.buttonRegisterPage.visibility=View.GONE
+            binding.vlinearLayoutLoginpage.visibility=View.VISIBLE
+            binding.buttonRegisterPage.visibility=View.VISIBLE
             binding.etEmailLoginpage.backgroundTintList= ColorStateList.valueOf(R.color.red)
             binding.etPasswordLoginpage.backgroundTintList= ColorStateList.valueOf(R.color.red)
             binding.etEmailLoginpage.setText("")
