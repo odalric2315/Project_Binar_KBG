@@ -32,6 +32,27 @@ class SuitPrefs(context: Context) {
         set(value) {
             prefs.edit().putString(TOKEN, value).apply()
         }
+    var username: String?
+        get() {
+            return prefs.getString(USERNAME, "No Data")
+        }
+        set(value) {
+            prefs.edit().putString(USERNAME, value).apply()
+        }
+    var password: String?
+        get() {
+            return prefs.getString(PASSWORD, "No Data")
+        }
+        set(value) {
+            prefs.edit().putString(PASSWORD, value).apply()
+        }
+    var email: String?
+        get() {
+            return prefs.getString(EMAIL, "No Data")
+        }
+        set(value) {
+            prefs.edit().putString(EMAIL, value).apply()
+        }
 
     var login: Boolean
         get() {
@@ -56,6 +77,7 @@ class SuitPrefs(context: Context) {
         set(value) {
             prefs.edit().putBoolean(ONOFFSOUND, value).apply()
         }
+
 
 
 
