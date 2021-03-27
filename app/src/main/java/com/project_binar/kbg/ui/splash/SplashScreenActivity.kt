@@ -15,6 +15,7 @@ import com.project_binar.kbg.presenter.splash.SplashPresenterImp
 class SplashScreenActivity : AppCompatActivity(), SplashView {
     private lateinit var binding: ActivitySplashScreenBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
@@ -28,6 +29,9 @@ class SplashScreenActivity : AppCompatActivity(), SplashView {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP){
                 getActiveTheme ()
             }
+            if (Build.VERSION.SDK_INT >= 23){
+                getActiveBacksound()
+            }
         }
     }
 
@@ -37,6 +41,11 @@ class SplashScreenActivity : AppCompatActivity(), SplashView {
 
     override fun setImageDrawable(drawable: Drawable) {
         binding.splashScreenImage.setImageDrawable(drawable)
+    }
+
+    override fun playBacksound(){
+
+
     }
 
     override fun onDestroy() {

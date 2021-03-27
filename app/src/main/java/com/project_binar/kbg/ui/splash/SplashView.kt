@@ -6,4 +6,6 @@ interface SplashView {
     fun showLoading(isActive: Boolean)
 
     fun setImageDrawable(drawable: Drawable)
+
+    fun playBacksound()
 }

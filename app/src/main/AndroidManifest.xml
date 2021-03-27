@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.project_binar.kbg">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,7 +18,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ProjecBinarKBG">
+        android:theme="@style/Theme.ProjecBinarKBG"
+        tools:ignore="AllowBackup">
+        <service
+            android:enabled="true"
+            android:name=".ui.setting.MySoundService"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".ui.history.HistoryActivity"
             android:theme="@style/Theme.FullScreen" />

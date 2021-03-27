@@ -4,4 +4,6 @@ interface SplashPresenter {
     fun checkStatus()
 
     fun getActiveTheme()
+
+    fun getActiveBacksound()
 }

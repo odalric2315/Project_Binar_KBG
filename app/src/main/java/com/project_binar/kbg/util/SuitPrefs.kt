@@ -19,6 +19,7 @@ class SuitPrefs(context: Context) {
         const val LOGIN = "login"
         const val PLAYER = "PLAYER"
         const val DARKTHEME = "NightMode"
+        const val ONOFFSOUND = "Backsound"
         const val USERNAME = "USERNAME"
         const val EMAIL = "EMAIL"
         const val PASSWORD = "PASSWORD"
@@ -47,27 +48,15 @@ class SuitPrefs(context: Context) {
         set(value) {
             prefs.edit().putBoolean(DARKTHEME, value).apply()
         }
-    var username: String?
+
+    var onoffsound: Boolean
         get() {
-            return prefs.getString(USERNAME,"")
+            return prefs.getBoolean(ONOFFSOUND, false)
         }
         set(value) {
-            prefs.edit().putString(USERNAME,value).apply()
+            prefs.edit().putBoolean(ONOFFSOUND, value).apply()
         }
-    var email: String?
-        get() {
-            return prefs.getString(EMAIL,"")
-        }
-        set(value) {
-            prefs.edit().putString(EMAIL,value).apply()
-        }
-    var password: String?
-        get() {
-            return prefs.getString(PASSWORD,"")
-        }
-        set(value) {
-            prefs.edit().putString(PASSWORD,value).apply()
-        }
+
 
 
     @SuppressLint("CommitPrefEdits")
@@ -95,7 +84,6 @@ class SuitPrefs(context: Context) {
             object : TypeToken<Player>() {}.type
         )
     }
-
 
     fun removeSharePref(key: String) {
         prefs.edit().remove(key).apply()

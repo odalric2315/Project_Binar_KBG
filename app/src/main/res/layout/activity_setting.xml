@@ -47,13 +47,34 @@
         android:layout_marginRight="35dp"
         android:background="@drawable/item_bg_setting"
         android:text="Dark Theme"
+        android:textColor="@color/textPopupEditTextColor"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="@color/textPopupEditTextColor"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_settings"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_onoffsound"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/item_bg_setting"
+        android:text="On/Off Sound"
+        android:textColor="@color/textPopupEditTextColor"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_darktheme"
         tools:ignore="HardcodedText" />
 
     <Button
@@ -65,6 +86,7 @@
         android:layout_marginTop="35dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
+        android:background="@drawable/item_bg_setting"
         android:gravity="start"
         android:text="About Us"
         android:textAllCaps="false"
@@ -72,10 +94,10 @@
         android:textSize="28sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        android:background="@drawable/item_bg_setting"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_darktheme"
+        app:layout_constraintTop_toBottomOf="@+id/tv_onoffsound"
         tools:ignore="HardcodedText" />
 
     <Switch
@@ -92,6 +114,22 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_darktheme"
         app:layout_constraintEnd_toEndOf="@+id/tv_darktheme"
         app:layout_constraintTop_toTopOf="@+id/tv_darktheme"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <Switch
+        android:id="@+id/swt_onoffsound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:checked="false"
+        android:clickable="true"
+        android:focusable="true"
+        android:thumbTint="@color/white"
+        android:trackTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_onoffsound"
+        app:layout_constraintEnd_toEndOf="@+id/tv_onoffsound"
+        app:layout_constraintTop_toTopOf="@+id/tv_onoffsound"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
