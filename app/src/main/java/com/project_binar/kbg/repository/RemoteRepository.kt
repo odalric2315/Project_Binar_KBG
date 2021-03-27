@@ -9,6 +9,7 @@ import com.project_binar.kbg.model.login.LoginResponse
 import com.project_binar.kbg.model.profile.ProfileResponse
 import com.project_binar.kbg.model.register.RegisterBody
 import com.project_binar.kbg.model.register.RegisterResponse
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 class RemoteRepository(private val apiService: ApiService) {
@@ -79,10 +80,11 @@ class RemoteRepository(private val apiService: ApiService) {
     suspend fun updProfile(
         token: String,
         map: HashMap<String, RequestBody>,
+        photo:MultipartBody.Part,
         onResult: (ProfileResponse?) -> Unit,
         onError: (String) -> Unit
     ){
-        val resp = apiService.updProfile(token,map)
+        val resp = apiService.updProfile(token,map,photo)
         if(resp.isSuccessful){
             onResult(resp.body())
         }else{

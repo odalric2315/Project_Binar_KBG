@@ -8,6 +8,7 @@ import com.project_binar.kbg.model.login.LoginResponse
 import com.project_binar.kbg.model.profile.ProfileResponse
 import com.project_binar.kbg.model.register.RegisterBody
 import com.project_binar.kbg.model.register.RegisterResponse
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -32,6 +33,7 @@ interface ApiService {
     @PUT("users")
     suspend fun updProfile(
         @Header("Authorization")token: String,
-        @PartMap map: HashMap<String, RequestBody>
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part photo: MultipartBody.Part?
     ):Response<ProfileResponse>
 }

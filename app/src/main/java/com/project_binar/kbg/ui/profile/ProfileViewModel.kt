@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.project_binar.kbg.model.profile.DataProfile
 import com.project_binar.kbg.repository.RemoteRepository
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 class ProfileViewModel(private val repository: RemoteRepository) : ViewModel() {
@@ -23,10 +24,11 @@ class ProfileViewModel(private val repository: RemoteRepository) : ViewModel() {
             _error.value = it
         })
     }
-    fun updProfile(token: String?, map:HashMap<String, RequestBody>) =
+
+    fun updProfile(token: String?, map: HashMap<String, RequestBody>, photo: MultipartBody.Part) =
         viewModelScope.launch {
             token?.let {
-                repository.updProfile(token, map,{
+                repository.updProfile(token, map,photo, {
                     _dataProfile.value = it?.data
                 }, {
                     _error.value = it

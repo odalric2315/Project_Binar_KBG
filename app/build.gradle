@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.project_binar.kbg"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -79,4 +79,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    //Circle Image View
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //Picker Image
+    implementation 'com.github.dhaval2404:imagepicker:1.8'
+
 }
