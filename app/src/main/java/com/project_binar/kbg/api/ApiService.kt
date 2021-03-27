@@ -8,11 +8,9 @@ import com.project_binar.kbg.model.login.LoginResponse
 import com.project_binar.kbg.model.profile.ProfileResponse
 import com.project_binar.kbg.model.register.RegisterBody
 import com.project_binar.kbg.model.register.RegisterResponse
+import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
     @POST("auth/login")
@@ -29,4 +27,11 @@ interface ApiService {
 
     @GET("battle")
     suspend fun getHistory(@Header("Authorization")token: String): Response<GetHistoryResponse>
+
+    @Multipart
+    @PUT("users")
+    suspend fun updProfile(
+        @Header("Authorization")token: String,
+        @PartMap map: HashMap<String, RequestBody>
+    ):Response<ProfileResponse>
 }

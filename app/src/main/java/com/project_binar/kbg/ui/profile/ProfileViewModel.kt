@@ -8,17 +8,30 @@ import androidx.lifecycle.viewModelScope
 import com.project_binar.kbg.model.profile.DataProfile
 import com.project_binar.kbg.repository.RemoteRepository
 import kotlinx.coroutines.launch
+import okhttp3.RequestBody
 
 class ProfileViewModel(private val repository: RemoteRepository) : ViewModel() {
     private val _dataProfile = MutableLiveData<DataProfile>()
     val getDataProfile: LiveData<DataProfile> = _dataProfile
     private val _error = MutableLiveData<String>()
     val getError: LiveData<String> = _error
-    fun getProfile(token: String) = viewModelScope.launch {repository.getProfile(token,{
-        _dataProfile.value=it?.data
-    },{
-        Log.e("ERROR",it)
-        _error.value=it
-    })
+    fun getProfile(token: String) = viewModelScope.launch {
+        repository.getProfile(token, {
+            _dataProfile.value = it?.data
+        }, {
+            Log.e("ERROR", it)
+            _error.value = it
+        })
     }
+    fun updProfile(token: String?, map:HashMap<String, RequestBody>) =
+        viewModelScope.launch {
+            token?.let {
+                repository.updProfile(token, map,{
+                    _dataProfile.value = it?.data
+                }, {
+                    _error.value = it
+                    Log.e("ERROR", it)
+                })
+            }
+        }
 }

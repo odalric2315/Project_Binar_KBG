@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.project_binar.kbg.R
 import com.project_binar.kbg.api.ApiClient
 import com.project_binar.kbg.data.db.SuitDb
 import com.project_binar.kbg.databinding.ActivityProfileBinding
@@ -23,6 +24,12 @@ import com.project_binar.kbg.repository.RemoteRepository
 import com.project_binar.kbg.ui.home.HomeActivity
 import com.project_binar.kbg.util.SuitPrefs
 import com.project_binar.kbg.util.SuitViewModelFactory
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
+
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
@@ -49,15 +56,16 @@ class ProfileActivity : AppCompatActivity() {
         val suitPrefs = SuitPrefs(this)
         viewModel = ViewModelProvider(this, SuitViewModelFactory).get(ProfileViewModel::class.java)
         viewModel.getProfile(suitPrefs.token!!)
-        binding.playerProfile.visibility=View.GONE
-        binding.statsLayout.visibility=View.GONE
+        binding.playerProfile.visibility = View.GONE
+        binding.statsLayout.visibility = View.GONE
         viewModel.getDataProfile.observe(this, {
             binding.etEditNameProfile.setText(it.username)
             binding.etEditEmailProfile.setText(it.email)
-            Glide.with(this).load(it.photo).circleCrop().fitCenter().into(binding.imageProfilePic)
+            Glide.with(this).load(it.photo).placeholder(R.drawable.img_profile_picture).circleCrop()
+                .fitCenter().into(binding.imageProfilePic)
             binding.progressBar.visibility = View.GONE
-            binding.playerProfile.visibility=View.VISIBLE
-            binding.statsLayout.visibility=View.VISIBLE
+            binding.playerProfile.visibility = View.VISIBLE
+            binding.statsLayout.visibility = View.VISIBLE
         })
         viewModel.getError.observe(this, {
             toHome()
@@ -80,12 +88,33 @@ class ProfileActivity : AppCompatActivity() {
             selectImage(this)
         }
 
+        /*edit profil*/
+        binding.btnSaveNameProfil.setOnClickListener {
+            val profilreReq: HashMap<String, RequestBody> = HashMap()
+            profilreReq["username"] = binding.etEditNameProfile.text.toString()
+                .toRequestBody("text/plain".toMediaTypeOrNull())
+            profilreReq["email"] = binding.etEditEmailProfile.text.toString()
+                .toRequestBody("text/plain".toMediaTypeOrNull())
+            profilreReq["photo"] = uriToFile()
+//            profilreReq["photo"] = RequestBody.create("image/*".toMediaTypeOrNull(), selectedImage)
+            val uNameForm = binding.etEditNameProfile.text.toString()
+                .toRequestBody("text/plain".toMediaTypeOrNull())
+            val uEmailForm = binding.etEditEmailProfile.text.toString()
+                .toRequestBody("text/plain".toMediaTypeOrNull())
+            viewModel.updProfile(suitPrefs.token, profilreReq)
+        }
+
 //        binding.btnSaveNameProfil.setOnClickListener {
 //            presenter = ProfilPresenterImp(this, playerDb.playerDao())
 //            dataPlayer?.id?.let {
 //                presenter.updateNamePlayer(binding.etEditNameProfile.text.toString(), it)
 //            }
 //        }
+    }
+
+    private fun uriToFile(): RequestBody {
+        val file = File(selectedImage.path  )
+        return file.asRequestBody("image/*".toMediaTypeOrNull())
     }
 
     //    override fun showUpdatePlayer() {
@@ -154,6 +183,7 @@ class ProfileActivity : AppCompatActivity() {
                     binding.imageProfilePic.setImageURI(selectedImage)
                     Glide.with(this).load(selectedImage).fitCenter().circleCrop()
                         .into(binding.imageProfilePic)
+
                 }
                 REQUEST_CODE_IMAGE_CAMERA -> {
                     val image = data?.extras?.get("data") as Bitmap
