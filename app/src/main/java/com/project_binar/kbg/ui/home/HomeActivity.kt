@@ -58,6 +58,7 @@ class HomeActivity : AppCompatActivity(){
         })
         viewModel.getDataLogin.observe(this,{
             suitPrefs.token="Bearer ${it.token}"
+            viewModel.getProfile(suitPrefs.token!!)
         })
         viewModel.getErrorLogin.observe(this,{
             toLogin()
