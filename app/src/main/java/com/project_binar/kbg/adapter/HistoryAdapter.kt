@@ -11,6 +11,7 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     fun setData(history: List<GetHistoryData>){
         data.clear()
         data.addAll(history)
+        data.reverse()
         notifyDataSetChanged()
     }
     inner class ViewHolder(var binding: ItemHistoryBinding): RecyclerView.ViewHolder(binding.root){
