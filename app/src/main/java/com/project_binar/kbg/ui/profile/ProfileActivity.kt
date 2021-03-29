@@ -1,6 +1,5 @@
 package com.project_binar.kbg.ui.profile
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -27,6 +26,13 @@ import com.project_binar.kbg.repository.RemoteRepository
 import com.project_binar.kbg.ui.home.HomeActivity
 import com.project_binar.kbg.util.SuitPrefs
 import com.project_binar.kbg.util.SuitViewModelFactory
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
+
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
@@ -40,7 +46,10 @@ class ProfileActivity : AppCompatActivity() {
         private const val REQUEST_CODE_IMAGE_PICKER = 100
         private const val REQUEST_CODE_IMAGE_CAMERA = 200
         private const val REQUEST_PERMISSION = 1
+        const val REQ_IMG_PROFILE = 12
     }
+
+    private var _fileImg: File? = null
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,15 +62,16 @@ class ProfileActivity : AppCompatActivity() {
         val suitPrefs = SuitPrefs(this)
         viewModel = ViewModelProvider(this, SuitViewModelFactory).get(ProfileViewModel::class.java)
         viewModel.getProfile(suitPrefs.token!!)
-        binding.playerProfile.visibility=View.GONE
-        binding.statsLayout.visibility=View.GONE
+        binding.playerProfile.visibility = View.GONE
+        binding.statsLayout.visibility = View.GONE
         viewModel.getDataProfile.observe(this, {
             binding.etEditNameProfile.setText(it.username)
             binding.etEditEmailProfile.setText(it.email)
-            Glide.with(this).load(it.photo).circleCrop().fitCenter().into(binding.imageProfilePic)
+            Glide.with(this).load(it.photo).placeholder(R.drawable.img_profile_picture).circleCrop()
+                .fitCenter().into(binding.imageProfilePic)
             binding.progressBar.visibility = View.GONE
-            binding.playerProfile.visibility=View.VISIBLE
-            binding.statsLayout.visibility=View.VISIBLE
+            binding.playerProfile.visibility = View.VISIBLE
+            binding.statsLayout.visibility = View.VISIBLE
         })
         viewModel.getError.observe(this, {
             toHome()
@@ -76,12 +86,33 @@ class ProfileActivity : AppCompatActivity() {
             rate?.let { binding.winrate.text = "${it.toInt()}%" }
         }
         val playerDb = SuitDb.getInstance(this)
-
+        binding.btnEditImgProfile.setOnClickListener {
+            ImagePicker.with(this)
+                .compress(1024)
+                .saveDir(this.getExternalFilesDir(null)!!)
+                .maxResultSize(512, 512)
+                .start(REQ_IMG_PROFILE)
+        }
         binding.btnBackProfile.setOnClickListener {
             toHome()
         }
-        binding.imageProfilePic.setOnClickListener {
-            selectImage(this)
+        /* binding.imageProfilePic.setOnClickListener {
+             selectImage(this)
+         }*/
+
+        /*edit profil*/
+        binding.btnSaveNameProfil.setOnClickListener {
+            val profilreReq: HashMap<String, RequestBody> = HashMap()
+            profilreReq["username"] = binding.etEditNameProfile.text.toString()
+                .toRequestBody("text/plain".toMediaTypeOrNull())
+            profilreReq["email"] = binding.etEditEmailProfile.text.toString()
+                .toRequestBody("text/plain".toMediaTypeOrNull())
+            val requestImg = _fileImg?.asRequestBody("*/*".toMediaTypeOrNull())
+            val imgPart = requestImg?.let { it1 ->
+                MultipartBody.Part.createFormData("photo", _fileImg!!.name, it1)
+            }
+            imgPart?.let { it1 -> viewModel.updProfile(suitPrefs.token, profilreReq, it1) }
+
         }
 
 //        binding.btnSaveNameProfil.setOnClickListener {
@@ -152,22 +183,15 @@ class ProfileActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                REQUEST_CODE_IMAGE_PICKER -> {
-                    selectedImage = data?.data!!
-                    binding.imageProfilePic.setImageURI(selectedImage)
-                    Glide.with(this).load(selectedImage).fitCenter().circleCrop()
-                        .into(binding.imageProfilePic)
-                }
-                REQUEST_CODE_IMAGE_CAMERA -> {
-                    val image = data?.extras?.get("data") as Bitmap
-                    Glide.with(this).load(image).fitCenter().circleCrop()
-                        .into(binding.imageProfilePic)
-                }
-
+            _fileImg = ImagePicker.getFile(data)!!
+            if (requestCode == REQ_IMG_PROFILE) {
+                Glide.with(this).load(_fileImg)
+                    .placeholder(R.drawable.img_profile_picture).fitCenter()
+                    .into(binding.imageProfilePic)
             }
         }
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
