@@ -2,6 +2,7 @@ package com.project_binar.kbg.ui.tutorial
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -32,6 +33,16 @@ class TutorialActivity : AppCompatActivity() {
     private lateinit var hasil: String
     private lateinit var forDialog: String
     private var dataPlayer: Player? = null
+    private lateinit var audioBackground: MediaPlayer
+    private lateinit var audioWin: MediaPlayer
+    private lateinit var audioLose : MediaPlayer
+//    private lateinit var audioWin: SoundPool
+//    private lateinit var audioLose : SoundPool
+//    private var loaded = false
+//    private var soundWin = 0
+//    private var soundLose = 0
+//    private var streamIdWin = 0
+//    private var streamIdLose = 0
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -39,6 +50,18 @@ class TutorialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTutorialBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        audioBackground = MediaPlayer.create(this, R.raw.gameplay_song)
+        audioWin = MediaPlayer.create(this,R.raw.winner_song)
+        audioLose = MediaPlayer.create(this,R.raw.loser_song)
+        audioBackground.setLooping(true)
+        audioWin.setLooping(true)
+        audioLose.setLooping(true)
+        audioBackground.setVolume(1F, 1F)
+        audioWin.setVolume(1F, 1F)
+        audioLose.setVolume(1F, 1F)
+        audioBackground.start()
+
         val repository = RemoteRepository(ApiClient.service())
         val suitViewModelFactory = SuitViewModelFactory(repository)
         suitPrefs= SuitPrefs(this)
@@ -49,6 +72,7 @@ class TutorialActivity : AppCompatActivity() {
         playerName = binding.textPlayerNameTutorialpage.text.toString()
         binding.buttonCloseTutorialpage.setOnClickListener {
             toHome()
+            audioBackground.release()
             finish()
         }
 
@@ -115,6 +139,42 @@ class TutorialActivity : AppCompatActivity() {
         }
     }
 
+//    private fun initializedSoundPoolWin() {
+//        if (Build.VERSION.SDK_INT >= 21) {
+//            val audioAttributes = AudioAttributes.Builder()
+//                .setUsage(AudioAttributes.USAGE_GAME)
+//                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+//                .build()
+//            val builder = SoundPool.Builder()
+//            builder.setAudioAttributes(audioAttributes).setMaxStreams(1)
+//            audioWin = builder.build()
+//        } else {
+//            audioWin = SoundPool(1, AudioManager.STREAM_MUSIC, 0)
+//        }
+//        audioWin.setOnLoadCompleteListener { _, _, _ ->
+//            loaded = true
+//        }
+//        soundWin = audioWin.load(this, R.raw.winner_song, 1)
+//    }
+
+//    private fun initializedSoundPoolLose() {
+//        if (Build.VERSION.SDK_INT >= 21) {
+//            val audioAttributes = AudioAttributes.Builder()
+//                .setUsage(AudioAttributes.USAGE_GAME)
+//                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+//                .build()
+//            val builder = SoundPool.Builder()
+//            builder.setAudioAttributes(audioAttributes).setMaxStreams(1)
+//            audioLose = builder.build()
+//        } else {
+//            audioLose = SoundPool(1, AudioManager.STREAM_MUSIC, 0)
+//        }
+//        audioLose.setOnLoadCompleteListener { _, _, _ ->
+//            loaded = true
+//        }
+//        soundLose = audioLose.load(this, R.raw.loser_song, 1)
+//    }
+
     private fun showResultDialog() {
         val builder = AlertDialog.Builder(this)
         val view = DialogGameresultBinding.inflate(layoutInflater)
@@ -124,20 +184,28 @@ class TutorialActivity : AppCompatActivity() {
 
         if(forDialog=="win") {
             view.vectorGameresult.setAnimation(R.raw.if_win)
+            audioBackground.release()
+            audioWin.start()
         } else if(forDialog=="lose") {
             view.vectorGameresult.setAnimation(R.raw.if_lose_thunder)
+            audioBackground.release()
+            audioLose.start()
         }
 
         view.buttonMainlagi.setOnClickListener {
             binding.imgBatuPlayerTutorialpage.setBackgroundResource(0)
             binding.imgKertasPlayerTutorialpage.setBackgroundResource(0)
             binding.imgGuntingPlayerTutorialpage.setBackgroundResource(0)
+            audioWin.release()
+            audioLose.release()
             dialog.dismiss()
+            audioBackground.start()
         }
 
         view.buttonKemenu.setOnClickListener {
             toHome()
             dialog.dismiss()
+            audioBackground.release()
             finish()
         }
         dialog.show()

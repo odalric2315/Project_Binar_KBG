@@ -5,11 +5,9 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import androidx.annotation.RequiresApi
@@ -24,6 +22,7 @@ import com.project_binar.kbg.databinding.ActivityProfileBinding
 import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.repository.RemoteRepository
 import com.project_binar.kbg.ui.home.HomeActivity
+import com.project_binar.kbg.ui.setting.MySoundService
 import com.project_binar.kbg.util.SuitPrefs
 import com.project_binar.kbg.util.SuitViewModelFactory
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -36,6 +35,7 @@ import java.io.File
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
+    private lateinit var suitPrefs: SuitPrefs
     private lateinit var selectedImage: Uri
 
     //    private lateinit var presenter: ProfilPresenterImp
@@ -60,6 +60,8 @@ class ProfileActivity : AppCompatActivity() {
         val repository = RemoteRepository(ApiClient.service())
         val SuitViewModelFactory = SuitViewModelFactory(repository)
         val suitPrefs = SuitPrefs(this)
+        PlayBackgroundSound()
+
         viewModel = ViewModelProvider(this, SuitViewModelFactory).get(ProfileViewModel::class.java)
         viewModel.getProfile(suitPrefs.token!!)
         binding.playerProfile.visibility = View.GONE
@@ -139,6 +141,10 @@ class ProfileActivity : AppCompatActivity() {
         intentProfile.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intentProfile)
         finish()
+    }
+    fun PlayBackgroundSound() {
+        val intent = Intent(this, MySoundService::class.java)
+        startService(intent)
     }
 
     private fun startCamera() {

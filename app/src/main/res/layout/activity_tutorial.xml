@@ -11,12 +11,12 @@
         android:id="@+id/button_close_tutorialpage"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_close"
+        android:tint="@color/color_image_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_close"
-        android:background="@android:color/transparent"
-        android:tint="@color/color_image_button"
         tools:ignore="VectorDrawableCompat" />
 
     <com.airbnb.lottie.LottieAnimationView

@@ -1,14 +1,16 @@
 package com.project_binar.kbg.ui.history
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project_binar.kbg.adapter.HistoryAdapter
 import com.project_binar.kbg.api.ApiClient
 import com.project_binar.kbg.databinding.ActivityHistoryBinding
 import com.project_binar.kbg.repository.RemoteRepository
+import com.project_binar.kbg.ui.setting.MySoundService
 import com.project_binar.kbg.util.SuitPrefs
 import com.project_binar.kbg.util.SuitViewModelFactory
 
@@ -17,6 +19,7 @@ class HistoryActivity : AppCompatActivity() {
     private lateinit var adapter: HistoryAdapter
     private lateinit var viewModel: HistoryViewModel
     private lateinit var sharePreferenceHelper: SuitPrefs
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryBinding.inflate(layoutInflater)
@@ -25,6 +28,8 @@ class HistoryActivity : AppCompatActivity() {
         val gameViewModelFactory = SuitViewModelFactory(repository)
         adapter= HistoryAdapter()
         sharePreferenceHelper = SuitPrefs(this)
+        PlayBackgroundSound()
+
         viewModel= ViewModelProvider(this,gameViewModelFactory).get(HistoryViewModel::class.java)
         viewModel.getHistory(sharePreferenceHelper.token!!)
         binding.rvHistory.layoutManager= LinearLayoutManager(this)
@@ -33,6 +38,10 @@ class HistoryActivity : AppCompatActivity() {
             adapter.setData(it)
             binding.progressBar.visibility = View.GONE
         })
+    }
+    fun PlayBackgroundSound() {
+        val intent = Intent(this, MySoundService::class.java)
+        startService(intent)
     }
     //Fullscreen
     override fun onWindowFocusChanged(hasFocus: Boolean) {

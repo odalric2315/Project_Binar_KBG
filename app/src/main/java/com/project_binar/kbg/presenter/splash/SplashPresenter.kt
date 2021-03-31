@@ -5,5 +5,4 @@ interface SplashPresenter {
 
     fun getActiveTheme()
 
-    fun getActiveBacksound()
 }

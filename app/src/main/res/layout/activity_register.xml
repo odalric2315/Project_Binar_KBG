@@ -76,13 +76,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:textColorHint="@color/colorAccent"
             android:layout_marginTop="20dp"
             android:layout_marginRight="25dp"
             android:background="@drawable/et_background"
             android:ems="10"
             android:hint="@string/hint_username"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorAccent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -99,9 +99,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_background"
                 android:ems="10"
-                android:textColorHint="@color/colorAccent"
                 android:hint="@string/hint_password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColorHint="@color/colorAccent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

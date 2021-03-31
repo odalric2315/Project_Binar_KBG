@@ -1,20 +1,28 @@
 package com.project_binar.kbg.ui.lending_page
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.project_binar.kbg.R
 import com.project_binar.kbg.databinding.ActivityLendingPageBinding
 import com.project_binar.kbg.ui.register.RegisterActivity
 
 class LendingPageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLendingPageBinding
+    private lateinit var audioBackground: MediaPlayer
     private val position = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLendingPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        audioBackground = MediaPlayer.create(this, R.raw.landing_pages_song)
+        audioBackground.setLooping(true)
+        audioBackground.setVolume(1F, 1F)
+        audioBackground.start()
 
         val adapter = PagerAdapter(this)
         binding.viewPager.adapter = adapter
@@ -39,6 +47,7 @@ class LendingPageActivity : AppCompatActivity() {
 
                     if (currentPosition == 3) {
                         goToRegister()
+                        audioBackground.release()
                     } else {
                         binding.viewPager.currentItem = currentPosition
                     }

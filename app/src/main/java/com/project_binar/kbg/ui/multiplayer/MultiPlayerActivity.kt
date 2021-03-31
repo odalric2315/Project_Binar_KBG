@@ -2,6 +2,7 @@ package com.project_binar.kbg.ui.multiplayer
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -9,7 +10,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 import com.google.android.material.snackbar.Snackbar
@@ -44,6 +44,9 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
     private var lifePlayer1: Int = 3
     private var lifePlayer2: Int = 3
     private var dataPlayer: Player? = null
+    private lateinit var audioBackground: MediaPlayer
+    private lateinit var audioWin: MediaPlayer
+    private lateinit var audioLose : MediaPlayer
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("SetTextI18n")
@@ -51,6 +54,18 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
         super.onCreate(savedInstanceState)
         binding = ActivityMultiplayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        audioBackground = MediaPlayer.create(this, R.raw.gameplay_song)
+        audioWin = MediaPlayer.create(this,R.raw.winner_song)
+        audioLose = MediaPlayer.create(this,R.raw.loser_song)
+        audioBackground.setLooping(true)
+        audioWin.setLooping(true)
+        audioLose.setLooping(true)
+        audioBackground.setVolume(1F, 1F)
+        audioWin.setVolume(1F, 1F)
+        audioLose.setVolume(1F, 1F)
+        audioBackground.start()
+
         val repository = RemoteRepository(ApiClient.service())
         val suitViewModelFactory = SuitViewModelFactory(repository)
         viewModel = ViewModelProvider(this,suitViewModelFactory).get(PlayViewModel::class.java)
@@ -65,10 +80,12 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
 
         binding.buttonClose.setOnClickListener {
             toHome()
+            audioBackground.release()
             finish()
         }
 
         binding.buttonRefresh.setOnClickListener {
+            audioBackground.start()
             resetHeart()
             refresh()
         }
@@ -243,8 +260,12 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
 
         if(forDialog=="win") {
             view.vectorGameresult.setAnimation(R.raw.if_win)
+            audioBackground.release()
+            audioWin.start()
         } else if(forDialog=="lose") {
             view.vectorGameresult.setAnimation(R.raw.if_lose_thunder)
+            audioBackground.release()
+            audioLose.start()
         }
 
         dialog.show()
@@ -254,12 +275,16 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
         view.buttonMainlagi.setOnClickListener {
             refresh()
             resetHeart()
+            audioWin.release()
+            audioLose.release()
             dialog.dismiss()
+            audioBackground.start()
         }
 
         view.buttonKemenu.setOnClickListener {
             toHome()
             dialog.dismiss()
+            audioBackground.release()
             finish()
         }
     }

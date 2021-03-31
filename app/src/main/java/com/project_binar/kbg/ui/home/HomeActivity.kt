@@ -16,10 +16,11 @@ import com.project_binar.kbg.databinding.DialogVideoBinding
 import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.model.login.LoginBody
 import com.project_binar.kbg.repository.RemoteRepository
-import com.project_binar.kbg.ui.multiplayer.MultiPlayerActivity
 import com.project_binar.kbg.ui.leaderboard.LeaderBoardActivity
 import com.project_binar.kbg.ui.login.LoginActivity
+import com.project_binar.kbg.ui.multiplayer.MultiPlayerActivity
 import com.project_binar.kbg.ui.profile.ProfileActivity
+import com.project_binar.kbg.ui.setting.MySoundService
 import com.project_binar.kbg.ui.setting.SettingActivity
 import com.project_binar.kbg.ui.tutorial.TutorialActivity
 import com.project_binar.kbg.util.SuitPrefs
@@ -42,6 +43,7 @@ class HomeActivity : AppCompatActivity(){
         setContentView(binding.root)
         val repository = RemoteRepository(ApiClient.service())
         suitPrefs = SuitPrefs(this)
+        PlayBackgroundSound()
         val SuitViewModelFactory = SuitViewModelFactory(repository)
         viewModel=ViewModelProvider(this,SuitViewModelFactory).get(HomeViewModel::class.java)
         viewModel.getProfile(suitPrefs.token!!)
@@ -117,6 +119,11 @@ class HomeActivity : AppCompatActivity(){
 //        }
 //        dataPlayer = player
 //    }
+
+    fun PlayBackgroundSound() {
+        val intent = Intent(this, MySoundService::class.java)
+        startService(intent)
+    }
 
     private fun toLogin() {
         suitPrefs.clearSharePref()

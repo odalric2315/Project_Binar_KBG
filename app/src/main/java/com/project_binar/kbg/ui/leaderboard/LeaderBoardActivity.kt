@@ -14,6 +14,8 @@ import com.project_binar.kbg.model.Player
 import com.project_binar.kbg.presenter.leaderboard.LeaderBoardPresenterImp
 import com.project_binar.kbg.ui.history.HistoryActivity
 import com.project_binar.kbg.ui.profile.ProfileActivity
+import com.project_binar.kbg.ui.setting.MySoundService
+import com.project_binar.kbg.util.SuitPrefs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,11 +25,15 @@ class LeaderBoardActivity : AppCompatActivity(), LeaderBoardView {
     private val playerData: MutableList<Player> = mutableListOf()
     private lateinit var adapter: PlayerAdapter
     private lateinit var presenter: LeaderBoardPresenterImp
+    private lateinit var suitPrefs: SuitPrefs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLeaderboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        suitPrefs = SuitPrefs(this)
+        PlayBackgroundSound()
 
         val database = SuitDb.getInstance(this)
 
@@ -81,6 +87,11 @@ class LeaderBoardActivity : AppCompatActivity(), LeaderBoardView {
     }
     private fun toHistory(){
         startActivity(Intent(this,HistoryActivity::class.java))
+    }
+
+    fun PlayBackgroundSound() {
+        val intent = Intent(this, MySoundService::class.java)
+        startService(intent)
     }
     //Fullscreen
     override fun onWindowFocusChanged(hasFocus: Boolean) {
