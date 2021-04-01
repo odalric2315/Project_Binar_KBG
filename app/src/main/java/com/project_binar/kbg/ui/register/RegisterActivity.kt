@@ -44,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding.etPasswordRegisterpage.text.toString().trim()
 //            val player = Player(nama = name, username = username, password = password)
             if (username.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-                if (username.length >= 6 && email.length >= 6 && password.length >= 6)  {
+                if (username.length >= 3 && email.length >= 6 && password.length >= 6)  {
                     val registerBody = RegisterBody(email, password, username)
 
                     viewModel.register(registerBody)
@@ -53,15 +53,19 @@ class RegisterActivity : AppCompatActivity() {
                     binding.buttonLoginPage.visibility= View.GONE
 
                 } else {
-                    binding.etEmailRegisterpage.backgroundTintList =
-                        ColorStateList.valueOf(R.color.red)
-                    binding.etEmailRegisterpage.setHintTextColor(R.color.red)
-                    binding.etUsernameRegisterpage.backgroundTintList =
-                        ColorStateList.valueOf(R.color.red)
-                    binding.etUsernameRegisterpage.setHintTextColor(R.color.red)
-                    binding.etPasswordRegisterpage.backgroundTintList =
-                        ColorStateList.valueOf(R.color.red)
-                    binding.etPasswordRegisterpage.setHintTextColor(R.color.red)
+                    Toast.makeText(this, "Panjang Email minimal 6 karakter\nPanjang Username minimal 3 karakter\nPanjang Password minimal 6 karakter",Toast.LENGTH_LONG).show()
+//                    binding.etEmailRegisterpage.backgroundTintList =
+//                        ColorStateList.valueOf(R.color.red)
+//                    binding.etEmailRegisterpage.setTextColor(R.color.red)
+//                    binding.etEmailRegisterpage.setHintTextColor(R.color.red)
+//                    binding.etUsernameRegisterpage.backgroundTintList =
+//                        ColorStateList.valueOf(R.color.red)
+//                    binding.etUsernameRegisterpage.setTextColor(R.color.red)
+//                    binding.etUsernameRegisterpage.setHintTextColor(R.color.red)
+//                    binding.etPasswordRegisterpage.backgroundTintList =
+//                        ColorStateList.valueOf(R.color.red)
+//                    binding.etPasswordRegisterpage.setTextColor(R.color.red)
+//                    binding.etPasswordRegisterpage.setHintTextColor(R.color.red)
                 }
 
                 //Implementasi Database
@@ -104,11 +108,17 @@ class RegisterActivity : AppCompatActivity() {
                     toLogin()
                 },500)
             } else {
-                Toast.makeText(this, "Gagal Register", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Gagal Register (Email sudah dipakai)", Toast.LENGTH_SHORT).show()
                 binding.progressBar.visibility= View.GONE
                 binding.vlinearLayoutRegisterpage.visibility= View.VISIBLE
                 binding.buttonLoginPage.visibility= View.VISIBLE
             }
+        })
+        viewModel.getError.observe(this, {
+            Toast.makeText(this, "Gagal Register (Email sudah dipakai)", Toast.LENGTH_SHORT).show()
+            binding.progressBar.visibility= View.GONE
+            binding.vlinearLayoutRegisterpage.visibility= View.VISIBLE
+            binding.buttonLoginPage.visibility= View.VISIBLE
         })
         binding.buttonLoginPage.setOnClickListener {
             toLogin()
@@ -135,10 +145,10 @@ class RegisterActivity : AppCompatActivity() {
                 // Set the content to appear under the system bars so that the
                 // content doesn't resize when the system bars hide and show.
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 // Hide the nav bar and status bar
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 }

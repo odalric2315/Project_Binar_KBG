@@ -19,7 +19,7 @@ class MySoundService : Service() {
 
     override fun onCreate() {
         suitPrefs = SuitPrefs(this)
-        Toast.makeText(this,"Music Service Created",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this,"Music Service Created",Toast.LENGTH_SHORT).show()
         backsound = MediaPlayer.create(this, R.raw.backsound)
         backsound!!.isLooping = true // Set looping
         backsound!!.setVolume(1F, 1F)
@@ -28,13 +28,13 @@ class MySoundService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         backsound!!.start()
-        Toast.makeText(this,"Music Service Started",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this,"Music Service Started",Toast.LENGTH_SHORT).show()
         return START_STICKY
     }
 
     override fun onDestroy() {
         backsound!!.stop()
-        Toast.makeText(this,"Music Service Stopped",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this,"Music Service Stopped",Toast.LENGTH_SHORT).show()
         backsound!!.release()
     }
 }
