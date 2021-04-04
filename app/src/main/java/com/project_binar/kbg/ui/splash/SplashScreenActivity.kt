@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.project_binar.kbg.R
 import com.project_binar.kbg.databinding.ActivitySplashScreenBinding
 import com.project_binar.kbg.presenter.splash.SplashPresenterImp
+import com.project_binar.kbg.util.SuitPrefs
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -21,16 +22,23 @@ import com.project_binar.kbg.presenter.splash.SplashPresenterImp
 class SplashScreenActivity : AppCompatActivity(), SplashView {
     private lateinit var binding: ActivitySplashScreenBinding
     private lateinit var audioBackground: MediaPlayer
+    private lateinit var suitPrefs: SuitPrefs
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        suitPrefs = SuitPrefs(this)
         audioBackground = MediaPlayer.create(this, R.raw.splashscreen_song)
         audioBackground.setLooping(false)
-        audioBackground.setVolume(1F, 1F)
-        audioBackground.start()
+        if (suitPrefs.onoffsound){
+            audioBackground.setVolume(1F, 1F)
+            audioBackground.start()
+        }else {
+            audioBackground.setVolume(0f,0f)
+            audioBackground.start()
+        }
 
         val splashContractImpl = SplashPresenterImp(this@SplashScreenActivity, this)
 

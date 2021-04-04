@@ -2,7 +2,10 @@ package com.project_binar.kbg.ui.multiplayer
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.AudioAttributes
+import android.media.AudioManager
 import android.media.MediaPlayer
+import android.media.SoundPool
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -23,6 +26,7 @@ import com.project_binar.kbg.model.history.AddHistoryBody
 import com.project_binar.kbg.presenter.multiplayer.MultiPlayerPresenterImp
 import com.project_binar.kbg.repository.RemoteRepository
 import com.project_binar.kbg.ui.home.HomeActivity
+import com.project_binar.kbg.ui.setting.MyBattleSoundService
 import com.project_binar.kbg.util.PlayViewModel
 import com.project_binar.kbg.util.SuitPrefs
 import com.project_binar.kbg.util.SuitViewModelFactory
@@ -35,7 +39,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
     private lateinit var binding: ActivityMultiplayerBinding
     private lateinit var presenter: MultiPlayerPresenterImp
     private lateinit var suitPrefs: SuitPrefs
-    private lateinit var viewModel:PlayViewModel
+    private lateinit var viewModel: PlayViewModel
     private lateinit var player1: String
     private lateinit var player2: String
     private lateinit var playerName: String
@@ -43,10 +47,11 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
     private lateinit var forDialog: String
     private var lifePlayer1: Int = 3
     private var lifePlayer2: Int = 3
+    private lateinit var soundPool: SoundPool
+    private var winsfx = 0
+    private var losesfx = 0
+    private var streamId = 0
     private var dataPlayer: Player? = null
-    private lateinit var audioBackground: MediaPlayer
-    private lateinit var audioWin: MediaPlayer
-    private lateinit var audioLose : MediaPlayer
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("SetTextI18n")
@@ -55,23 +60,13 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
         binding = ActivityMultiplayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        audioBackground = MediaPlayer.create(this, R.raw.gameplay_song)
-        audioWin = MediaPlayer.create(this,R.raw.winner_song)
-        audioLose = MediaPlayer.create(this,R.raw.loser_song)
-        audioBackground.setLooping(true)
-        audioWin.setLooping(true)
-        audioLose.setLooping(true)
-        audioBackground.setVolume(1F, 1F)
-        audioWin.setVolume(1F, 1F)
-        audioLose.setVolume(1F, 1F)
-        audioBackground.start()
-
+        playBackgroundMusic()
         val repository = RemoteRepository(ApiClient.service())
         val suitViewModelFactory = SuitViewModelFactory(repository)
-        viewModel = ViewModelProvider(this,suitViewModelFactory).get(PlayViewModel::class.java)
+        viewModel = ViewModelProvider(this, suitViewModelFactory).get(PlayViewModel::class.java)
         dataPlayer = intent.getParcelableExtra(HomeActivity.DATA_PLAYER)
         suitPrefs = SuitPrefs(this)
-
+        initializedSoundPool()
         binding.player1Name.text = suitPrefs.username
         playerName = binding.player1Name.text.toString().trim()
         val playerDb = SuitDb.getInstance(this)
@@ -80,12 +75,10 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
 
         binding.buttonClose.setOnClickListener {
             toHome()
-            audioBackground.release()
             finish()
         }
 
         binding.buttonRefresh.setOnClickListener {
-            audioBackground.start()
             resetHeart()
             refresh()
         }
@@ -117,15 +110,15 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
             it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
             playerTwoPick(player1)
         }
-        viewModel.addHistoryData.observe(this,{
+        viewModel.addHistoryData.observe(this, {
             binding.progressBar.visibility = View.GONE
             binding.gameLayout.visibility = View.VISIBLE
             showResultDialog()
         })
-        viewModel.getError.observe(this,{
+        viewModel.getError.observe(this, {
             binding.progressBar.visibility = View.GONE
             binding.gameLayout.visibility = View.VISIBLE
-            Toast.makeText(this,"Gagal update Hasil ke Server",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Gagal update Hasil ke Server", Toast.LENGTH_SHORT).show()
             showResultDialog()
         })
 
@@ -257,15 +250,17 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
         builder.setView(view.root)
         val dialog = builder.create()
         view.textHasilgameTutorialpage.text = hasil
-
-        if(forDialog=="win") {
+        stopBackgroundMusic()
+        if (forDialog == "win") {
             view.vectorGameresult.setAnimation(R.raw.if_win)
-            audioBackground.release()
-            audioWin.start()
-        } else if(forDialog=="lose") {
+            if (suitPrefs.onoffsound) {
+                streamId = soundPool.play(winsfx, 1f, 1f, 1, -1, 1f)
+            }
+        } else if (forDialog == "lose") {
             view.vectorGameresult.setAnimation(R.raw.if_lose_thunder)
-            audioBackground.release()
-            audioLose.start()
+            if (suitPrefs.onoffsound) {
+                streamId = soundPool.play(losesfx, 1f, 1f, 1, -1, 1f)
+            }
         }
 
         dialog.show()
@@ -273,38 +268,37 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
         //Save Win/Lose ke database disini
 
         view.buttonMainlagi.setOnClickListener {
+            soundPool.stop(streamId)
             refresh()
             resetHeart()
-            audioWin.release()
-            audioLose.release()
+            playBackgroundMusic()
             dialog.dismiss()
-            audioBackground.start()
         }
 
         view.buttonKemenu.setOnClickListener {
+            soundPool.stop(streamId)
             toHome()
             dialog.dismiss()
-            audioBackground.release()
             finish()
         }
     }
 
     private fun updateResult() {
-        var apiResult : String?
+        var apiResult: String?
         if (lifePlayer1 != 0) {
             apiResult = "Player Win"
-            val addHistoryBody = AddHistoryBody("Multiplayer",apiResult)
-            binding.progressBar.visibility=View.VISIBLE
-            binding.gameLayout.visibility=View.GONE
+            val addHistoryBody = AddHistoryBody("Multiplayer", apiResult)
+            binding.progressBar.visibility = View.VISIBLE
+            binding.gameLayout.visibility = View.GONE
             viewModel.addHistory(suitPrefs.token!!, addHistoryBody)
             dataPlayer?.id?.let { id ->
                 presenter.updateWin(1, id)
             }
         } else {
             apiResult = "Opponent Win"
-            val addHistoryBody = AddHistoryBody("Multiplayer",apiResult)
-            binding.progressBar.visibility=View.VISIBLE
-            binding.gameLayout.visibility=View.GONE
+            val addHistoryBody = AddHistoryBody("Multiplayer", apiResult)
+            binding.progressBar.visibility = View.VISIBLE
+            binding.gameLayout.visibility = View.GONE
             viewModel.addHistory(suitPrefs.token!!, addHistoryBody)
             dataPlayer?.id?.let { id -> presenter.updateLose(1, id) }
         }
@@ -331,11 +325,49 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
             .setAnimationMode(ANIMATION_MODE_SLIDE)
             .show()
     }
+
+    fun playBackgroundMusic() {
+        startService(Intent(this, MyBattleSoundService::class.java))
+    }
+
+    fun stopBackgroundMusic() {
+        stopService(Intent(this, MyBattleSoundService::class.java))
+    }
+
+    private fun initializedSoundPool() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            val audioAttributes =
+                AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build()
+            val builder = SoundPool.Builder()
+            builder.setAudioAttributes(audioAttributes).setMaxStreams(1)
+            soundPool = builder.build()
+        } else {
+            soundPool = SoundPool(1, AudioManager.STREAM_MUSIC, 0)
+        }
+        winsfx = soundPool.load(this, R.raw.winner_song, 1)
+        losesfx = soundPool.load(this, R.raw.loser_song, 1)
+    }
+
+
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        stopBackgroundMusic()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        playBackgroundMusic()
+    }
+
     //Fullscreen
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) hideSystemUI()
     }
+
     private fun hideSystemUI() {
         // Enables regular immersive mode.
         // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.

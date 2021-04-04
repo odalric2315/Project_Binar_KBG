@@ -15,15 +15,17 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjecBinarKBG"
         tools:ignore="AllowBackup">
         <service
-            android:enabled="true"
             android:name=".ui.setting.MySoundService"
+            android:enabled="true"
             tools:ignore="Instantiatable" />
+        <service android:name=".ui.setting.MyBattleSoundService" />
+
         <activity
             android:name=".ui.history.HistoryActivity"
             android:theme="@style/Theme.FullScreen" />
