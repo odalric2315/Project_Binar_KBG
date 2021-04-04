@@ -44,6 +44,7 @@ class HomeActivity : AppCompatActivity(){
         val repository = RemoteRepository(ApiClient.service())
         suitPrefs = SuitPrefs(this)
         PlayBackgroundSound()
+
         val SuitViewModelFactory = SuitViewModelFactory(repository)
         viewModel=ViewModelProvider(this,SuitViewModelFactory).get(HomeViewModel::class.java)
         viewModel.getProfile(suitPrefs.token!!)
@@ -101,6 +102,7 @@ class HomeActivity : AppCompatActivity(){
 
         //tombol tutorial
         binding.buttonVideoHomepage.setOnClickListener {
+            onStop()
             showVideoDialog()
         }
 
@@ -113,6 +115,11 @@ class HomeActivity : AppCompatActivity(){
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        stopBackgroundSound()
+    }
+
 //    override fun viewPlayer(player: Player?) {
 //        runOnUiThread {
 //            binding.textNamaHomepage.text = player?.nama
@@ -123,6 +130,11 @@ class HomeActivity : AppCompatActivity(){
     fun PlayBackgroundSound() {
         val intent = Intent(this, MySoundService::class.java)
         startService(intent)
+    }
+
+    fun stopBackgroundSound(){
+        val intent = Intent(this, MySoundService::class.java)
+        stopService(intent)
     }
 
     private fun toLogin() {
@@ -185,6 +197,7 @@ class HomeActivity : AppCompatActivity(){
             dialog.dismiss()
         }
     }
+
     private fun showVideoDialog() {
         val builder = AlertDialog.Builder(this)
         val view = DialogVideoBinding.inflate(layoutInflater)

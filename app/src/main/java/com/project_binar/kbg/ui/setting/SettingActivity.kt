@@ -31,6 +31,7 @@ class SettingActivity : AppCompatActivity() {
 
         suitPrefs = SuitPrefs(this)
 
+
         binding.btnAboutus.setOnClickListener {
             showAboutUsDialog()
         }
@@ -59,9 +60,11 @@ class SettingActivity : AppCompatActivity() {
                 loaded = suitPrefs.onoffsound
                 setOnCheckedChangeListener { _, _ ->
                     if (loaded){
+                        onStop()
                         streamId = soundPool.play(sound1, 1F,1F,1, -1, 1f)
                     } else{
                     soundPool.stop(streamId)
+                        onStart()
                     }
                 }
                 initializedSoundPool()
@@ -69,6 +72,14 @@ class SettingActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        startService(intent)
+    }
+    override fun onStop() {
+        super.onStop()
+        stopService(intent)
+    }
     private fun initializedSoundPool() {
         if (Build.VERSION.SDK_INT >= 21) {
             val audioAttributes = AudioAttributes.Builder()
