@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.etPasswordLoginpage.text.toString().trim()
             val loginBody= LoginBody(email, password)
             viewModel.login(loginBody)
-            binding.progressBar3.visibility= View.GONE
+            binding.progressBar3.visibility= View.VISIBLE
             binding.vlinearLayoutLoginpage.visibility=View.GONE
             binding.buttonRegisterPage.visibility=View.GONE
             //Implementasi database
@@ -84,6 +84,7 @@ class LoginActivity : AppCompatActivity() {
             suitPrefs.login = true
             suitPrefs.email=it.email
             suitPrefs.username=it.username
+            suitPrefs.onoffsound= true
             suitPrefs.password=binding.etPasswordLoginpage.text.toString().trim()
             toHome()
         })

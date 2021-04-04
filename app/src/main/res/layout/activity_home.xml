@@ -200,7 +200,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Leaderboard"
+                        android:text="History"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -212,7 +212,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:paddingBottom="18dp"
-                        android:text="Cek poin dan riwayat permainanmu"
+                        android:text="Cek riwayat permainanmu"
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"

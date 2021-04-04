@@ -40,13 +40,15 @@ class LeaderBoardActivity : AppCompatActivity() {
         setContentView(binding.root)
         val historyAdapter = HistoryAdapter()
         suitPrefs = SuitPrefs(this)
-        PlayBackgroundSound()
+        if (suitPrefs.onoffsound){
+            playBackgroundSound()
+        }
         val repository = RemoteRepository(ApiClient.service())
         val gameViewModelFactory = SuitViewModelFactory(repository)
-        viewModel= ViewModelProvider(this,gameViewModelFactory).get(HistoryViewModel::class.java)
+        viewModel = ViewModelProvider(this, gameViewModelFactory).get(HistoryViewModel::class.java)
         viewModel.getHistory(suitPrefs.token!!)
-        binding.rvLeaderboard.layoutManager= LinearLayoutManager(this)
-        binding.rvLeaderboard.adapter=historyAdapter
+        binding.rvLeaderboard.layoutManager = LinearLayoutManager(this)
+        binding.rvLeaderboard.adapter = historyAdapter
         viewModel.getDataHistory.observe(this, {
             historyAdapter.setData(it)
         })
@@ -94,25 +96,31 @@ class LeaderBoardActivity : AppCompatActivity() {
 //        }
 //    }
 
-    private fun toProfile(dataPlayer: Player) {
-        val intent = Intent(this, ProfileActivity::class.java)
-        intent.putExtra(ProfileActivity.DATA_PLAYER, dataPlayer)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-    }
-    private fun toHistory(){
-        startActivity(Intent(this,HistoryActivity::class.java))
+    fun playBackgroundSound() {
+        startService(Intent(this, MySoundService::class.java))
     }
 
-    fun PlayBackgroundSound() {
-        val intent = Intent(this, MySoundService::class.java)
-        startService(intent)
+    fun stopBackgroundSound() {
+        stopService(Intent(this, MySoundService::class.java))
     }
+
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        stopBackgroundSound()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        playBackgroundSound()
+    }
+
+
     //Fullscreen
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) hideSystemUI()
     }
+
     private fun hideSystemUI() {
         // Enables regular immersive mode.
         // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.

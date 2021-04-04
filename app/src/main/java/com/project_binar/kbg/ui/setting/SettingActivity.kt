@@ -2,6 +2,7 @@
 
 package com.project_binar.kbg.ui.setting
 
+import android.content.Intent
 import android.media.AudioAttributes
 import android.media.AudioManager.STREAM_MUSIC
 import android.media.SoundPool
@@ -18,19 +19,22 @@ import com.project_binar.kbg.util.SuitPrefs
 
 class SettingActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingBinding
-    private lateinit var soundPool: SoundPool
-    private var loaded = false
-    private var sound1 = 0
-    private var streamId = 0
     private lateinit var suitPrefs: SuitPrefs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         suitPrefs = SuitPrefs(this)
-
+        if (suitPrefs.onoffsound){
+            playBackgroundMusic()
+        }
+        if (suitPrefs.darktheme) {
+            binding.swtDarktheme.isChecked = true
+        }
+        if (suitPrefs.onoffsound) {
+            binding.swtOnoffsound.isChecked = true
+        }
 
         binding.btnAboutus.setOnClickListener {
             showAboutUsDialog()
@@ -42,7 +46,6 @@ class SettingActivity : AppCompatActivity() {
 
         binding.swtDarktheme.apply {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-                isChecked = suitPrefs.darktheme
                 setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -55,47 +58,33 @@ class SettingActivity : AppCompatActivity() {
             }
         }
 
-        binding.swtOnoffsound.apply {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-                loaded = suitPrefs.onoffsound
-                setOnCheckedChangeListener { _, _ ->
-                    if (loaded){
-                        onStop()
-                        streamId = soundPool.play(sound1, 1F,1F,1, -1, 1f)
-                    } else{
-                    soundPool.stop(streamId)
-                        onStart()
-                    }
-                }
-                initializedSoundPool()
+        binding.swtOnoffsound.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                playBackgroundMusic()
+                suitPrefs.onoffsound = true
+            } else {
+                stopBackgroundMusic()
+                suitPrefs.onoffsound = false
             }
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        startService(intent)
+    override fun onRestart() {
+        super.onRestart()
+        playBackgroundMusic()
     }
-    override fun onStop() {
-        super.onStop()
-        stopService(intent)
+
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        stopBackgroundMusic()
     }
-    private fun initializedSoundPool() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            val audioAttributes = AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_GAME)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .build()
-            val builder = SoundPool.Builder()
-            builder.setAudioAttributes(audioAttributes).setMaxStreams(1)
-            soundPool = builder.build()
-        } else {
-            soundPool = SoundPool(1, STREAM_MUSIC, 0)
-        }
-        soundPool.setOnLoadCompleteListener { _, _, _ ->
-            loaded = true
-        }
-        sound1 = soundPool.load(this, R.raw.backsound, 1)
+
+    fun playBackgroundMusic() {
+        startService(Intent(this, MySoundService::class.java))
+    }
+
+    fun stopBackgroundMusic() {
+        stopService(Intent(this, MySoundService::class.java))
     }
 
 
@@ -109,11 +98,13 @@ class SettingActivity : AppCompatActivity() {
         }
         dialog.show()
     }
+
     //Fullscreen
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) hideSystemUI()
     }
+
     private fun hideSystemUI() {
         // Enables regular immersive mode.
         // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.

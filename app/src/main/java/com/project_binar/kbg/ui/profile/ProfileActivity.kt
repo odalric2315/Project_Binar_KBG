@@ -59,13 +59,14 @@ class ProfileActivity : AppCompatActivity() {
 
         val repository = RemoteRepository(ApiClient.service())
         val SuitViewModelFactory = SuitViewModelFactory(repository)
-        val suitPrefs = SuitPrefs(this)
-        PlayBackgroundSound()
-
+        suitPrefs = SuitPrefs(this)
+        if (suitPrefs.onoffsound){
+            playBackgroundSound()
+        }
         viewModel = ViewModelProvider(this, SuitViewModelFactory).get(ProfileViewModel::class.java)
         viewModel.getProfile(suitPrefs.token!!)
         binding.playerProfile.visibility = View.GONE
-        binding.statsLayout.visibility = View.GONE
+//        binding.statsLayout.visibility = View.GONE
         viewModel.getDataProfile.observe(this, {
             binding.etEditNameProfile.setText(it.username)
             binding.etEditEmailProfile.setText(it.email)
@@ -75,20 +76,20 @@ class ProfileActivity : AppCompatActivity() {
                 .fitCenter().into(binding.imageProfilePic)
             binding.progressBar.visibility = View.GONE
             binding.playerProfile.visibility = View.VISIBLE
-            binding.statsLayout.visibility = View.VISIBLE
+//            binding.statsLayout.visibility = View.VISIBLE
         })
         viewModel.getError.observe(this, {
             toHome()
         })
 
-        val dataPlayer = intent.getParcelableExtra<Player>(DATA_PLAYER)
+//        val dataPlayer = intent.getParcelableExtra<Player>(DATA_PLAYER)
 //        binding.etEditNameProfile.setText(dataPlayer?.nama)
 
-        dataPlayer?.apply {
-            win?.let { binding.win.text = it.toString() }
-            lose?.let { binding.lose.text = it.toString() }
-            rate?.let { binding.winrate.text = "${it.toInt()}%" }
-        }
+//        dataPlayer?.apply {
+//            win?.let { binding.win.text = it.toString() }
+//            lose?.let { binding.lose.text = it.toString() }
+//            rate?.let { binding.winrate.text = "${it.toInt()}%" }
+//        }
         val playerDb = SuitDb.getInstance(this)
         binding.btnEditImgProfile.setOnClickListener {
             ImagePicker.with(this)
@@ -142,9 +143,20 @@ class ProfileActivity : AppCompatActivity() {
         startActivity(intentProfile)
         finish()
     }
-    fun PlayBackgroundSound() {
-        val intent = Intent(this, MySoundService::class.java)
-        startService(intent)
+    fun playBackgroundSound() {
+        startService(Intent(this, MySoundService::class.java))
+    }
+    fun stopBackgroundSound(){
+        stopService(Intent(this, MySoundService::class.java))
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        playBackgroundSound()
+    }
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        stopBackgroundSound()
     }
 
     private fun startCamera() {

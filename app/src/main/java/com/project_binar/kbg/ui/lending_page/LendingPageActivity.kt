@@ -22,7 +22,7 @@ class LendingPageActivity : AppCompatActivity() {
         audioBackground = MediaPlayer.create(this, R.raw.landing_pages_song)
         audioBackground.setLooping(true)
         audioBackground.setVolume(1F, 1F)
-        audioBackground.start()
+//        audioBackground.start()
 
         val adapter = PagerAdapter(this)
         binding.viewPager.adapter = adapter
@@ -54,6 +54,11 @@ class LendingPageActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        audioBackground.start()
     }
 
     private fun goToRegister() {

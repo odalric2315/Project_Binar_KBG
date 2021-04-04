@@ -72,7 +72,7 @@ class SuitPrefs(context: Context) {
 
     var onoffsound: Boolean
         get() {
-            return prefs.getBoolean(ONOFFSOUND, false)
+            return prefs.getBoolean(ONOFFSOUND, true)
         }
         set(value) {
             prefs.edit().putBoolean(ONOFFSOUND, value).apply()

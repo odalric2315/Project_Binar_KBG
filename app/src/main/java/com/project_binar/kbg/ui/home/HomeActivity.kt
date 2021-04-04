@@ -3,6 +3,7 @@ package com.project_binar.kbg.ui.home
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -26,14 +27,15 @@ import com.project_binar.kbg.ui.tutorial.TutorialActivity
 import com.project_binar.kbg.util.SuitPrefs
 import com.project_binar.kbg.util.SuitViewModelFactory
 
-class HomeActivity : AppCompatActivity(){
+class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
-//    private lateinit var presenterImp: HomePresenterImp
+
+    //    private lateinit var presenterImp: HomePresenterImp
     private lateinit var suitPrefs: SuitPrefs
     private lateinit var viewModel: HomeViewModel
     private var dataPlayer: Player? = null
 
-    companion object{
+    companion object {
         const val DATA_PLAYER = "data_player"
     }
 
@@ -43,27 +45,28 @@ class HomeActivity : AppCompatActivity(){
         setContentView(binding.root)
         val repository = RemoteRepository(ApiClient.service())
         suitPrefs = SuitPrefs(this)
-        PlayBackgroundSound()
 
         val SuitViewModelFactory = SuitViewModelFactory(repository)
-        viewModel=ViewModelProvider(this,SuitViewModelFactory).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this, SuitViewModelFactory).get(HomeViewModel::class.java)
         viewModel.getProfile(suitPrefs.token!!)
-        binding.linearLayout2.visibility=View.GONE
-        viewModel.getDataProfile.observe(this,{
-            binding.textNamaHomepage.text=it.username
-            Glide.with(this).load(it.photo).circleCrop().fitCenter().into(binding.imgProfileHomepage)
-            binding.progressBar2.visibility= View.GONE
-            binding.linearLayout2.visibility=View.VISIBLE
+        binding.linearLayout2.visibility = View.GONE
+        viewModel.getDataProfile.observe(this, {
+            binding.textNamaHomepage.text = it.username
+            Glide.with(this).load(it.photo).circleCrop().fitCenter()
+                .into(binding.imgProfileHomepage)
+            binding.progressBar2.visibility = View.GONE
+            binding.linearLayout2.visibility = View.VISIBLE
+
         })
-        viewModel.getError.observe(this,{
-            val loginBody=LoginBody(suitPrefs.email,suitPrefs.password)
+        viewModel.getError.observe(this, {
+            val loginBody = LoginBody(suitPrefs.email, suitPrefs.password)
             viewModel.login(loginBody)
         })
-        viewModel.getDataLogin.observe(this,{
-            suitPrefs.token="Bearer ${it.token}"
+        viewModel.getDataLogin.observe(this, {
+            suitPrefs.token = "Bearer ${it.token}"
             viewModel.getProfile(suitPrefs.token!!)
         })
-        viewModel.getErrorLogin.observe(this,{
+        viewModel.getErrorLogin.observe(this, {
             toLogin()
         })
 //
@@ -102,7 +105,7 @@ class HomeActivity : AppCompatActivity(){
 
         //tombol tutorial
         binding.buttonVideoHomepage.setOnClickListener {
-            onStop()
+            stopBackgroundSound()
             showVideoDialog()
         }
 
@@ -115,10 +118,20 @@ class HomeActivity : AppCompatActivity(){
 
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
         stopBackgroundSound()
     }
+    override fun onRestart() {
+        super.onRestart()
+        PlayBackgroundSound()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        PlayBackgroundSound()
+    }
+
 
 //    override fun viewPlayer(player: Player?) {
 //        runOnUiThread {
@@ -132,7 +145,7 @@ class HomeActivity : AppCompatActivity(){
         startService(intent)
     }
 
-    fun stopBackgroundSound(){
+    fun stopBackgroundSound() {
         val intent = Intent(this, MySoundService::class.java)
         stopService(intent)
     }
@@ -181,7 +194,7 @@ class HomeActivity : AppCompatActivity(){
         startActivity(intent)
     }
 
-    private fun showPlayChoiceDialog(){
+    private fun showPlayChoiceDialog() {
         val builder = AlertDialog.Builder(this)
         val view = DialogMenuVsChoiceBinding.inflate(layoutInflater)
         builder.setView(view.root)
@@ -228,12 +241,19 @@ class HomeActivity : AppCompatActivity(){
             }
         }
         dialog.show()
+        dialog.setOnDismissListener {
+            if (suitPrefs.onoffsound) {
+                PlayBackgroundSound()
+            }
+        }
     }
+
     //Fullscreen
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) hideSystemUI()
     }
+
     private fun hideSystemUI() {
         // Enables regular immersive mode.
         // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
