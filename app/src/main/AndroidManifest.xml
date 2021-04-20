@@ -25,7 +25,7 @@
             android:enabled="true"
             tools:ignore="Instantiatable" />
         <service android:name=".ui.setting.MyBattleSoundService" />
-
+        <service android:name=".ui.lending_page.LandingPageBGM"/>
         <activity
             android:name=".ui.history.HistoryActivity"
             android:theme="@style/Theme.FullScreen" />

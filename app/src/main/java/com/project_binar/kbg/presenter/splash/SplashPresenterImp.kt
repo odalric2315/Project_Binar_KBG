@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import com.project_binar.kbg.R
 import com.project_binar.kbg.ui.home.HomeActivity
+import com.project_binar.kbg.ui.lending_page.LandingPageBGM
 import com.project_binar.kbg.ui.lending_page.LendingPageActivity
 import com.project_binar.kbg.ui.splash.SplashView
 import com.project_binar.kbg.util.SuitPrefs
@@ -26,7 +27,10 @@ class SplashPresenterImp(
             delay(2000)
             if (prefSuitPrefs.login) {
                 context.startActivity(Intent(context, HomeActivity::class.java))
-            } else context.startActivity(Intent(context, LendingPageActivity::class.java))
+            } else {
+                context.startService(Intent(context,LandingPageBGM::class.java))
+                context.startActivity(Intent(context, LendingPageActivity::class.java))
+            }
 
             context.finish()
         }

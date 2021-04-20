@@ -19,9 +19,9 @@ class LendingPageActivity : AppCompatActivity() {
         binding = ActivityLendingPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        audioBackground = MediaPlayer.create(this, R.raw.landing_pages_song)
-        audioBackground.setLooping(true)
-        audioBackground.setVolume(1F, 1F)
+//        audioBackground = MediaPlayer.create(this, R.raw.landing_pages_song)
+//        audioBackground.setLooping(true)
+//        audioBackground.setVolume(1F, 1F)
 //        audioBackground.start()
 
         val adapter = PagerAdapter(this)
@@ -46,8 +46,9 @@ class LendingPageActivity : AppCompatActivity() {
                     currentPosition++
 
                     if (currentPosition == 3) {
+//                        audioBackground.stop()
+//                        audioBackground.release()
                         goToRegister()
-                        audioBackground.release()
                     } else {
                         binding.viewPager.currentItem = currentPosition
                     }
@@ -56,12 +57,8 @@ class LendingPageActivity : AppCompatActivity() {
         })
     }
 
-    override fun onStart() {
-        super.onStart()
-        audioBackground.start()
-    }
-
     private fun goToRegister() {
+        stopService(Intent(this,LandingPageBGM::class.java))
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
         finish()
