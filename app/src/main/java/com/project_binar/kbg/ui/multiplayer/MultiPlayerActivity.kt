@@ -92,6 +92,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
             player2ButtonClick()
             player1 = getString(R.string.title_stone)
             it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
+            hidePlayer1Hand()
             playerTwoPick(player1)
         }
 
@@ -100,6 +101,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
             player2ButtonClick()
             player1 = getString(R.string.title_paper)
             it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
+            hidePlayer1Hand()
             playerTwoPick(player1)
         }
 
@@ -108,6 +110,7 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
             player2ButtonClick()
             player1 = getString(R.string.title_scissor)
             it.background = ContextCompat.getDrawable(this, R.drawable.btn_hand_background)
+            hidePlayer1Hand()
             playerTwoPick(player1)
         }
         viewModel.addHistoryData.observe(this, {
@@ -145,6 +148,11 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
             checkResult(player1, player2)
         }
     }
+    private fun hidePlayer1Hand(){
+        binding.imgBatuPlayer1.visibility=View.INVISIBLE
+        binding.imgGuntingPlayer1.visibility=View.INVISIBLE
+        binding.imgKertasPlayer1.visibility=View.INVISIBLE
+    }
 
     ///////////////////////////////////////////////
     private fun player1ButtonClick() {
@@ -175,6 +183,9 @@ class MultiPlayerActivity : AppCompatActivity(), MultiPlayerView {
         binding.imgBatuPlayer2.isClickable = false
         binding.imgKertasPlayer2.isClickable = false
         binding.imgGuntingPlayer2.isClickable = false
+        binding.imgBatuPlayer1.visibility=View.VISIBLE
+        binding.imgGuntingPlayer1.visibility=View.VISIBLE
+        binding.imgKertasPlayer1.visibility=View.VISIBLE
     }
 
     ///////////////////////////////////////////////////////////

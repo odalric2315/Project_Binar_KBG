@@ -52,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
         binding.linearLayout2.visibility = View.GONE
         viewModel.getDataProfile.observe(this, {
             binding.textNamaHomepage.text = it.username
-            Glide.with(this).load(it.photo).circleCrop().fitCenter()
+            Glide.with(this).load(it.photo).placeholder(R.drawable.img_profile_picture).circleCrop().fitCenter()
                 .into(binding.imgProfileHomepage)
             binding.progressBar2.visibility = View.GONE
             binding.linearLayout2.visibility = View.VISIBLE
